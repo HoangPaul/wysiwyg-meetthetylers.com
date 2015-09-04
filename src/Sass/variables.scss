@@ -1,0 +1,24 @@
+// Core colors
+$black: rgba(#000000, 0.87);
+$black-light-1x: rgba(#000000, 0.54);
+$black-light-2x: rgba(#000000, 0.38);
+$white: #ffffff;
+$white-dark-1x: rgba(#ffffff, 0.70);
+$white-dark-2x: rgba(#ffffff, 0.30);
+$red: #F44336;
+
+
+// Brand specific colors
+$brand: #3F51B5;
+$brand-dark: darken($brand, 10%);
+$brand-inverse: $white;
+
+// Element colors
+$navbar-bg: $white;//$brand;
+$navbar-color: $black;//$brand-inverse;
+$navbar-top-color: $white;
+
+// RSVP
+//$rsvp-callour-button-bg:
+//$rsvp-callour-button-color:
+$rsvp-time-color: $red;
