@@ -1,0 +1,28 @@
+@mixin line-heading($bg-color, $color, $length) {
+  position: relative;
+  text-align: center;
+  color: $color;
+  &:before,
+  &:after {
+    content: " ";
+    border-bottom: 1px solid $color;
+    display: block;
+    position: absolute;
+    width: #{$length}%;
+    z-index: 1;
+    left: #{(100 - $length) / 2}%;
+  }
+  &:before {
+    top: 47%;
+  }
+  &:after {
+    top: 53%;
+  }
+  span {
+    background-color: $bg-color;
+    position: relative;
+    z-index: 2;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

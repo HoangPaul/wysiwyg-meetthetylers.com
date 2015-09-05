@@ -6,6 +6,7 @@
   }
 
   transition: background-color 0.3s;
+  height: 53px; //super hack, for some reason, inline block doesn't fill height
 }
 
 // Parent navbar at rest
@@ -15,6 +16,8 @@
   width: 100%;
     .navbar-nav {
       border-bottom: 1px outset $white;
+      padding-left: 30px;
+      padding-right: 30px;
     }
 }
 

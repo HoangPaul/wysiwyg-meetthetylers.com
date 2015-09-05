@@ -1,0 +1,29 @@
+p {
+  color: $black-light-1x;
+  @include font-normal();
+}
+
+label {
+  color: $black;
+  @include font-normal();
+}
+
+h1 {
+  @include font-fancy();
+}
+
+h2,h3,h4,h5 {
+  @include font-normal();
+}
+
+.line-heading-brand {
+  @include line-heading($white, $brand, 60);
+}
+
+.line-heading-brand-long {
+  @include line-heading($white, $brand, 80);
+}
+
+.line-heading-brand-full {
+  @include line-heading($white, $brand, 100);
+}

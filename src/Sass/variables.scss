@@ -13,12 +13,17 @@ $grey-light-2x: rgba($grey, 0.30);
 
 $grey-bg: #F9F7F1;
 
+// Bootstrap variables
+$gray: $black-light-1x;
+
 // Brand specific colors
 $brand: #3F51B5;
 $brand-light-1x: rgba($brand, 0.6);
 $brand-light-2x: rgba($brand, 0.4);
 $brand-dark: darken($brand, 10%);
 $brand-inverse: $white;
+
+$brand-secondary: #FF9800;
 
 // Element colors
 $navbar-top-color: $white;
@@ -39,4 +44,10 @@ $font-family-serif: Roboto, Arial, Helvetica, sans-serif;
 
 $headings-font-family: 'Lobster';
 
+//** Border color for inputs on focus
+$input-border-focus:             $brand-light-2x;
+
+
+
 @import "navbar/variables";
+@import "card/variables";
