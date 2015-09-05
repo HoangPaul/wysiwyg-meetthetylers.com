@@ -1,0 +1,71 @@
+// Parent navbar
+.navbar {
+  // Remoive this
+  @include bp(xs) {
+      display:none !important;
+  }
+
+  transition: background-color 0.3s;
+}
+
+// Parent navbar at rest
+.affix-top {
+  position: absolute;
+  padding-top: 50px;
+  width: 100%;
+    .navbar-nav {
+      border-bottom: 1px outset $white;
+    }
+}
+
+// Parent navbar when scrolled
+.affix {
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.affix {
+  box-shadow: $box-shadow-1x;
+  background-color: $navbar-affix-bg;
+  border-style: $navbar-affix-border-style;
+
+  .navbar-nav > li > a {
+    color: $navbar-affix-color;
+    border-bottom-style: $navbar-affix-item-border-style;
+    border-bottom-color: $navbar-affix-item-border-color;
+    border-bottom-width: $navbar-affix-item-border-width;
+
+    &:hover {
+      color: $navbar-affix-link-hover-color;
+      background-color: $navbar-affix-link-hover-bg;
+      border-bottom: 3px solid $brand;
+    }
+    &:active {
+      color: $navbar-affix-link-active-color;
+      background-color: $navbar-affix-link-active-bg;
+    }
+    &:disabled {
+      color: $navbar-affix-link-disabled-color;
+      background-color: $navbar-affix-link-disabled-bg;
+    }
+  }
+
+  .navbar-nav > li.active > a {
+    color: $navbar-affix-link-active-color;
+    background-color: $navbar-affix-link-active-bg;
+
+    border-bottom-style: $navbar-affix-item-border-active-style;
+    border-bottom-color: $navbar-affix-item-border-active-color;
+    border-bottom-width: $navbar-affix-item-border-active-width;
+  }
+}
+
+.center-navbar {
+  text-align: center;
+
+  .navbar-nav {
+    display: inline-block;
+    float: none;
+  }
+}

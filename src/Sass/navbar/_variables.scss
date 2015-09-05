@@ -1,0 +1,39 @@
+// Bootstrap variables
+$navbar-default-color:             magenta; //brand-inverse
+$navbar-default-bg:                transparent; //brand
+$navbar-default-border:            transparent;
+
+$navbar-default-link-color:                $white;
+
+$navbar-default-link-hover-color:          $white;
+$navbar-default-link-hover-bg:             $grey;
+
+$navbar-default-link-active-color:         $brand;
+$navbar-default-link-active-bg:            $grey;
+
+$navbar-default-link-disabled-color:       magenta;
+$navbar-default-link-disabled-bg:          magenta;
+
+// Custom variables
+$navbar-affix-color:             $black; //brand-inverse
+$navbar-affix-bg:                $white; //brand
+$navbar-affix-border-style:       none;
+
+$navbar-affix-link-color:                $black;
+
+$navbar-affix-link-hover-color:          $black;
+$navbar-affix-link-hover-bg:             $grey;
+
+$navbar-affix-link-active-color:         $brand;
+$navbar-affix-link-active-bg:            $grey;
+
+$navbar-affix-link-disabled-color:       $black-light-2x;
+$navbar-affix-link-disabled-bg:          $black-light-1x;
+
+$navbar-affix-item-border-width: 3px;
+$navbar-affix-item-border-color: transparent;
+$navbar-affix-item-border-style: solid;
+
+$navbar-affix-item-border-active-width: 3px;
+$navbar-affix-item-border-active-color: $brand;
+$navbar-affix-item-border-active-style: solid;

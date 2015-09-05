@@ -6,22 +6,13 @@
     <?php require_once('header.php') ?>
   </head>
 
-  <body>
-    <nav class="navbar navbar-inverse affix-top" data-spy="affix" data-offset-top="50">
+  <body data-spy="scroll" data-target="#navbar">
+    <nav id="navbar" class="navbar navbar-default affix-top center-navbar" data-spy="affix" data-offset-top="50">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Home</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-        <li><a href="#registry">Contact</a></li>
+        <ul class="nav navbar-nav">
+        <li><a href="#contact">Contact</a></li>
         <li><a href="#details">Details</a></li>
-        <li><a href="#details">Accommodation</a></li>
+        <li><a href="#accommodation">Accommodation</a></li>
         <li><a href="#registry">Registry</a></li>
         <li><a href="#photos">Photos</a></li>
       </ul>
@@ -42,20 +33,31 @@
     </div>
 
     <div class="container">
-      <div id="details" class="row landing-block">
+      <div id="contact" class="row landing-block">
         <div class="row">
-          <div class="col-sm-12">
-            <div class="img-text-card">
+          <div class="col-sm-6">
+            <div class="img-card img-card-tilt-right">
               <img class="img-responsive" src="images/bg2.jpg">
-              <h1>How we met</h1>
+              <h1>The Bride</h1>
+            </div>
+            <div class="img-card-text">
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="img-card img-card-tilt-left">
+              <img class="img-responsive" src="images/bg2.jpg">
+              <h1>The Groom</h1>
+            </div>
+            <div class="img-card-text">
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row landing-block img-text-card">
-        <h1>Wedding Details</h1>
+      <div id="details" class="row landing-block img-text-card">
+        <h1 class="line-heading"><span>Wedding Details</span></h1>
         <div class="row">
           <div class="col-sm-6 wedding-details-block">
             <h3 class="heading-block">Reception<small>12 days away</small></h3>
@@ -89,8 +91,8 @@
       -->
       </div>
 
-      <div class="row landing-block img-text-card">
-        <h1>Accommodation</h1>
+      <div id="accommodation" class="row landing-block img-text-card">
+        <h1 class="line-heading"><span>Accommodation</span></h1>
         <p>Enim lectus varius inceptos blandit primis morbi libero vel ultrices a a ac tempor a venenatis primis porta. Enim lectus varius inceptos blandit primis morbi libero vel ultrices a a ac tempor a venenatis primis porta</p>
         <div class="row accommodation-wrapper">
           <div class="col-sm-5 accommodation-block">
@@ -107,7 +109,7 @@
         </div>
       </div>
 
-      <div class="row landing-block img-text-card">
+      <div id="registry" class="row landing-block img-text-card">
         <h1>Registry</h1>
           <div class="clearfix">
             <?php for($i = 0; $i < 12; $i++): ?>
@@ -121,8 +123,8 @@
           </div>
       </div>
 
-      <div class="row landing-block">
-        <h1>Photos</h1>
+      <div id="photos" class="row landing-block">
+        <h1 class="line-heading"><span style="background-color: #F9F7F1;">Photos</span></h1>
         <div class="clearfix photo-wrapper">
           <?php for($i = 0; $i < 12; $i++): ?>
             <div class="img-text-card">
@@ -221,14 +223,14 @@
       </div>
     </div>
 
-      <hr>
+    <hr>
 
-      <footer>
-        <p></p>
-      </footer>
+    <footer>
+      <p></p>
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
     <?php require_once('footer.php') ?>
 
 </body>

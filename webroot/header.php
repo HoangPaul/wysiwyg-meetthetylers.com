@@ -4,7 +4,9 @@
 <meta name="author" content="Paul Hoang">
 <link rel="icon" href="favicon.ico">
 <title>Prototype v0.1</title>
+<!--
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css">
+-->
 <link rel="stylesheet" href="styles.css">
 <link href='https://fonts.googleapis.com/css?family=Tangerine:700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
