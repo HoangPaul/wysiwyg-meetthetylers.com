@@ -20,10 +20,11 @@ $gray: $black-light-1x;
 $brand: #3F51B5;
 $brand-light-1x: rgba($brand, 0.6);
 $brand-light-2x: rgba($brand, 0.4);
+$brand-light-3x: #E3F2FD;
 $brand-dark: darken($brand, 10%);
 $brand-inverse: $white;
 
-$brand-secondary: #FF9800;
+$brand-secondary: $red; //#FF9800; orange
 
 // Element colors
 $navbar-top-color: $white;
@@ -51,3 +52,5 @@ $input-border-focus:             $brand-light-2x;
 
 @import "navbar/variables";
 @import "card/variables";
+@import "accommodation/variables";
+@import "vendor-overrides/variables";

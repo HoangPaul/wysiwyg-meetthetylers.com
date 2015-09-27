@@ -1,0 +1,58 @@
+.section.counter-section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.counter-icon,
+.counter-num {
+  float: left;
+  margin-right: 10px;
+}
+
+// Flex stuff
+.counter-wrapper {
+  display: flex;
+
+  .counter-icon,
+  .counter-num,
+  .counter-unit {
+    flex: 1;
+  }
+}
+
+
+// Icon colours
+.counter-section .counter-wrapper {
+  &:nth-of-type(n + 1) {
+     .counter-icon {
+      color: #673AB7;
+    }
+  }
+  &:nth-of-type(n + 2) {
+    .counter-icon {
+      color: #4CAF50;
+    }
+  }
+  &:nth-of-type(n + 3) {
+    .counter-icon {
+      color: #F44336;
+    }
+  }
+  &:nth-of-type(n + 4) {
+    .counter-icon {
+      color: #E91E63;
+    }
+  }
+}
+
+.counter-icon {
+  margin-top: 10px;
+}
+
+.counter-num {
+  font-size: 4em;
+}
+
+.counter-unit {
+  margin-top: 30px;
+}

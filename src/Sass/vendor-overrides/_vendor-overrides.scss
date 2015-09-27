@@ -1,0 +1,5 @@
+// Bootstrap
+.collapsing {
+  //@include transition-duration(.35s);
+  @include transition-duration(1.0s);
+}

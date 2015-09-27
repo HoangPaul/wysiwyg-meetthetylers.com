@@ -1,0 +1,6 @@
+@mixin accommodation-transition($time) {
+  -webkit-transition : all $time linear;
+  -moz-transition : all $time linear;
+  -o-transition : all $time linear;
+  transition : all $time linear;
+}

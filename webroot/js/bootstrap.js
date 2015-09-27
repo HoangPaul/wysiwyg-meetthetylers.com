@@ -563,7 +563,9 @@ if (typeof jQuery === 'undefined') {
 
   Collapse.VERSION  = '3.3.5'
 
-  Collapse.TRANSITION_DURATION = 350
+  // HOANGPAUL: Override default transition duration
+  //Collapse.TRANSITION_DURATION = 350
+  Collapse.TRANSITION_DURATION = 1000
 
   Collapse.DEFAULTS = {
     toggle: true

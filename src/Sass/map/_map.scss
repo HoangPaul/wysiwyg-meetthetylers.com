@@ -10,3 +10,10 @@
     padding-bottom: 30%;
   }
 }
+
+// Moving the attributes up so that it's not obstructed by the accommodation
+// arrows. They need to be visible as per Terms of Use.
+.gm-style-cc,
+.gmnoprint {
+  bottom: 30px !important;
+}

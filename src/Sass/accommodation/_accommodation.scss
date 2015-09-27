@@ -1,0 +1,86 @@
+#accommodation-callout {
+  margin: 0;
+  &.in {
+    height: 60px;
+  }
+}
+
+.accommodation-item {
+  border-right: 1px solid $grey;
+  border-top: 1px solid $grey;
+  border-bottom: 1px solid $grey;
+  flex: 1;
+
+  @include accommodation-transition($accommodation-transition-timer);
+
+  background-color: $accommodation-bg;
+  color: $accommodation-color;
+  text-align: center;
+
+  .accommodation-item-heading {
+    margin: 15px;
+  }
+}
+
+// Hover styling
+.accommodation-item {
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration:none;
+    color: inherit;
+  }
+}
+
+// Triangle styling
+.accommodation-item {
+  position: relative;
+
+  &:before,
+  &:after {
+  	bottom: 100%;
+  	left: 50%;
+  	border: solid transparent;
+  	content: " ";
+  	height: 0;
+  	width: 0;
+  	position: absolute;
+  	pointer-events: none;
+
+    @include accommodation-transition($accommodation-transition-timer);
+  }
+  &:after {
+  	border-color: transparent;
+  	border-bottom-color: transparent;
+  	border-width: 30px;
+  	margin-left: -30px;
+  }
+  &:before {
+  	border-color: transparent;
+  	border-bottom-color: transparent;
+  	border-width: 36px;
+  	margin-left: -36px;
+  }
+}
+
+// Active styling
+.accommodation-item.active {
+  background-color: $accommodation-active-bg;
+  color: $accommodation-active-color;
+  border-bottom-color: transparent;
+
+  &:before {
+  	border-color: rgba(255, 255, 255, 0);
+  	border-bottom-color: $accommodation-triangle-border;
+  }
+  &:after {
+  	border-color: rgba(136, 183, 213, 0);
+  	border-bottom-color: $accommodation-triangle-bg;
+  }
+}
+
+// Details block
+
+.accommodation-coupon {
+  color: red;
+}

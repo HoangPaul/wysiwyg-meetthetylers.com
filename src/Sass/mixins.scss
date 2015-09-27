@@ -1,14 +1,5 @@
 @import "typography/mixins";
-
-@mixin font-fancy() {
-  //font-family: 'Tangerine', cursive;
-  font-family: 'Lobster';
-}
-
-@mixin font-normal() {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
-  //font-family: 'PT Sans', sans-serif;
-}
+@import "accommodation/mixins";
 
 @mixin bp($bp) {
   @if $bp == "xs" {

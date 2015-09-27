@@ -3,9 +3,12 @@
 @import "bootstrap/bootstrap";
 @import "navbar/navbar";
 @import "card/card";
+@import "counter/counter";
 @import "typography/typography";
 @import "form/form";
 @import "map/map";
+@import "accommodation/accommodation";
+@import "vendor-overrides/vendor-overrides";
 
 .jumbotron {
   padding-top: 50px;
@@ -25,8 +28,8 @@
 }
 
 .section {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .heading-block {
@@ -43,8 +46,20 @@
   }
 }
 
+.short-hr {
+  border-top: 3px solid $brand;
+  margin: 42px 42%;
+}
+
 .wedding-details-block,
 .accommodation-block {
+  h3 {
+    margin: 0;
+  }
+  > div {
+      background: white;
+      padding: 15px 30px;
+  }
   p {
     border-bottom: 1px #ddd solid;
     padding: 10px 0;
@@ -58,6 +73,58 @@
   .fa {
     color: $brand-dark;
   }
+}
+
+.details-section {
+  h2 {
+    margin: 30px;
+  }
+}
+
+.rsvp-section {
+  padding: 80px 0 120px;
+
+  .btn-submit {
+    margin-top: 30px;
+  }
+}
+
+.rsvp-location-block {
+  position: relative;
+  h4 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px 0;
+    background: rgba($black, 0.7);
+    color: $white;
+  }
+}
+
+.bg-img-brand-light-3x {
+  position: relative;
+  background: url(images/flowers/white3.jpg) no-repeat;
+  background-size: cover;
+
+  > div {
+    position: relative;
+  }
+
+  &:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($black, 0.7);
+  }
+}
+
+.bg-brand-light-3x {
+  background-color: $brand-light-3x;
 }
 
 .rsvp-button-wrapper {
@@ -93,11 +160,18 @@
 }
 
 .photo-wrapper {
-  -webkit-column-count: 4;
+  -webkit-column-count: 3;
   -webkit-column-break-inside: avoid;
-  .img-text-card {
-     margin-top: 15px;
-     display: inline-block;
+  -webkit-column-gap: 15px;
+
+  > div {
+    margin-top: 7.5px;
+    margin-bottom: 7.5px;
+    display: inline-block;
+  }
+
+  .photo-stats {
+    float: right;
   }
 }
 

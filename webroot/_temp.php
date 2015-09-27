@@ -41,3 +41,10 @@
           <?php endfor; ?>
         </div>
       </div>
+
+      <div class="rsvp-button-wrapper clearfix">
+        <button type="button" class="btn btn-success center-block" data-toggle="modal" data-target="#rsvp-modal">
+          RSVP
+        </button>
+        <span class="rsvp-reminder-text text-center">Don't forget to RSVP! Deadline is in <span class="rsvp-reminider-text-time">6 days</span>.</span>
+      </div>

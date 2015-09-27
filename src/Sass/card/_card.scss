@@ -19,11 +19,29 @@
 .card-tilt-right {
   transform: rotate(5deg);
   margin-bottom: 30px;
+
+  transition: all 1s;
+
+  &.slide-in.from-left {
+    transform: translate(-200%) rotate(5deg);
+  }
+  &.slide-in.from-right {
+    transform: translate(200%) rotate(5deg);
+  }
 }
 
 .card-tilt-left {
   transform: rotate(-5deg);
   margin-bottom: 30px;
+
+  transition: all 1s;
+
+  &.slide-in.from-left {
+    transform: translate(-200%) rotate(-5deg);
+  }
+  &.slide-in.from-right {
+    transform: translate(200%) rotate(-5deg);
+  }
 }
 
 .card-heading {
@@ -31,4 +49,11 @@
   text-align: center;
   padding: 0;
   margin: 15px;
+}
+
+.card-block.wedding-details-block {
+  h3 {
+    margin: -15px;
+    margin-bottom: 0;
+  }
 }
