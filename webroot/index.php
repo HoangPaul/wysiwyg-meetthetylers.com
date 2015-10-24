@@ -59,17 +59,18 @@
     <div id="timer" class="section counter-section bg-brand-light-3x">
       <div class="container">
         <?php $icons = ['calendar', 'clock-o', 'sliders', 'heart-o'] ?>
-        <?php $units = ['DAYS', 'HOURS', 'MINUTES', 'SECONDS']; ?>
+        <?php $longUnits = ['DAYS', 'HOURS', 'MINUTES', 'SECONDS']; ?>
+        <?php $shortUnits = ['DAYS', 'HRS', 'MINS', 'SECS']; ?>
         <?php for($i = 0; $i < 4; $i++): ?>
           <div class="col-sm-3 counter-wrapper">
             <div class="counter-icon">
-              <i class="fa fa-<?= $icons[$i]; ?> fa-4x fa-fw"></i>
+              <i class="fa fa-<?= $icons[$i]; ?> fa-fw"></i>
             </div>
-            <div class="counter-num">
+            <div id="<?= strtolower($longUnits[$i]); ?>" class="counter-num">
               <span>14</span>
             </div>
             <div class="counter-unit">
-              <span><?= $units[$i]; ?></span>
+              <span><?= $shortUnits[$i]; ?></span>
             </div>
           </div>
       <?php endfor; ?>
@@ -79,27 +80,34 @@
       <div id="details" class="section details-section">
         <div class="container">
           <h1><span>Wedding Details</span></h1>
-          <div class="row" style="margin-bottom: 60px">
-            <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
-              <div class="col-sm-5 wedding-details-block card-block">
-                <h3 class="heading-block">Reception<small>12 days away</small></h3>
+          <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
+          <div class="row" style="margin-bottom: 60px;">
+              <div class="col-sm-4 wedding-details-block" style="
+    margin-top: 10px;
+    border: 1px #ddd solid;
+    padding: 30px 15px;
+    background: white;">
+                <h3 style="text-align: center;">Reception</h3>
                 <div class="col-sm-12">
-                  <p><i class="fa fa-fw fa-calendar"></i> Monday, 1st September, 2015</p>
-                  <p><i class="fa fa-fw fa-black-tie"></i> Attire Cocktail</p>
-                  <p><i class="fa fa-fw fa-clock-o"></i> 3:00pm - 6:00pm</p>
-                  <p><i class="fa fa-fw fa-map-marker"></i> Olive Garden?<br>123 Fake Street, Shepparton, Australia</p>
+                  <p><i class="fa fa-fw fa-calendar fa-2x"></i> Monday, 1st September, 2015</p>
+                  <p><i class="fa fa-fw fa-black-tie fa-2x"></i> Attire Cocktail</p>
+                  <p><i class="fa fa-fw fa-clock-o fa-2x"></i> 3:00pm - 6:00pm</p>
+                  <p><i class="fa fa-fw fa-map-marker fa-2x"></i> Olive Garden?<br>123 Fake Street, Shepparton, Australia</p>
                 </div>
               </div>
-              <div data-scroll-target="pink" class="col-sm-offset-1 col-sm-6">
-                <div id="pink" class="card-block card-tilt-left slide-in from-right">
-                  <img class="img-responsive center-block" src="images/flowers/pink.jpg"/>
-                </div>
+              <div class="col-sm-offset-1 col-sm-7" style="margin-top: 50px;">
+                <?php $tilts = ['transform: rotate(15deg);', 'transform: rotate(-10deg);', 'transform: rotate(-5deg);', 'transform: rotate(10deg);'] ?>
+                <?php for ($i = 0; $i < 4; $i++): ?>
+                  <div id="pink" class="col-sm-6 card-block slide-in from-right" style="margin-bottom: 0; <?= $tilts[$i]; ?>;">
+                    <img class="img-responsive center-block" src="images/flowers/pink.jpg"/>
+                  </div>
+                <?php endfor; ?>
               </div>
           </div>
           <hr class="short-hr">
           <div class="row">
             <h2 class="text-center"><span>Tuesday, 2nd September, 2015</span></h2>
-            <div class="col-sm-6">
+            <div class="col-sm-7">
               <div id="white" class="card-block card-tilt-right slide-in from-left">
                 <img class="img-responsive center-block" src="images/flowers/white.jpg"/>
               </div>
@@ -107,7 +115,7 @@
                   <img class="img-responsive center-block" src="images/flowers/red.jpg"/>
                 </div>
             </div>
-            <div data-scroll-target="white" class="col-sm-offset-1 col-sm-5 wedding-details-block card-block" style="margin-bottom: 45px">
+            <div data-scroll-target="white" class="col-sm-offset-1 col-sm-4 wedding-details-block card-block" style="margin-bottom: 45px">
               <h3 class="heading-block">Ceremony<small>13 days away</small></h3>
               <div class="col-sm-12">
                 <p><i class="fa fa-fw fa-calendar"></i> Monday, 2nd September, 2015</p>
@@ -116,7 +124,7 @@
                 <p><i class="fa fa-fw fa-map-marker"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
               </div>
             </div>
-            <div data-scroll-target="red" class="col-sm-offset-1 col-sm-5 wedding-details-block card-block">
+            <div data-scroll-target="red" class="col-sm-offset-1 col-sm-4 wedding-details-block card-block">
               <h3 class="heading-block">Rockin' BBQ Afterparty<small>13 days away</small></h3>
               <div class="col-sm-12">
                 <p><i class="fa fa-fw fa-calendar"></i> Monday, 2nd September, 2015</p>
@@ -133,6 +141,7 @@
       <div class="container">
         <h1 style="color: white; margin-bottom: 30px">Will you attend?</h1>
         <div class="col-xs-offset-2 col-xs-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
+          <h3 style="text-align: center">R.S.V.P</h3>
           <form>
             <div class="row form-group">
               <div class="col-sm-6">
@@ -151,30 +160,30 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="rsvp-location-block">
-                    <img class="img-responsive" src="images/flowers/green.jpg">
+                    <img id="reception-form" class="img-responsive img-filter-transition" src="images/flowers/green.jpg">
                     <h4 class="text-center">Reception</h4>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="rsvp-location-block">
-                    <img class="img-responsive" src="images/flowers/pink3.jpg">
+                    <img id="wedding-form" class="img-responsive img-filter-transition" src="images/flowers/pink3.jpg">
                     <h4 class="text-center">Wedding</h4>
                   </div>
                 </div>
                 <div class="col-sm-6 btn-group" data-toggle="buttons">
                   <label class="col-sm-6 btn btn-default active">
-                    <input type="radio" name="options" id="option1" autocomplete="off">Yes</input>
+                    <input data-img="reception-form" data-img-type="yes" type="radio" name="reception" id="option1" autocomplete="off">Yes</input>
                   </label>
                   <label class="col-sm-6 btn btn-default">
-                    <input type="radio" name="options" id="option3" autocomplete="off">No</input>
+                    <input data-img="reception-form" data-img-type="no" type="radio" name="reception" id="option3" autocomplete="off">No</input>
                   </label>
                 </div>
                 <div class="col-sm-6 btn-group" data-toggle="buttons">
                   <label class="col-sm-6 btn btn-default active">
-                    <input type="radio" name="options" id="option1" autocomplete="off">Yes</input>
+                    <input data-img="wedding-form" data-img-type="yes" type="radio" name="wedding" id="option1" autocomplete="off">Yes</input>
                   </label>
                   <label class="col-sm-6 btn btn-default">
-                    <input type="radio" name="options" id="option3" autocomplete="off">No</input>
+                    <input data-img="wedding-form" data-img-type="no" type="radio" name="wedding" id="option3" autocomplete="off">No</input>
                   </label>
                 </div>
               </div>
@@ -182,7 +191,7 @@
             <div class="row form-group">
               <div class="col-sm-12">
                 <label>Message</label>
-                <textarea class="form-control" name=message placeholder="Please let us know of any alergies or catering issues."></textarea>
+                <textarea class="form-control" name=message placeholder="Please let us know of any allergies or catering issues."></textarea>
               </div>
             </div>
             <div class="form-group">

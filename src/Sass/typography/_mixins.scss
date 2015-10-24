@@ -36,3 +36,26 @@
   font-family: Roboto, Arial, Helvetica, sans-serif;
   //font-family: 'PT Sans', sans-serif;
 }
+
+@mixin responsive-text($xs-fontsize: false, $sm-fontsize: false, $md-fontsize: false, $lg-fontsize: false) {
+  @if ($xs-fontsize) {
+    @include bp(xs) {
+      font-size: $xs-fontsize;
+    }
+  }
+  @if ($sm-fontsize) {
+    @include bp(sm) {
+      font-size: $sm-fontsize;
+    }
+  }
+  @if ($md-fontsize) {
+    @include bp(md) {
+      font-size: $md-fontsize;
+    }
+  }
+  @if ($lg-fontsize) {
+    @include bp(lg) {
+      font-size: $lg-fontsize;
+    }
+  }
+}

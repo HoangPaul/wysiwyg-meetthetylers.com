@@ -78,9 +78,9 @@ $('.accommodation-item').on('click', function(e) {
 
 })(jQuery);
 
+// Scroll images in on visible
 (function($){
   var scrollIntervalID = setInterval(function() {
-    console.log('qweqweqweqwqwe');
     if ($("[data-scroll-target]").length == 0) {
       clearInterval(scrollIntervalID);
     }
@@ -93,4 +93,31 @@ $('.accommodation-item').on('click', function(e) {
       }
     })
   }, 500);
+})(jQuery);
+
+(function($) {
+  $("[data-img]").on("change", function() {
+    var $this = $(this);
+    var $target = $('#' + $this.data('img'));
+    if ($this.data('img-type') == 'yes') {
+      $target.removeClass('img-gray-filter');
+    } else {
+      $target.addClass('img-gray-filter');
+    }
+  });
+})(jQuery);
+
+// Countdown
+
+(function($){
+  setInterval(function() {
+    var secondValue = $('#seconds span').html();
+    if (secondValue == 0) {
+      $('#seconds span').html(59)
+      var minuteValue = $('#minutes span').html()
+      $('#minutes span').html(minuteValue - 1)
+    } else {
+      $('#seconds span').html(secondValue - 1)
+    }
+  }, 1000);
 })(jQuery);
