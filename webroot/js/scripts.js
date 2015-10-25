@@ -78,23 +78,27 @@ $('.accommodation-item').on('click', function(e) {
 
 })(jQuery);
 
-// Scroll images in on visible
+// Image scroll
 (function($){
-  var scrollIntervalID = setInterval(function() {
-    if ($("[data-scroll-target]").length == 0) {
-      clearInterval(scrollIntervalID);
-    }
-    $("[data-scroll-target]").each(function(i, elem) {
-      var $elem = $(elem);
-      if ($elem.visible(true)) {
-        var $target = $('#' + $elem.data("scroll-target"));
-        $target.removeClass("slide-in");
-        $elem.removeAttr('data-scroll-target');
+
+  $(document).ready(function() {
+    var scrollIntervalID = setInterval(function() {
+      if ($("[data-scroll-target]").length == 0) {
+        clearInterval(scrollIntervalID);
       }
-    })
-  }, 500);
+      $("[data-scroll-target]").each(function(i, elem) {
+        var $elem = $(elem);
+        if ($elem.visible(true)) {
+          var $target = $($elem.data("scroll-target"));
+          $target.removeClass("slide-in");
+          $elem.removeAttr('data-scroll-target');
+        }
+      });
+    }, 500);
+  });
 })(jQuery);
 
+// Image greyout
 (function($) {
   $("[data-img]").on("change", function() {
     var $this = $(this);

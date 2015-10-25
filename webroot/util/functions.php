@@ -17,9 +17,19 @@ class RandomImagePath
    */
   protected $_index = 0;
 
-  public function __construct($directory)
+  /**
+   * Supported options:
+   * - fileExtentions: An array of file extensions. e.g.
+   *   fileExtentions => ['jpeg', 'jpg', 'png', 'gif']
+   *
+   * @var array
+   */
+   protected $_options = array();
+
+  public function __construct($directory, $options = array())
   {
     $this->_directoryPath = $directory;
+    $this->_options = $options;
     $this->_initImages();
   }
 
@@ -31,13 +41,14 @@ class RandomImagePath
 
   protected function _populateImagePaths()
   {
-    $imagePaths = scandir($this->_directoryPath, 1);
-    if ($imagePaths) {
-      $numImages = count($imagePaths) - 2;
-      if ($numImages > 0) {
-        $this->_imagePaths = array_slice($imagePaths, 0, $numImages);
-      }
+    $fileExtensions = '';
+    if (isset($this->_options['fileExtentions'])) {
+      $fileExtensions = '{' . implode(',', $this->_options['fileExtentions']) . '}';
     }
+
+    $imagePaths = glob($this->_directoryPath . '/*.' . $fileExtensions, GLOB_BRACE);
+
+    $this->_imagePaths = $imagePaths;
   }
 
   protected function _randomizeImageList()
@@ -73,6 +84,6 @@ class RandomImagePath
       if ($this->_index >= $this->getImageCount()) {
         $this->_randomizeImageList();
       }
-      return $this->_directoryPath . '/' . $this->_imagePaths[$this->_index++];
+      return $this->_imagePaths[$this->_index++];
   }
 }

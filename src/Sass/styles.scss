@@ -8,7 +8,12 @@
 @import "form/form";
 @import "map/map";
 @import "accommodation/accommodation";
+@import "sections/sections";
 @import "vendor-overrides/vendor-overrides";
+
+html {
+  overflow-x: hidden;
+}
 
 .jumbotron {
   padding-top: 50px;
@@ -84,7 +89,18 @@
 
 .details-section {
   h2 {
-    margin: 30px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+}
+
+.details-images-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  img {
+    width: 100%;
   }
 }
 

@@ -8,6 +8,7 @@
 
   padding: 15px;
   background: $card-bg;
+  z-index: 10;
 }
 
 .card-block-full-width {
@@ -21,13 +22,6 @@
   margin-bottom: 30px;
 
   transition: all 1s;
-
-  &.slide-in.from-left {
-    transform: translate(-200%) rotate(45deg);
-  }
-  &.slide-in.from-right {
-    transform: translate(200%) rotate(45deg);
-  }
 }
 
 .card-tilt-left {
@@ -35,13 +29,17 @@
   margin-bottom: 30px;
 
   transition: all 1s;
+}
 
-  &.slide-in.from-left {
-    transform: translate(-200%) rotate(-45deg);
-  }
-  &.slide-in.from-right {
-    transform: translate(200%) rotate(-45deg);
-  }
+.slide-in-animation {
+  transition: all 1s;
+}
+
+&.slide-in.from-left {
+  transform: translate(-100vw) rotate(0) !important;
+}
+&.slide-in.from-right {
+  transform: translate(100vw) rotate(0) !important;
 }
 
 .card-heading {
