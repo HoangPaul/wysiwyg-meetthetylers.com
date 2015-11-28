@@ -28,3 +28,11 @@
     }
   }
 }
+
+@mixin hover-wrapper() {
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}

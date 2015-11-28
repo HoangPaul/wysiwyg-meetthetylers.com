@@ -1,5 +1,6 @@
 .map-wrapper {
   margin: 3px 0;
+  position: relative;
 }
 
 #map {
@@ -9,6 +10,72 @@
   @include bp(md-up) {
     padding-bottom: 30%;
   }
+}
+
+// Legend
+.map-overlay {
+  position:absolute;
+  top: 15%;
+
+  &,
+  > .card-block {
+      padding: 0;
+  }
+}
+
+// Legend (list styling)
+.map-overlay-marker-list {
+  padding-bottom: 0;
+  padding-top: 0;
+  margin-bottom: 0;
+
+  li a {
+    display: block;
+    padding: 20px 30px;
+    color: $black-light-1x;
+
+    @include hover-wrapper() {
+      text-decoration: none;
+    }
+  }
+
+  .fa-right {
+    float: right;
+  }
+  .fa-left {
+    margin-right: 10px;
+  }
+
+  .clickable-marker-list-item.active {
+    background: #ddd;
+    color: $brand;
+    border-right: 3px $brand solid;
+  }
+}
+
+// Legend (list number styling)
+.list-numbered {
+    position: relative;
+
+    &:before {
+        content: attr(data-content);
+        display: block;
+        position: absolute;
+        top: 26%;
+        left: 10px;
+        border-radius: 100px;
+        width: 29px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        border: 5px $grey solid;
+        background: $grey;
+    }
+
+    &.active:before {
+        border: 5px $brand-primary solid;
+        background: $brand-primary;
+    }
 }
 
 // Moving the attributes up so that it's not obstructed by the accommodation
