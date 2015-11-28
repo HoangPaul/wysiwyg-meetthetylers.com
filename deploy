@@ -1,4 +1,4 @@
 #! /bin/bash
 
-`echo ${PWD}`/sass-compile
-`echo ${PWD}`/js-compile
+$PWD/sass-compile
+$PWD/js-compile

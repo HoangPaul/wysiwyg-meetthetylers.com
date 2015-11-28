@@ -1,1 +1,3 @@
-cp -r src/js webroot
+#! /bin/bash
+
+cp -r $PWD/src/js $PWD/webroot
