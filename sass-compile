@@ -1,1 +1,5 @@
-docker run --rm -v $(pwd)/src/Sass:/app sassc styles.scss > webroot/styles.css
+#! /bin/bash
+
+DIR="$( cd $(dirname $0) ; pwd -P )"
+
+docker run --rm -v $DIR/src/Sass:/app sassc styles.scss > $DIR/webroot/styles.css

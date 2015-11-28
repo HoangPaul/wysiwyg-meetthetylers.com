@@ -1,4 +1,6 @@
 #! /bin/bash
 
-$PWD/sass-compile
-$PWD/js-compile
+DIR="$( cd $(dirname $0) ; pwd -P )"
+
+$DIR/sass-compile
+$DIR/js-compile
