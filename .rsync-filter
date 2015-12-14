@@ -1,0 +1,5 @@
+- deploy
+- *-compile
+- .git/
+- .gitignore
+- .rsync-filter
