@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Paul Hoang">
 <link rel="icon" href="favicon.ico">
-<title>Prototype v0.1</title>
+<title>Prototype v2.5</title>
 <!--
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css">
 -->
