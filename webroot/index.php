@@ -213,7 +213,7 @@
           <div class="card-block" style="margin-bottom: 30px;">
               <h5 style="text-align: center">Monday, 1st September, 2015</h5>
               <ul class="list-unstyled map-overlay-marker-list">
-                <li class="clickable-marker-list-item" data-content="1">
+                <li class="clickable-marker-list-item active">
                   <a href="#">
                     <i class="fa fa-gift fa-fw fa-left fa-lg"></i>
                     Reception
@@ -222,13 +222,13 @@
               </ul>
               <h5 style="text-align: center">Tuesday, 2nd September, 2015</h5>
               <ul class="list-unstyled map-overlay-marker-list">
-                <li class="clickable-marker-list-item" data-content="2">
+                <li class="clickable-marker-list-item">
                   <a href="#">
                     <i class="fa fa-star fa-fw fa-left fa-lg"></i>
                     St. James Cathedral
                   </a>
                 </li>
-                <li class="clickable-marker-list-item" data-content="3">
+                <li class="clickable-marker-list-item">
                   <a href="#">
                     <i class="fa fa-fire fa-fw fa-left fa-lg"></i>
                     Rockin' BBQ
