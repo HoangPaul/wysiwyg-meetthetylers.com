@@ -196,11 +196,28 @@ function initMap() {
 // Map legend clickable
 
 (function($) {
-  $('.clickable-marker-list-item').on('click', function(event) {
+  $('[data-toggle="clickable-show-unique"]').on('click', function(event) {
     event.preventDefault();
-    $('.clickable-marker-list-item').each(function() {
-      $(this).removeClass('active');
-    });
+
+    // De-activate all members in the group
+    var group = $(this).data('group');
+    $('[data-group="' + group + '"]').removeClass('active');
     $(this).addClass('active');
+
+    // Activate the target member(s)
+    var target = $(this).data('target');
+    $(target).addClass('active');
+  });
+})(jQuery);
+
+// Map legend content
+
+(function($) {
+  $('[data-toggle="clickable-hide-all"]').on('click', function(event) {
+    event.preventDefault();
+
+    // De-activate all members in the group
+    var group = $(this).data('group');
+    $('[data-group="' + group + '"]').removeClass('active');
   });
 })(jQuery);

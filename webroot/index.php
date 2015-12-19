@@ -213,7 +213,7 @@
           <div class="card-block" style="margin-bottom: 30px;">
               <h5 style="text-align: center">Monday, 1st September, 2015</h5>
               <ul class="list-unstyled map-overlay-marker-list">
-                <li class="clickable-marker-list-item active">
+                <li class="active" data-toggle="clickable-show-unique" data-target="[data-id='map-content-reception']" data-group="map-legend">
                   <a href="#">
                     <i class="fa fa-gift fa-fw fa-left fa-lg"></i>
                     Reception
@@ -222,13 +222,13 @@
               </ul>
               <h5 style="text-align: center">Tuesday, 2nd September, 2015</h5>
               <ul class="list-unstyled map-overlay-marker-list">
-                <li class="clickable-marker-list-item">
+                <li data-toggle="clickable-show-unique" data-target="[data-id='map-content-marry']" data-group="map-legend">
                   <a href="#">
                     <i class="fa fa-star fa-fw fa-left fa-lg"></i>
                     St. James Cathedral
                   </a>
                 </li>
-                <li class="clickable-marker-list-item">
+                <li data-toggle="clickable-show-unique" data-target="[data-id='map-content-bbq']" data-group="map-legend">
                   <a href="#">
                     <i class="fa fa-fire fa-fw fa-left fa-lg"></i>
                     Rockin' BBQ
@@ -239,8 +239,8 @@
           <div class="card-block">
               <h5 style="text-align: center">Accommodation</h5>
               <ul class="list-unstyled map-overlay-marker-list">
-                  <li>
-                    <a class="clickable-marker-list-item" href="#">
+                  <li data-toggle="clickable-show-unique" data-target="[data-id='map-content-accomodation-olive-garden']" data-group="map-legend">
+                    <a href="#">
                       <i class="fa fa-bed fa-fw fa-left fa-lg"></i>
                       Hotels
                     </a>
@@ -248,17 +248,48 @@
               </ul>
           </div>
         </div>
-        <div class="map-overlay card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2">
-            <div style="background-color: #3F51B5; padding: 10px 15px 5px; margin-bottom: 15px;">
-                <h5 style="color: white; margin: 0">The Olive Garden <small style="float: right; color: white"><i class="fa fa-times fa-fw"></i></small></h5>
-            </div>
+        <div class="map-overlay map-overlay-marker-content active card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2"  data-id="map-content-reception" data-group="map-legend">
+            <h5 class="title">Reception<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
             <div class="col-sm-12">
                 <p><i class="fa fa-bed fa-fw"></i> 1 - 4 beds per room</p>
                 <p><i class="fa fa-usd fa-fw"></i> $120+ per night</p>
                 <p><i class="fa fa-cutlery fa-fw"></i> Complementary breakfast</p>
                 <p><i class="fa fa-map-marker fa-fw"></i> 123 Fake Street, Shepparton, Australia</p>
                 <p><i class="fa fa-car fa-fw"></i> ~5 minutes travel time to all venues</p>
-                <a href="#" style="text-align: center; display: block; margin: 10px 0;">Visit their website</a>
+                <a href="#" class="footer-link">Visit their website</a>
+            </div>
+        </div>
+        <div class="map-overlay map-overlay-marker-content card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2" data-id="map-content-marry" data-group="map-legend">
+            <h5 class="title">St. James Cathedral<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
+            <div class="col-sm-12">
+                <p><i class="fa fa-bed fa-fw"></i> 1 - 4 beds per room</p>
+                <p><i class="fa fa-usd fa-fw"></i> $120+ per night</p>
+                <p><i class="fa fa-cutlery fa-fw"></i> Complementary breakfast</p>
+                <p><i class="fa fa-map-marker fa-fw"></i> 123 Fake Street, Shepparton, Australia</p>
+                <p><i class="fa fa-car fa-fw"></i> ~5 minutes travel time to all venues</p>
+                <a href="#" class="footer-link">Visit their website</a>
+            </div>
+        </div>
+        <div class="map-overlay map-overlay-marker-content card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2" data-toggle="map-content" data-id="map-content-bbq" data-group="map-legend">
+            <h5 class="title">Rockin' BBQ<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
+            <div class="col-sm-12">
+                <p><i class="fa fa-bed fa-fw"></i> 1 - 4 beds per room</p>
+                <p><i class="fa fa-usd fa-fw"></i> $120+ per night</p>
+                <p><i class="fa fa-cutlery fa-fw"></i> Complementary breakfast</p>
+                <p><i class="fa fa-map-marker fa-fw"></i> 123 Fake Street, Shepparton, Australia</p>
+                <p><i class="fa fa-car fa-fw"></i> ~5 minutes travel time to all venues</p>
+                <a href="#" class="footer-link">Visit their website</a>
+            </div>
+        </div>
+        <div class="map-overlay map-overlay-marker-content card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2" data-toggle="map-content" data-id="map-content-accomodation-olive-garden" data-group="map-legend">
+            <h5 class="title">Hotels<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
+            <div class="col-sm-12">
+                <p><i class="fa fa-bed fa-fw"></i> 1 - 4 beds per room</p>
+                <p><i class="fa fa-usd fa-fw"></i> $120+ per night</p>
+                <p><i class="fa fa-cutlery fa-fw"></i> Complementary breakfast</p>
+                <p><i class="fa fa-map-marker fa-fw"></i> 123 Fake Street, Shepparton, Australia</p>
+                <p><i class="fa fa-car fa-fw"></i> ~5 minutes travel time to all venues</p>
+                <a href="#" class="footer-link">Visit their website</a>
             </div>
         </div>
     </div>

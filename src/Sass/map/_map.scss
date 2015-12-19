@@ -1,3 +1,6 @@
+$map-overlay-title-bg: $brand-primary;
+$map-overlay-title-color: $white;
+
 .map-wrapper {
   margin: 3px 0;
   position: relative;
@@ -46,35 +49,41 @@
     margin-right: 10px;
   }
 
-  .clickable-marker-list-item.active {
+  .active {
     background: #ddd;
     color: $brand;
     border-right: 3px $brand solid;
   }
 }
 
-// Legend (list number styling)
-.list-numbered {
-    position: relative;
+// Legend (content styling)
+.map-overlay-marker-content {
+    display: none;
 
-    &:before {
-        content: attr(data-content);
+    &.active {
         display: block;
-        position: absolute;
-        top: 26%;
-        left: 10px;
-        border-radius: 100px;
-        width: 29px;
-        text-align: center;
-        color: white;
-        font-weight: bold;
-        border: 5px $grey solid;
-        background: $grey;
     }
 
-    &.active:before {
-        border: 5px $brand-primary solid;
-        background: $brand-primary;
+    .title {
+        padding: 10px 15px 5px;
+        margin-top: 0;
+        margin-bottom: 15px;
+        background-color: $map-overlay-title-bg;
+        color: $map-overlay-title-color;
+
+        small {
+            float: right;
+        }
+
+        a {
+            color: $map-overlay-title-color;
+        }
+    }
+
+    .footer-link {
+        display: block;
+        margin: 10px 0;
+        text-align: center;
     }
 }
 
