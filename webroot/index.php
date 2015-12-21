@@ -215,7 +215,7 @@
               <ul class="list-unstyled map-overlay-marker-list">
                 <li class="active" data-toggle="clickable-show-unique" data-target="[data-id='map-content-reception']" data-group="map-legend">
                   <a href="#">
-                    <i class="fa fa-gift fa-fw fa-left fa-lg"></i>
+                    <i class="fa fa-gift fa-fw fa-lg"></i>
                     Reception
                   </a>
                 </li>
@@ -224,13 +224,13 @@
               <ul class="list-unstyled map-overlay-marker-list">
                 <li data-toggle="clickable-show-unique" data-target="[data-id='map-content-marry']" data-group="map-legend">
                   <a href="#">
-                    <i class="fa fa-star fa-fw fa-left fa-lg"></i>
+                    <i class="fa fa-star fa-fw fa-lg"></i>
                     St. James Cathedral
                   </a>
                 </li>
                 <li data-toggle="clickable-show-unique" data-target="[data-id='map-content-bbq']" data-group="map-legend">
                   <a href="#">
-                    <i class="fa fa-fire fa-fw fa-left fa-lg"></i>
+                    <i class="fa fa-fire fa-fw fa-lg"></i>
                     Rockin' BBQ
                   </a>
                 </li>
@@ -241,7 +241,7 @@
               <ul class="list-unstyled map-overlay-marker-list">
                   <li data-toggle="clickable-show-unique" data-target="[data-id='map-content-accomodation-olive-garden']" data-group="map-legend">
                     <a href="#">
-                      <i class="fa fa-bed fa-fw fa-left fa-lg"></i>
+                      <i class="fa fa-bed fa-fw fa-lg"></i>
                       Hotels
                     </a>
                   </li>
@@ -250,46 +250,40 @@
         </div>
         <div class="map-overlay map-overlay-marker-content active card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2"  data-id="map-content-reception" data-group="map-legend">
             <h5 class="title">Reception<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
-            <div class="col-sm-12">
-                <p><i class="fa fa-bed fa-fw"></i> 1 - 4 beds per room</p>
-                <p><i class="fa fa-usd fa-fw"></i> $120+ per night</p>
-                <p><i class="fa fa-cutlery fa-fw"></i> Complementary breakfast</p>
+            <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>">
+            <div class="info-block">
                 <p><i class="fa fa-map-marker fa-fw"></i> 123 Fake Street, Shepparton, Australia</p>
                 <p><i class="fa fa-car fa-fw"></i> ~5 minutes travel time to all venues</p>
-                <a href="#" class="footer-link">Visit their website</a>
+                <p class="footer-link"><a href="#">View on Google Maps</a></p>
             </div>
         </div>
         <div class="map-overlay map-overlay-marker-content card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2" data-id="map-content-marry" data-group="map-legend">
             <h5 class="title">St. James Cathedral<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
-            <div class="col-sm-12">
-                <p><i class="fa fa-bed fa-fw"></i> 1 - 4 beds per room</p>
-                <p><i class="fa fa-usd fa-fw"></i> $120+ per night</p>
-                <p><i class="fa fa-cutlery fa-fw"></i> Complementary breakfast</p>
+            <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>">
+            <div class="info-block">
                 <p><i class="fa fa-map-marker fa-fw"></i> 123 Fake Street, Shepparton, Australia</p>
                 <p><i class="fa fa-car fa-fw"></i> ~5 minutes travel time to all venues</p>
-                <a href="#" class="footer-link">Visit their website</a>
+                <p class="footer-link"><a href="#">View on Google Maps</a></p>
             </div>
         </div>
         <div class="map-overlay map-overlay-marker-content card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2" data-toggle="map-content" data-id="map-content-bbq" data-group="map-legend">
             <h5 class="title">Rockin' BBQ<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
-            <div class="col-sm-12">
-                <p><i class="fa fa-bed fa-fw"></i> 1 - 4 beds per room</p>
-                <p><i class="fa fa-usd fa-fw"></i> $120+ per night</p>
-                <p><i class="fa fa-cutlery fa-fw"></i> Complementary breakfast</p>
+            <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>">
+            <div class="info-block">
                 <p><i class="fa fa-map-marker fa-fw"></i> 123 Fake Street, Shepparton, Australia</p>
                 <p><i class="fa fa-car fa-fw"></i> ~5 minutes travel time to all venues</p>
-                <a href="#" class="footer-link">Visit their website</a>
+                <p class="footer-link"><a href="#">View on Google Maps</a></p>
             </div>
         </div>
         <div class="map-overlay map-overlay-marker-content card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2" data-toggle="map-content" data-id="map-content-accomodation-olive-garden" data-group="map-legend">
             <h5 class="title">Hotels<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
-            <div class="col-sm-12">
+            <div class="info-block">
                 <p><i class="fa fa-bed fa-fw"></i> 1 - 4 beds per room</p>
                 <p><i class="fa fa-usd fa-fw"></i> $120+ per night</p>
                 <p><i class="fa fa-cutlery fa-fw"></i> Complementary breakfast</p>
                 <p><i class="fa fa-map-marker fa-fw"></i> 123 Fake Street, Shepparton, Australia</p>
                 <p><i class="fa fa-car fa-fw"></i> ~5 minutes travel time to all venues</p>
-                <a href="#" class="footer-link">Visit their website</a>
+                <p class="footer-link"><a href="#">Visit their website</a></p>
             </div>
         </div>
     </div>

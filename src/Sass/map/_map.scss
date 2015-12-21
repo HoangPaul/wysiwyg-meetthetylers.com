@@ -11,7 +11,7 @@ $map-overlay-title-color: $white;
   height: 0;
   padding-bottom: 50%;
   @include bp(md-up) {
-    padding-bottom: 30%;
+    padding-bottom: 40%;
   }
 }
 
@@ -42,17 +42,17 @@ $map-overlay-title-color: $white;
     }
   }
 
-  .fa-right {
-    float: right;
-  }
-  .fa-left {
+  .fa {
     margin-right: 10px;
   }
 
   .active {
     background: #ddd;
-    color: $brand;
     border-right: 3px $brand solid;
+
+    a {
+        color: $brand;
+    }
   }
 }
 
@@ -66,8 +66,7 @@ $map-overlay-title-color: $white;
 
     .title {
         padding: 10px 15px 5px;
-        margin-top: 0;
-        margin-bottom: 15px;
+        margin: 0;
         background-color: $map-overlay-title-bg;
         color: $map-overlay-title-color;
 
@@ -80,10 +79,17 @@ $map-overlay-title-color: $white;
         }
     }
 
+    .info-block {
+        padding: 15px;
+    }
+
     .footer-link {
         display: block;
-        margin: 10px 0;
         text-align: center;
+    }
+
+    p:last-of-type {
+        margin-bottom: 0;
     }
 }
 

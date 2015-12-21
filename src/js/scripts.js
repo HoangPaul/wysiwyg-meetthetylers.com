@@ -12,6 +12,8 @@ $('.accommodation-item').on('click', function(e) {
 
 
 var map;
+var marker;
+
 function initMap() {
   var ceLatLng = {lat: -36.384755, lng: 145.397873};
   var myLatLng = {lat: -36.284755, lng: 145.207873};
@@ -24,10 +26,11 @@ function initMap() {
     zoom: 11
   });
 
-  var marker = new google.maps.Marker({
+  marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: 'Hello World$!'
+    title: 'Hello World$!',
+    icon: '/images/markers/map-marker-fa-gift.png'
   });
 
   var marker1 = new google.maps.Marker({
@@ -207,6 +210,12 @@ function initMap() {
     // Activate the target member(s)
     var target = $(this).data('target');
     $(target).addClass('active');
+
+    marker.setIcon('/images/markers/map-marker-fa-gift-large.png');
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout(function() {
+        marker.setAnimation(null);
+    }, 700);
   });
 })(jQuery);
 
