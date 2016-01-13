@@ -1,6 +1,5 @@
 @import "mixins";
 @import "variables";
-
 @import "bootstrap/bootstrap";
 @import "jasny/jasny-bootstrap";
 @import "navbar/navbar";
@@ -124,7 +123,10 @@ html {
 }
 
 .rsvp-section {
-  padding: 80px 0 120px;
+    padding: 40px 0 60px;
+    @include bp(sm-up) {
+        padding: 80px 0 120px;
+    }
 
   .btn-submit {
     margin-top: 30px;

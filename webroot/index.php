@@ -158,53 +158,45 @@
     <div id="rsvp" class="section rsvp-section bg-img-brand-light-3x">
       <div class="container wow fadeInUp" data-wow-offset="500">
         <h1 style="color: white; margin-bottom: 30px">Will you attend?</h1>
-        <div class="col-xs-offset-2 col-xs-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
+        <div class="col-sm-offset-2 col-xs-12 col-sm-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
           <h3 style="text-align: center">R.S.V.P</h3>
           <form>
-            <div class="row form-group">
-              <div class="col-sm-6">
-                <label>First name<small>(required)</small></label>
+            <div class="form-group">
+                <label>Full Name<small>(required)</small></label>
                 <input type="text" class="form-control" name="lastname">
-              </div>
-              <div class="col-sm-6">
-                <label>Last name<small>(required)</small></label>
-                <input type="text" class="form-control" name="lastname">
-              </div>
             </div>
-            <div class="row form-group">
-              <div class="clearfix">
-                <div class="col-sm-12">
-                  <label>Will you be joining us?<small>(required)</small></label>
+            <div class="form-group">
+                <label>Will you be joining us?<small>(required)</small></label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="rsvp-location-block">
+                            <img id="reception-form" class="img-responsive img-filter-transition" src="images/flowers/green.jpg">
+                            <h4 class="text-center">Reception</h4>
+                        </div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="col-xs-6 btn btn-default active">
+                                <input data-img="reception-form" data-img-type="yes" type="radio" name="reception" id="option1" autocomplete="off">Yes</input>
+                            </label>
+                            <label class="col-xs-6 btn btn-default">
+                                <input data-img="reception-form" data-img-type="no" type="radio" name="reception" id="option3" autocomplete="off">No</input>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="rsvp-location-block">
+                            <img id="wedding-form" class="img-responsive img-filter-transition" src="images/flowers/pink3.jpg">
+                            <h4 class="text-center">Wedding</h4>
+                        </div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="col-xs-6 btn btn-default active">
+                                <input data-img="wedding-form" data-img-type="yes" type="radio" name="wedding" id="option1" autocomplete="off">Yes</input>
+                            </label>
+                            <label class="col-xs-6 btn btn-default">
+                                <input data-img="wedding-form" data-img-type="no" type="radio" name="wedding" id="option3" autocomplete="off">No</input>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="rsvp-location-block">
-                    <img id="reception-form" class="img-responsive img-filter-transition" src="images/flowers/green.jpg">
-                    <h4 class="text-center">Reception</h4>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="rsvp-location-block">
-                    <img id="wedding-form" class="img-responsive img-filter-transition" src="images/flowers/pink3.jpg">
-                    <h4 class="text-center">Wedding</h4>
-                  </div>
-                </div>
-                <div class="col-sm-6 btn-group" data-toggle="buttons">
-                  <label class="col-sm-6 btn btn-default active">
-                    <input data-img="reception-form" data-img-type="yes" type="radio" name="reception" id="option1" autocomplete="off">Yes</input>
-                  </label>
-                  <label class="col-sm-6 btn btn-default">
-                    <input data-img="reception-form" data-img-type="no" type="radio" name="reception" id="option3" autocomplete="off">No</input>
-                  </label>
-                </div>
-                <div class="col-sm-6 btn-group" data-toggle="buttons">
-                  <label class="col-sm-6 btn btn-default active">
-                    <input data-img="wedding-form" data-img-type="yes" type="radio" name="wedding" id="option1" autocomplete="off">Yes</input>
-                  </label>
-                  <label class="col-sm-6 btn btn-default">
-                    <input data-img="wedding-form" data-img-type="no" type="radio" name="wedding" id="option3" autocomplete="off">No</input>
-                  </label>
-                </div>
-              </div>
             </div>
             <div class="row form-group">
               <div class="col-sm-12">
@@ -293,7 +285,7 @@
     <?php require('modal.php'); ?>
 
     <footer>
-      <p>Designed and developed wtih <i class="fa fa-heart"></i> by the brother of the bride, <a href="#">Paul Hoang</a></p>
+      <p>Designed and developed wtih <i class="fa fa-heart"></i> by the <a href="#">brother</a> of the bride</p>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
