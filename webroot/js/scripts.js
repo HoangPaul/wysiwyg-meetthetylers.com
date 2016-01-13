@@ -1,15 +1,5 @@
-// Accommodation stuff
-$('.accommodation-item').on('click', function(e) {
-  $('.accommodation-item').each(function() {
-    $(this).removeClass('active');
-  });
-  $(this).addClass('active');
-  $('#accommodation-callout').collapse('hide');
-  $('#accommodation-details').show();
-  e.preventDefault();
-  return false;
-});
 
+new WOW().init();
 
 var map;
 var marker;
@@ -149,6 +139,7 @@ function initMap() {
 })(jQuery);
 
 // Image scroll
+/*
 (function($){
 
   $(document).ready(function() {
@@ -167,7 +158,7 @@ function initMap() {
     }, 500);
   });
 })(jQuery);
-
+*/
 // Image greyout
 (function($) {
   $("[data-img]").on("change", function() {

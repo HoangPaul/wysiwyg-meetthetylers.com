@@ -1,7 +1,8 @@
 
 <script async defer src="js/bootstrap.js"></script>
 
-
+<script async defer src="js/wow.js"></script>
+<script async defer src="js/jasny-bootstrap.js"></script>
 <script async defer src="js/scripts.js"></script>
 
 <script async defer

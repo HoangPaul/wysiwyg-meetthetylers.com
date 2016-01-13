@@ -4,40 +4,49 @@
 <?php $photoImages = new RandomImagePath('images/photos', $options); ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <?php require_once('header.php') ?>
-  </head>
+    <head>
+        <?php require_once('header.php') ?>
+    </head>
 
-  <body data-spy="scroll" data-target="#navbar">
-    <nav id="navbar" class="navbar navbar-default affix-top center-navbar" data-spy="affix" data-offset-top="50">
-      <div class="container">
-        <ul class="nav navbar-nav">
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#details">Details</a></li>
-        <li><a href="#accommodation">Accommodation</a></li>
-        <li><a href="#registry">Registry</a></li>
-        <li><a href="#photos">Photos</a></li>
-      </ul>
-      </div>
-    </nav>
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Sao & Pat's Wedding</h1>
-        <p>1st September 2016</p>
-        <p>
-          <span class="fa-stack fa-lg">
-            <i class="fa fa fa-circle-thin fa-stack-2x"></i>
-            <i class="fa fa-chevron-down fa-stack-1x"></i>
-          </span>
-        </p>
-      </div>
-    </div>
+    <body data-spy="scroll" data-target="#navbar">
+        <nav id="navbar" class="navbar navbar-default affix-top center-navbar" data-spy="affix" data-offset-top="50">
+            <button type="button" class="navbar-toggle navbar-hamburger" data-toggle="offcanvas" data-target="#asd123" data-canvas="body" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <div id="asd123" class="container navmenu-fixed-right-xs offcanvas-xs">
+                <h4 class="offcanvas-heading">Sao & Pat's Wedding</h4>
+                <ul class="nav navbar-nav">
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#details">Details</a></li>
+                    <li><a href="#accommodation">Accommodation</a></li>
+                    <li><a href="#registry">Registry</a></li>
+                    <li><a href="#photos">Photos</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <div class="heading">
+                    <h1>Sao & Pat's Wedding</h1>
+                    <p>1st September 2016</p>
+                </div>
+                <div class="heading-bottom">
+                    <p>
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa fa-circle-thin fa-stack-2x"></i>
+                            <i class="fa fa-chevron-down fa-stack-1x"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
 
     <div class="container">
       <div id="contact" class="row section">
-        <div class="col-sm-6">
-          <div id="bride" class="card-block card-tilt-right slide-in from-left">
+        <div class="col-sm-6 wow fadeInLeft" data-wow-offset="300">
+          <div id="bride" class="card-block card-tilt-right">
             <img class="img-responsive" src="<?= $randomImages->getNextRandomImagePath(); ?>">
             <h1 class="card-heading"><span>The Bride</span></h1>
           </div>
@@ -45,8 +54,8 @@
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div id="groom" class="card-block card-tilt-left slide-in from-right">
+        <div class="col-sm-6 wow fadeInRight" data-wow-offset="300">
+          <div id="groom" class="card-block card-tilt-left">
             <img class="img-responsive" src="<?= $randomImages->getNextRandomImagePath(); ?>">
             <h1 class="card-heading">The Groom</h1>
           </div>
@@ -83,7 +92,7 @@
           <h1><span>Wedding Details</span></h1>
           <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
           <div class="row" style="margin-bottom: 60px; display: flex; align-items: center;">
-              <div class="col-sm-5">
+              <div class="col-sm-5 wow fadeInLeft" data-wow-offset="280">
                 <div class="wedding-details-block clearfix">
                   <h3 class="title">Reception</h3>
                   <div class="col-sm-12">
@@ -99,11 +108,13 @@
                                 'transform: rotate(-15deg);', 'transform: rotate(10deg);', 'transform: rotate(-5deg);', 'transform: rotate(10deg);'] ?>
                 <?php $sizes = ['col-sm-10 col-lg-6', 'col-sm-8 col-lg-6', 'col-sm-6', 'col-sm-6'] ?>
                 <?php $classIds = 'reception-images'; ?>
-                <?php for ($i = 0; $i < 4; $i++): ?>
-                  <div class="<?= $classIds; ?> <?= $sizes[$i]; ?> card-block slide-in slide-in-animation from-right" style="margin-bottom: 0; <?= $tilts[$i]; ?>;">
-                    <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>"/>
-                  </div>
-                <?php endfor; ?>
+                <div class="wow fadeInRight" data-wow-offset="300">
+                    <?php for ($i = 0; $i < 4; $i++): ?>
+                      <div class="<?= $classIds; ?> <?= $sizes[$i]; ?> card-block" style="margin-bottom: 0; <?= $tilts[$i]; ?>;">
+                        <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>"/>
+                      </div>
+                    <?php endfor; ?>
+                </div>
               </div>
           </div>
           <hr class="short-hr">
@@ -112,13 +123,15 @@
             <div class="col-sm-7 details-images-wrapper">
               <?php $imageSizes = ['col-sm-12 col-lg-8', 'col-sm-8 col-md-6', 'col-sm-12 col-md-6', 'col-sm-12 col-md-11 col-lg-8', 'col-sm-12 col-md-12 col-lg-10', 'col-sm-6', 'col-sm-12']; ?>
               <?php $imageClasses = ['ceremony-images', 'ceremony-images', 'ceremony-images', 'after-images', 'after-images', 'after-images'];?>
-              <?php for ($i = 0; $i < 5; $i++): ?>
-                <div class="card-block <?= $imageSizes[$i]; ?> <?= $imageClasses[$i]; ?> slide-in slide-in-animation from-left" style="<?= $tilts[$i]; ?>">
-                  <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>"/>
-                </div>
-              <?php endfor; ?>
+              <div class="wow fadeInLeft" data-wow-offset="300">
+                  <?php for ($i = 0; $i < 5; $i++): ?>
+                    <div class="card-block <?= $imageSizes[$i]; ?> <?= $imageClasses[$i]; ?>" style="<?= $tilts[$i]; ?>">
+                      <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>"/>
+                    </div>
+                  <?php endfor; ?>
+              </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-5 wow fadeInRight" data-wow-offset="280">
               <div data-scroll-target="white" class="wedding-details-block clearfix" style="margin-bottom: 45px">
                 <h3 class="title">Ceremony</h3>
                 <div class="col-sm-12">
@@ -143,7 +156,7 @@
     </div>
 
     <div id="rsvp" class="section rsvp-section bg-img-brand-light-3x">
-      <div class="container">
+      <div class="container wow fadeInUp" data-wow-offset="500">
         <h1 style="color: white; margin-bottom: 30px">Will you attend?</h1>
         <div class="col-xs-offset-2 col-xs-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
           <h3 style="text-align: center">R.S.V.P</h3>
@@ -236,17 +249,6 @@
                 </li>
               </ul>
           </div>
-          <div class="card-block">
-              <h5 style="text-align: center">Accommodation</h5>
-              <ul class="list-unstyled map-overlay-marker-list">
-                  <li data-toggle="clickable-show-unique" data-target="[data-id='map-content-accomodation-olive-garden']" data-group="map-legend">
-                    <a href="#">
-                      <i class="fa fa-bed fa-fw fa-lg"></i>
-                      Hotels
-                    </a>
-                  </li>
-              </ul>
-          </div>
         </div>
         <div class="map-overlay map-overlay-marker-content active card-block col-sm-offset-1 col-lg-offset-9 col-sm-4 col-md-3 col-lg-2"  data-id="map-content-reception" data-group="map-legend">
             <h5 class="title">Reception<small data-toggle="clickable-hide-all" data-group="map-legend"><a href="#"><i class="fa fa-times fa-fw fa-lg"></i></a></small></h5>
@@ -288,32 +290,10 @@
         </div>
     </div>
 
-  <div class="container">
-    <div id="photos" class="row section">
-      <h1>Photos</h1>
-      <div class="clearfix photo-wrapper">
-        <?php for($i = 0; $i < 12; $i++): ?>
-          <div class="card-block">
-            <div class="img-responsive lazy" style="background: url('<?php echo $photoImages->getNextRandomImagePath(); ?>'); margin-bottom: 15px; width: 100%; padding-bottom: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;"></div>
-            <p><a href="#"><span class="photo-author">@user123</span></a><span class="photo-stats"><i class="fa fa-heart"></i> 12 <i class="fa fa-comment fa-flip-horizontal"></i> 3</span></p>
-            <p>Enim lectus varius inceptos blandit primis morbi libero</p>
-          </div>
-        <?php endfor; ?>
-      </div>
-    </div>
-  </div>
-
-
-
     <?php require('modal.php'); ?>
 
-    <hr>
-
     <footer>
-      <p></p>
+      <p>Designed and developed wtih <i class="fa fa-heart"></i> by the brother of the bride, <a href="#">Paul Hoang</a></p>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

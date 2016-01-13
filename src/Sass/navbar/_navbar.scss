@@ -1,74 +1,144 @@
-// Parent navbar
+// Hamburger menu
+@include bp(xs) {
+    .navbar-hamburger {
+        z-index: 300000;
+        background-color: $black-light-2x;
+
+        .fa {
+            color: $white;
+            min-width: 24px;
+        }
+    }
+
+    .offcanvas-xs.in .navbar-nav li {
+        a {
+            min-width: 250px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-left: 5px solid transparent;
+            color: $black-light-1x;
+            margin: 10px 0;
+        }
+
+        &.active a {
+            border-left: 5px solid $brand;
+            color: $brand;
+        }
+    }
+
+    .offcanvas-heading {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        color: $black;
+        font-family: 'lobster';
+        padding-left: 20px;
+    }
+
+    .navbar {
+        position: fixed;
+        z-index: 10000;
+    }
+}
+
 .navbar {
-  // Remoive this
-  @include bp(xs) {
-      display:none !important;
-  }
-
-  transition: background-color 0.3s;
-  height: 53px; //super hack, for some reason, inline block doesn't fill height
+    right: 0;
 }
 
-// Parent navbar at rest
-.affix-top {
-  position: absolute;
-  padding-top: 50px;
-  width: 100%;
-    .navbar-nav {
-      border-bottom: 1px outset $white;
-      padding-left: 30px;
-      padding-right: 30px;
-    }
+.offcanvas-xs.in.navmenu-fixed-right-xs {
+    @extend .navmenu-fixed-right;
 }
 
-// Parent navbar when scrolled
-.affix {
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-}
-
-.affix {
-  box-shadow: $box-shadow-1x;
-  background-color: $navbar-affix-bg;
-  border-style: $navbar-affix-border-style;
-
-  .navbar-nav > li > a {
-    color: $navbar-affix-color;
-    border-bottom-style: $navbar-affix-item-border-style;
-    border-bottom-color: $navbar-affix-item-border-color;
-    border-bottom-width: $navbar-affix-item-border-width;
-
-    &:hover {
-      color: $navbar-affix-link-hover-color;
-      background-color: $navbar-affix-link-hover-bg;
-      border-bottom: 3px solid $brand;
+// Parent navbar
+@include bp(sm-up) {
+    .affix-top {
+            position: absolute;
     }
-    &:active {
-      color: $navbar-affix-link-active-color;
-      background-color: $navbar-affix-link-active-bg;
+    .navbar-hamburger {
+        display: none;
     }
-    &:disabled {
-      color: $navbar-affix-link-disabled-color;
-      background-color: $navbar-affix-link-disabled-bg;
+    .offcanvas-heading {
+        display: none;
     }
-  }
 
-  .navbar-nav > li.active > a {
-    color: $navbar-affix-link-active-color;
-    background-color: $navbar-affix-link-active-bg;
+    .navbar {
+        transition: background-color 0.3s;
+        height: 53px; //super hack, for some reason, inline block doesn't fill height
+    }
 
-    border-bottom-style: $navbar-affix-item-border-active-style;
-    border-bottom-color: $navbar-affix-item-border-active-color;
-    border-bottom-width: $navbar-affix-item-border-active-width;
-  }
-}
+    // Parent navbar at rest
+    .affix-top {
+        position: absolute;
+        width: 100%;
+        padding-top: 50px;
+        z-index: 1000;
 
-.center-navbar {
-  text-align: center;
+        .navbar-nav {
+            border-bottom: 1px outset $white;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
 
-  .navbar-nav {
-    display: inline-block;
-    float: none;
-  }
+    // Parent navbar when scrolled
+    .affix {
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .affix {
+        box-shadow: $box-shadow-1x;
+        background-color: $navbar-affix-bg;
+        border-style: $navbar-affix-border-style;
+
+        .navbar-nav > li > a {
+            color: $navbar-affix-color;
+            border-bottom-style: $navbar-affix-item-border-style;
+            border-bottom-color: $navbar-affix-item-border-color;
+            border-bottom-width: $navbar-affix-item-border-width;
+
+            &:hover {
+                color: $navbar-affix-link-hover-color;
+                background-color: $navbar-affix-link-hover-bg;
+                border-bottom: 3px solid $brand;
+            }
+
+            &:active {
+                color: $navbar-affix-link-active-color;
+                background-color: $navbar-affix-link-active-bg;
+            }
+
+            &:disabled {
+                color: $navbar-affix-link-disabled-color;
+                background-color: $navbar-affix-link-disabled-bg;
+            }
+        }
+
+        .navbar-nav > li.active > a {
+            color: $navbar-affix-link-active-color;
+            background-color: $navbar-affix-link-active-bg;
+            border-bottom-style: $navbar-affix-item-border-active-style;
+            border-bottom-color: $navbar-affix-item-border-active-color;
+            border-bottom-width: $navbar-affix-item-border-active-width;
+        }
+    }
+
+    .affix-top {
+        .navbar-nav > li > a {
+
+            &:hover {
+                color: $white-dark-1x;
+                background-color: transparent;
+            }
+        }
+    }
+
+    .center-navbar {
+        text-align: center;
+
+        .navbar-nav {
+            display: inline-block;
+            float: none;
+        }
+    }
 }
