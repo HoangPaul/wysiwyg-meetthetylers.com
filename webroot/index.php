@@ -91,22 +91,22 @@
         <div class="container">
           <h1><span>Wedding Details</span></h1>
           <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
-          <div class="row" style="margin-bottom: 60px; display: flex; align-items: center;">
-              <div class="col-sm-5 wow fadeInLeft" data-wow-offset="280">
+          <div class="row details-day-section">
+              <div class="col-xs-12 col-sm-5 wow fadeInLeft" data-wow-offset="280">
                 <div class="wedding-details-block clearfix">
                   <h3 class="title">Reception</h3>
                   <div class="col-sm-12">
                     <p><i class="fa fa-fw fa-calendar fa-2x"></i> Monday, 1st September, 2015</p>
                     <p><i class="fa fa-fw fa-black-tie fa-2x"></i> Attire Cocktail</p>
                     <p><i class="fa fa-fw fa-clock-o fa-2x"></i> 3:00pm - 6:00pm</p>
-                    <p data-scroll-target=".reception-images"><i class="fa fa-fw fa-map-marker fa-2x"></i> Olive Garden?<br>123 Fake Street, Shepparton, Australia</p>
+                    <p><i class="fa fa-fw fa-map-marker fa-2x"></i> Olive Garden?<br>123 Fake Street, Shepparton, Australia</p>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-7 details-images-wrapper">
+              <div class="col-xs-12 col-sm-7 details-images-wrapper">
                 <?php $tilts = ['transform: rotate(15deg);', 'transform: rotate(-10deg);', 'transform: rotate(-5deg);', 'transform: rotate(10deg);',
                                 'transform: rotate(-15deg);', 'transform: rotate(10deg);', 'transform: rotate(-5deg);', 'transform: rotate(10deg);'] ?>
-                <?php $sizes = ['col-sm-10 col-lg-6', 'col-sm-8 col-lg-6', 'col-sm-6', 'col-sm-6'] ?>
+                <?php $sizes = ['col-xs-6 col-sm-10 col-lg-6', 'col-xs-6  col-sm-8 col-lg-6', 'col-xs-6 col-sm-6', 'col-xs-6 col-sm-6'] ?>
                 <?php $classIds = 'reception-images'; ?>
                 <div class="wow fadeInRight" data-wow-offset="300">
                     <?php for ($i = 0; $i < 4; $i++): ?>
@@ -119,40 +119,41 @@
           </div>
           <hr class="short-hr">
           <h2 class="text-center"><span>Tuesday, 2nd September, 2015</span></h2>
-          <div class="row" style="display: flex; align-items: center;">
-            <div class="col-sm-7 details-images-wrapper">
-              <?php $imageSizes = ['col-sm-12 col-lg-8', 'col-sm-8 col-md-6', 'col-sm-12 col-md-6', 'col-sm-12 col-md-11 col-lg-8', 'col-sm-12 col-md-12 col-lg-10', 'col-sm-6', 'col-sm-12']; ?>
-              <?php $imageClasses = ['ceremony-images', 'ceremony-images', 'ceremony-images', 'after-images', 'after-images', 'after-images'];?>
-              <div class="wow fadeInLeft" data-wow-offset="300">
-                  <?php for ($i = 0; $i < 5; $i++): ?>
-                    <div class="card-block <?= $imageSizes[$i]; ?> <?= $imageClasses[$i]; ?>" style="<?= $tilts[$i]; ?>">
-                      <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>"/>
-                    </div>
-                  <?php endfor; ?>
+          <div class="row details-day-section">
+              <div class="col-sm-5 wow fadeInLeft" data-wow-offset="280">
+                  <div class="wedding-details-block clearfix" style="margin-bottom: 45px">
+                      <h3 class="title">Ceremony</h3>
+                      <div class="col-sm-12">
+                          <p><i class="fa fa-fw fa-calendar fa-2x"></i> Monday, 2nd September, 2015</p>
+                          <p><i class="fa fa-fw fa-black-tie fa-2x"></i> Attire Cocktail</p>
+                          <p><i class="fa fa-fw fa-clock-o fa-2x"></i> 3:00pm - 6:00pm</p>
+                          <p><i class="fa fa-fw fa-map-marker"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
+                      </div>
+                  </div>
+                  <div class="wedding-details-block clearfix">
+                      <h3 class="title">Rockin' BBQ Afterparty</h3>
+                      <div class="col-sm-12">
+                          <p><i class="fa fa-fw fa-calendar fa-2x"></i> Monday, 2nd September, 2015</p>
+                          <p><i class="fa fa-fw fa-black-tie fa-2x"></i> Attire Cocktail</p>
+                          <p><i class="fa fa-fw fa-clock-o fa-2x"></i> 3:00pm - 6:00pm</p>
+                          <p><i class="fa fa-fw fa-map-marker"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
+                      </div>
+                  </div>
               </div>
-            </div>
-            <div class="col-sm-5 wow fadeInRight" data-wow-offset="280">
-              <div data-scroll-target="white" class="wedding-details-block clearfix" style="margin-bottom: 45px">
-                <h3 class="title">Ceremony</h3>
-                <div class="col-sm-12">
-                  <p><i class="fa fa-fw fa-calendar"></i> Monday, 2nd September, 2015</p>
-                  <p><i class="fa fa-fw fa-black-tie"></i> Attire Cocktail</p>
-                  <p><i class="fa fa-fw fa-clock-o"></i> 3:00pm - 6:00pm</p>
-                  <p data-scroll-target=".ceremony-images"><i class="fa fa-fw fa-map-marker"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
+              <div class="col-sm-7 details-images-wrapper">
+                  <?php $imageSizes = ['col-xs-6 col-sm-12 col-lg-8', 'col-xs-6 col-sm-8 col-md-6', 'col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12 col-md-6',
+                  'col-xs-6 col-sm-12 col-md-11 col-lg-8', 'col-xs-6 col-sm-12 col-md-12 col-lg-10', 'col-xs-6 col-sm-6', 'col-xs-6 col-sm-12']; ?>
+                  <?php $imageClasses = ['ceremony-images', 'ceremony-images', 'ceremony-images', 'after-images', 'after-images', 'after-images'];?>
+                  <div class="wow fadeInRight" data-wow-offset="300">
+                      <?php for ($i = 0; $i < 5; $i++): ?>
+                          <div class="card-block <?= $imageSizes[$i]; ?> <?= $imageClasses[$i]; ?>" style="<?= $tilts[$i]; ?>">
+                              <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>"/>
+                          </div>
+                      <?php endfor; ?>
+                  </div>
                 </div>
-              </div>
-              <div class="wedding-details-block clearfix">
-                <h3 class="title">Rockin' BBQ Afterparty</h3>
-                <div class="col-sm-12">
-                  <p><i class="fa fa-fw fa-calendar"></i> Monday, 2nd September, 2015</p>
-                  <p><i class="fa fa-fw fa-black-tie"></i> Attire Cocktail</p>
-                  <p><i class="fa fa-fw fa-clock-o"></i> 3:00pm - 6:00pm</p>
-                  <p data-scroll-target=".after-images"><i class="fa fa-fw fa-map-marker"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
-                </div>
-              </div>
             </div>
         </div>
-      </div>
     </div>
 
     <div id="rsvp" class="section rsvp-section bg-img-brand-light-3x">

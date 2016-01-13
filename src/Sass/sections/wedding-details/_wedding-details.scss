@@ -7,3 +7,14 @@
     text-align: center;
   }
 }
+
+// Section of a single day in the wedding details
+.details-day-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    flex-direction: column;
+    @include bp(sm-up) {
+        flex-direction: row;
+    }
+}
