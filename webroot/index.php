@@ -120,14 +120,14 @@
           <hr class="short-hr">
           <h2 class="text-center"><span>Tuesday, 2nd September, 2015</span></h2>
           <div class="row details-day-section">
-              <div class="col-sm-5 wow fadeInLeft" data-wow-offset="280">
+              <div class="col-sm-5 wow fadeInLeft" data-wow-offset="80">
                   <div class="wedding-details-block clearfix" style="margin-bottom: 45px">
                       <h3 class="title">Ceremony</h3>
                       <div class="col-sm-12">
                           <p><i class="fa fa-fw fa-calendar fa-2x"></i> Monday, 2nd September, 2015</p>
                           <p><i class="fa fa-fw fa-black-tie fa-2x"></i> Attire Cocktail</p>
                           <p><i class="fa fa-fw fa-clock-o fa-2x"></i> 3:00pm - 6:00pm</p>
-                          <p><i class="fa fa-fw fa-map-marker"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
+                          <p><i class="fa fa-fw fa-map-marker fa-2x"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
                       </div>
                   </div>
                   <div class="wedding-details-block clearfix">
@@ -136,7 +136,7 @@
                           <p><i class="fa fa-fw fa-calendar fa-2x"></i> Monday, 2nd September, 2015</p>
                           <p><i class="fa fa-fw fa-black-tie fa-2x"></i> Attire Cocktail</p>
                           <p><i class="fa fa-fw fa-clock-o fa-2x"></i> 3:00pm - 6:00pm</p>
-                          <p><i class="fa fa-fw fa-map-marker"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
+                          <p><i class="fa fa-fw fa-map-marker fa-2x"></i>St. James the Lesser Cathedral<br>123 Fake Street, Shepparton, Australia</p>
                       </div>
                   </div>
               </div>
