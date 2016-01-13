@@ -45,7 +45,7 @@
 
     <div class="container">
       <div id="contact" class="row section">
-        <div class="col-sm-6 wow fadeInLeft" data-wow-offset="300">
+        <div class="col-sm-6 wow fadeInLeft" data-wow-offset="100">
           <div id="bride" class="card-block card-tilt-right">
             <img class="img-responsive" src="<?= $randomImages->getNextRandomImagePath(); ?>">
             <h1 class="card-heading"><span>The Bride</span></h1>
@@ -54,7 +54,7 @@
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
           </div>
         </div>
-        <div class="col-sm-6 wow fadeInRight" data-wow-offset="300">
+        <div class="col-sm-6 wow fadeInRight" data-wow-offset="100">
           <div id="groom" class="card-block card-tilt-left">
             <img class="img-responsive" src="<?= $randomImages->getNextRandomImagePath(); ?>">
             <h1 class="card-heading">The Groom</h1>
@@ -92,7 +92,7 @@
           <h1><span>Wedding Details</span></h1>
           <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
           <div class="row details-day-section">
-              <div class="col-xs-12 col-sm-5 wow fadeInLeft" data-wow-offset="280">
+              <div class="col-xs-12 col-sm-5 wow fadeInLeft" data-wow-offset="80">
                 <div class="wedding-details-block clearfix">
                   <h3 class="title">Reception</h3>
                   <div class="col-sm-12">
@@ -108,7 +108,7 @@
                                 'transform: rotate(-15deg);', 'transform: rotate(10deg);', 'transform: rotate(-5deg);', 'transform: rotate(10deg);'] ?>
                 <?php $sizes = ['col-xs-6 col-sm-10 col-lg-6', 'col-xs-6  col-sm-8 col-lg-6', 'col-xs-6 col-sm-6', 'col-xs-6 col-sm-6'] ?>
                 <?php $classIds = 'reception-images'; ?>
-                <div class="wow fadeInRight" data-wow-offset="300">
+                <div class="wow fadeInRight" data-wow-offset="100">
                     <?php for ($i = 0; $i < 4; $i++): ?>
                       <div class="<?= $classIds; ?> <?= $sizes[$i]; ?> card-block" style="margin-bottom: 0; <?= $tilts[$i]; ?>;">
                         <img class="img-responsive center-block" src="<?= $randomImages->getNextRandomImagePath(); ?>"/>
@@ -157,7 +157,7 @@
     </div>
 
     <div id="rsvp" class="section rsvp-section bg-img-brand-light-3x">
-      <div class="container wow fadeInUp" data-wow-offset="500">
+      <div class="container wow fadeInUp" data-wow-offset="150">
         <h1 style="color: white; margin-bottom: 30px">Will you attend?</h1>
         <div class="col-sm-offset-2 col-xs-12 col-sm-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
           <h3 style="text-align: center">R.S.V.P</h3>
