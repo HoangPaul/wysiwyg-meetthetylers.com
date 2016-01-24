@@ -213,8 +213,31 @@
       </div>
     </div>
 
+    <div class="container section">
+        <h1>Registry</h1>
+        <div class="row">
+            <div class="col-sm-4 wow fadeInLeft" data-wow-offset="100">
+                <img src="https://placehold.it/1000x1000" class="img-responsive"/>
+            </div>
+            <div class="col-sm-8 wow fadeInRight" data-wow-offset="100">
+                <h2>Wishing Well</h2>
+                <p></p>
+            </div>
+        </div>
+        <hr class="or-horizontal-separator" />
+        <div class="row">
+            <div class="col-sm-8 wow fadeInLeft" data-wow-offset="100">
+                <h2>Peter's of Kensington</h2>
+                <p></p>
+            </div>
+            <div class="col-sm-4 wow fadeInRight" data-wow-offset="100">
+                <img src="https://placehold.it/1000x1000" class="img-responsive"/>
+            </div>
+        </div>
+    </div>
+
     <footer>
-      <p>Designed and developed wtih <i class="fa fa-heart"></i> by the <a href="#">brother</a> of the bride</p>
+      <p>Designed and developed by the <a href="#">brother</a> of the bride</p>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

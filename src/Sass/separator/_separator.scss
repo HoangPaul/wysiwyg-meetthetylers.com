@@ -1,0 +1,18 @@
+.or-horizontal-separator {
+    border-top: 1px solid #ccc;
+    position: relative;
+    margin: 100px;
+
+    &:before {
+        content: "OR";
+        position: absolute;
+        left: calc(50% - 0.5em);
+        display: block;
+        background: #F9F7F1;
+        padding-left: 50px;
+        padding-right: 50px;
+        top: -0.7em;
+        font-size: 32px;
+        font-family: 'Lobster';
+    }
+}
