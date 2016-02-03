@@ -1,74 +1,52 @@
 
-new WOW().init();
+var synopsisCardTextTemplate = $('#synopsis-card-text').html();
+var timeUnitTemplate = $('#time-unit').html();
+Handlebars.registerPartial('synopsis-card-text', synopsisCardTextTemplate);
+Handlebars.registerPartial('time-unit', timeUnitTemplate);
 
-var map;
-var marker;
-
-function initMap() {
-  var ceLatLng = {lat: -36.384755, lng: 145.397873};
-  var myLatLng = {lat: -36.284755, lng: 145.207873};
-  var qwLatLng = {lat: -36.284755, lng: 145.452873};
-  var qeLatLng = {lat: -36.484755, lng: 145.237873};
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: ceLatLng,
-    scrollwheel: false,
-    zoom: 11
-  });
-
-  marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Hello World$!',
-    icon: '/images/markers/map-marker-fa-gift.png'
-  });
-
-  var marker1 = new google.maps.Marker({
-    position: qwLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
-  var marker2 = new google.maps.Marker({
-    position: qeLatLng,
-    map: map,
-    title: 'Hello World2!'
-  });
-
-  directionsService = new google.maps.DirectionsService();
-  directionsDisplayToWedding = new google.maps.DirectionsRenderer({
-    suppressMarkers: true,
-    suppressInfoWindows: true,
-    preserveViewport: true
-  });
-  directionsDisplayToWedding.setMap(map);
-  directionsDisplayToReception = new google.maps.DirectionsRenderer({
-    suppressMarkers: true,
-    suppressInfoWindows: true,
-    preserveViewport: true
-  });
-  directionsDisplayToReception.setMap(map);
-
-  var request = {
-    origin: myLatLng,
-    destination: qwLatLng,
-    travelMode: google.maps.DirectionsTravelMode.DRIVING
-  };
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplayToWedding.setDirections(response);
+var synopsisPartial = $('#synopsis').html();
+var synopsisTemplate = Handlebars.compile(synopsisPartial);
+var context = {
+    bride : {
+        image : 'https://placehold.it/1000x1000',
+        title : 'The Bride',
+        synopsis : 'This is the bride synopsis'
+    },
+    groom : {
+        image : 'https://placehold.it/1500x1500',
+        title : 'The Groom',
+        synopsis : 'This is the groom synopsis'
     }
-  });
-  var request = {
-    origin: myLatLng,
-    destination: qeLatLng,
-    travelMode: google.maps.DirectionsTravelMode.DRIVING
-  };
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplayToReception.setDirections(response);
-    }
-  });
+};
+
+jQuery('#asd').append(synopsisTemplate(context));
+
+var timerPartial = $('#timer-partial').html();
+var timerTemplate = Handlebars.compile(timerPartial);
+var timeUnits = {
+    'time-units' : [
+        {
+            'icon' : 'calendar',
+            'short-unit' : 'DAYS',
+        },
+        {
+            'icon' : 'clock-o',
+            'short-unit' : 'HRS',
+        },
+        {
+            'icon' : 'sliders',
+            'short-unit' : 'MINS',
+        },
+        {
+            'icon' : 'heart-o',
+            'short-unit' : 'SECS',
+        }
+    ]
 }
+
+jQuery('#asd').append(timerTemplate(timeUnits));
+
+//new WOW().init();
 
 // Image greyout
 (function($) {
@@ -87,13 +65,13 @@ function initMap() {
 
 (function($){
   setInterval(function() {
-    var secondValue = $('#seconds span').html();
+    var secondValue = $('#SECS span').html();
     if (secondValue == 0) {
-      $('#seconds span').html(59)
-      var minuteValue = $('#minutes span').html()
-      $('#minutes span').html(minuteValue - 1)
+      $('#SECS span').html(59)
+      var minuteValue = $('#MINS span').html()
+      $('#MINS span').html(minuteValue - 1)
     } else {
-      $('#seconds span').html(secondValue - 1)
+      $('#SECS span').html(secondValue - 1)
     }
   }, 1000);
 })(jQuery);
