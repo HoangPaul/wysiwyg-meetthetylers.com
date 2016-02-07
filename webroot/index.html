@@ -14,6 +14,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/basic.css">
 </head>
 
 <body data-spy="scroll" data-target="#navbar">
@@ -53,11 +54,16 @@
 
     <div id="asd"></div>
 
-    <div id="overlay" data-target="" style="padding: 20px;">
+    <div id="overlay" data-target="" style="padding: 20px; top: 0">
+		<!--
         <textarea data-overlay-text class="form-control" rows="3"></textarea>
-        <button data-overlay-submit class="btn btn-primary">Save Changes</button>
+		-->
+		<form id="qwe" action="/api/asd">
+		</form>
+        <button data-overlay-cancel class="btn">Cancel</button>
+        <button data-overlay-submit-file class="btn btn-primary">Save Changes</button>
     </div>
-
+	
     <footer>
         <p>Designed and developed by the <a href="#">brother</a> of the bride</p>
     </footer>

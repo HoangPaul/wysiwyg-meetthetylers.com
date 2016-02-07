@@ -1,4 +1,4 @@
-define(["jquery", "./templates", "./timer"], function($) {
+define(["jquery", "dropzone", "./templates", "./timer"], function($, Dropzone) {
     var jQuery = $;
 
     $.get('/api/templates', function(data) {
@@ -7,6 +7,12 @@ define(["jquery", "./templates", "./timer"], function($) {
     });
 
     //new WOW().init();
+	$('#qwe').dropzone({
+		url: '/api/asd',
+		success: function(file, response) {
+			console.log(response);
+		}
+	});
 
     // Image greyout
     (function($) {

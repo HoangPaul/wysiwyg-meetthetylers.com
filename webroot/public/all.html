@@ -20,7 +20,7 @@
 </script>
 
 <script id="details-partial" type="text/x-handlebars-template">
-    <div id="details" data-parent data-toggle="parent" class="section details-section">
+    <div id="details" data-parent data-type="{{type}}" class="section details-section">
       <div class="container">
         <h1><span>Wedding Details</span></h1>
         <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
@@ -141,17 +141,17 @@
     </div>
 </script>
 <script id="synopsis-card-text" type="text/x-handlebars-template">
-    <div class="card-block card-tilt-right">
-      <img class="img-responsive" src="{{image}}">
-      <h1 class="card-heading"><span>{{title}}</span></h1>
+    <div data-editable data-id="{{id}}" class="card-block card-tilt-right">
+      <img data-editable data-id="{{id}}" class="img-responsive" src="{{image}}">
+      <h1 data-editable data-id="{{id}}" class="card-heading"><span>{{title}}</span></h1>
     </div>
     <div class="card-text">
-      <p>{{synopsis}}</p>
+      <p data-editable data-id="{{id}}">{{text}}</p>
     </div>
 </script>
 
 <script id="synopsis" type="text/x-handlebars-template">
-    <div class="container">
+    <div class="container" data-parent data-type="{{type}}">
       <div class="row section">
         <div class="col-sm-6 wow fadeInLeft" data-wow-offset="100">
           {{> synopsis-card-text bride }}
