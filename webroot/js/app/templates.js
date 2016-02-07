@@ -1,166 +1,10 @@
 define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
-    var context = {
-        bride : {
-            image : 'https://placehold.it/1000x1000',
-            title : 'The Bride',
-            synopsis : 'This is the bride synopsis'
-        },
-        groom : {
-            image : 'https://placehold.it/1500x1500',
-            title : 'The Groom',
-            synopsis : 'This is the groom synopsis'
-        }
-    };
+    var context = null;
 
-    var timeUnits = {
-        'time-units' : [
-            {
-                'icon' : 'calendar',
-                'short-unit' : 'DAYS',
-            },
-            {
-                'icon' : 'clock-o',
-                'short-unit' : 'HRS',
-            },
-            {
-                'icon' : 'sliders',
-                'short-unit' : 'MINS',
-            },
-            {
-                'icon' : 'heart-o',
-                'short-unit' : 'SECS',
-            }
-        ]
-    }
+    var timeUnits = null;
 
-    var weddingDetails  = {
-        'wedding' : {
-            'title' : {
-                'text' : 'Wedding'
-            },
-            'features' : [
-                {
-                    id : 'asdasd',
-                    icon : 'calendar',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'black-tie',
-                    text : 'Attire Cocktail'
-                },
-                {
-                    icon : 'clock-o',
-                    text : '3:00pm - 6:00pm'
-                },
-                {
-                    icon : 'map-marker',
-                    text : 'Olive Garden\n123 Fake Street, Shepparton, Australia'
-                },
-            ],
-            'images' : [
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-10 col-lg-6',
-                    rot : '15'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-8 col-lg-6',
-                    rot : '-10'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-6',
-                    rot : '-5'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-6',
-                    rot : '10'
-                },
-            ]
-        },
-        'reception' : {
-            'title' : {
-                'text' : 'Reception'
-            },
-            'features' : [
-                {
-                    icon : 'calendar',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'black-tie',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'clock-o',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'map-marker',
-                    text : 'Monday, 1st September, 2015'
-                },
-            ],
-            'images' : [
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-12 col-lg-8',
-                    rot : '15'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-8 col-md-6',
-                    rot : '-10'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12 col-md-6',
-                    rot : '-5'
-                }
-            ]
-        },
-        'reception-viet' : {
-            'title' : {
-                'text' : 'Vietnamese Reception (Family only)'
-            },
-            'features' : [
-                {
-                    icon : 'calendar',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'black-tie',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'clock-o',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'map-marker',
-                    text : 'Monday, 1st September, 2015'
-                },
-            ],
-            'images' : [
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-12 col-md-11 col-lg-8',
-                    rot : '10'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-12 col-md-12 col-lg-10',
-                    rot : '-15'
-                }
-            ]
-        }
-    };
+    var weddingDetails  = null;
 
-    util.recursiveWalk(weddingDetails, function(target) {
-        target['id'] = Math.random();
-        return true;
-    });
 
     var synopsisPartial = null;
     var synopsisTemplate = null;
@@ -173,12 +17,32 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
     var registryPartial = null;
     var registryTemplate = null;
 
-    $('body').on('templates:loaded', function() {
+    $('body').on('templates:loaded', function(_, data) {
         var synopsisCardTextTemplate = $('#synopsis-card-text').html();
         var timeUnitTemplate = $('#time-unit').html();
         var featureTemplate = $('#feature-partial').html();
         var detailCardTemplate = $('#detail-card-partial').html();
         var detailImageTemplate = $('#detail-image-partial').html();
+		
+		$.each(data.data, function(_, item) {
+			switch (item.type) {
+				case 'synopsis':
+					context = item.data;
+					break;
+				case 'details':
+					weddingDetails = item.data;
+					break;
+				case 'timer':
+					timeUnits = item.data;
+					break;
+				default:
+					console.log("blah");
+			}
+		});
+		util.recursiveWalk(weddingDetails, function(target) {
+		    target['id'] = Math.random();
+			return true;
+		});
 
         Handlebars.registerPartial('synopsis-card-text', synopsisCardTextTemplate);
         Handlebars.registerPartial('time-unit', timeUnitTemplate);
@@ -206,6 +70,8 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
         jQuery('#asd').append(rsvpTemplate());
 
         jQuery('#asd').append(registryTemplate());
+
+		$('body').trigger('templates:appended');
     });
 
     $(document).on('click', '[data-editable]', function(e) {
@@ -240,5 +106,10 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
             jQuery('#details').replaceWith(detailsTemplate(weddingDetails));
             return false;
         });
+
+		jQuery.post('/api/save', {
+			type : 'details',
+			data : weddingDetails 
+		});
     });
 });
