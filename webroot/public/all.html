@@ -1,0 +1,187 @@
+<script id="feature-partial" type="text/x-handlebars-template">
+    <p data-editable data-id="{{id}}"><i class="fa fa-fw fa-{{icon}} fa-2x"></i> {{text}}</p>
+</script>
+
+<script id="detail-card-partial" type="text/x-handlebars-template">
+    <div data-editable data-id="{{id}}" class="wedding-details-block clearfix" style="margin-bottom: 45px;">
+      <h3 class="title">{{title.text}}</h3>
+      <div class="col-sm-12">
+            {{#each features}}
+                {{> feature this }}
+            {{/each}}
+      </div>
+    </div>
+</script>
+
+<script id="detail-image-partial" type="text/x-handlebars-template">
+    <div data-editable data-id="{{id}}" class="card-block {{class}}" style="margin-bottom: 0; transform: rotate({{rot}}deg);">
+      <img class="img-responsive center-block" src="{{image}}"/>
+    </div>
+</script>
+
+<script id="details-partial" type="text/x-handlebars-template">
+    <div id="details" data-parent data-toggle="parent" class="section details-section">
+      <div class="container">
+        <h1><span>Wedding Details</span></h1>
+        <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
+        <div class="row details-day-section">
+            <div class="col-xs-12 col-sm-5 wow fadeInLeft" data-wow-offset="80">
+                {{> detail-card wedding }}
+            </div>
+            <div class="col-xs-12 col-sm-7 details-images-wrapper">
+              <div class="wow fadeInRight" data-wow-offset="100">
+                  {{#each wedding.images }}
+                      {{> detail-image this }}
+                  {{/each}}
+              </div>
+            </div>
+        </div>
+        <hr class="short-hr">
+        <h2 class="text-center"><span>Tuesday, 2nd September, 2015</span></h2>
+        <div class="row details-day-section">
+            <div class="col-sm-5 wow fadeInLeft" data-wow-offset="80">
+                    {{> detail-card reception }}
+                    {{> detail-card reception-viet }}
+            </div>
+            <div class="col-sm-7 details-images-wrapper">
+                <div class="wow fadeInRight" data-wow-offset="300">
+                    {{#each reception.images }}
+                        {{> detail-image this }}
+                    {{/each}}
+                    {{#each reception-viet.images }}
+                        {{> detail-image this }}
+                    {{/each}}
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</script>
+<script id="registry-partial" type="text/x-handlebars-template">
+    <div class="container section">
+        <h1>Registry</h1>
+        <div class="row">
+            <div class="col-sm-4 wow fadeInLeft" data-wow-offset="100">
+                <img src="https://placehold.it/1000x1000" class="img-responsive"/>
+            </div>
+            <div class="col-sm-8 wow fadeInRight" data-wow-offset="100">
+                <h2>Wish us luck (Red Envelope)</h2>
+                <p>If you want to wish us luck in the future, money in a red envelope is the perfect gift. "li xi" (Vietnamese: pronounced <i>"lee see"</i>) is typically given to the bride and groom to signify luck and happiness.</p>
+                <p>We will be providing red envelopes at the wedding and the reception. Any amount is appreciated, as it's the thought that counts.</p>
+            </div>
+        </div>
+        <hr class="or-horizontal-separator" />
+        <div class="row">
+            <div class="col-sm-8 wow fadeInLeft" data-wow-offset="100">
+                <h2>Peter's of Kensington</h2>
+                <p></p>
+            </div>
+            <div class="col-sm-4 wow fadeInRight" data-wow-offset="100">
+                <img src="https://placehold.it/1000x1000" class="img-responsive"/>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="rsvp-partial" type="text/x-handlebars-template">
+    <div id="rsvp" class="section rsvp-section bg-img-brand-light-3x">
+      <div class="container wow fadeInUp" data-wow-offset="150">
+        <h1 style="color: white; margin-bottom: 30px">Will you attend?</h1>
+        <div class="col-sm-offset-2 col-xs-12 col-sm-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
+          <h3 style="text-align: center">R.S.V.P</h3>
+          <form>
+            <div class="form-group">
+                <label>Full Name<small>(required)</small></label>
+                <input type="text" class="form-control" name="lastname">
+            </div>
+            <div class="form-group">
+                <label>Will you be joining us?<small>(required)</small></label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="rsvp-location-block">
+                            <img id="reception-form" class="img-responsive img-filter-transition" src="images/flowers/green.jpg">
+                            <h4 class="text-center">Reception</h4>
+                        </div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="col-xs-6 btn btn-default active">
+                                <input data-img="reception-form" data-img-type="yes" type="radio" name="reception" id="option1" autocomplete="off">Yes</input>
+                            </label>
+                            <label class="col-xs-6 btn btn-default">
+                                <input data-img="reception-form" data-img-type="no" type="radio" name="reception" id="option3" autocomplete="off">No</input>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="rsvp-location-block">
+                            <img id="wedding-form" class="img-responsive img-filter-transition" src="images/flowers/pink3.jpg">
+                            <h4 class="text-center">Wedding</h4>
+                        </div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="col-xs-6 btn btn-default active">
+                                <input data-img="wedding-form" data-img-type="yes" type="radio" name="wedding" id="option1" autocomplete="off">Yes</input>
+                            </label>
+                            <label class="col-xs-6 btn btn-default">
+                                <input data-img="wedding-form" data-img-type="no" type="radio" name="wedding" id="option3" autocomplete="off">No</input>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-sm-12">
+                <label>Message</label>
+                <textarea class="form-control" name=message placeholder="Please let us know of any allergies or catering issues."></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block btn-submit" type="submit" style="font-size: 24px; padding: 10px 0">Send away!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</script>
+<script id="synopsis-card-text" type="text/x-handlebars-template">
+    <div class="card-block card-tilt-right">
+      <img class="img-responsive" src="{{image}}">
+      <h1 class="card-heading"><span>{{title}}</span></h1>
+    </div>
+    <div class="card-text">
+      <p>{{synopsis}}</p>
+    </div>
+</script>
+
+<script id="synopsis" type="text/x-handlebars-template">
+    <div class="container">
+      <div class="row section">
+        <div class="col-sm-6 wow fadeInLeft" data-wow-offset="100">
+          {{> synopsis-card-text bride }}
+        </div>
+        <div class="col-sm-6 wow fadeInRight" data-wow-offset="100">
+          {{> synopsis-card-text groom }}
+        </div>
+      </div>
+    </div>
+</script>
+<script id="time-unit" type="text/x-handlebars-template">
+    <div class="col-sm-3 counter-wrapper">
+      <div class="counter-icon">
+        <i class="fa fa-{{icon}} fa-fw"></i>
+      </div>
+      <div id="{{short-unit}}" class="counter-num">
+        <span>14</span>
+      </div>
+      <div class="counter-unit">
+        <span>{{short-unit}}</span>
+      </div>
+    </div>
+</script>
+
+<script id="timer-partial" type="text/x-handlebars-template">
+    <div id="timer" class="section counter-section bg-brand-light-3x">
+      <div class="container">
+            {{#each time-units}}
+                {{> time-unit this }}
+            {{/each}}
+      </div>
+    </div>
+</script>

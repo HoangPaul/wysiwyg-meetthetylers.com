@@ -1,6 +1,9 @@
 requirejs.config({
     shim: {
-        bootstrap: {
+        'bootstrap': {
+            deps: ["jquery"]
+        },
+        'jasny-bootstrap': {
             deps: ["jquery"]
         }
     },
