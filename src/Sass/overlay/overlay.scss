@@ -1,0 +1,10 @@
+#overlay.show {
+    position: fixed;
+    top: 80%;
+    bottom: 0;
+    background: $grey-light-1x;
+    z-index: 3000;
+    left: 0;
+    right: 0;
+    box-shadow: $box-shadow-1x;
+}

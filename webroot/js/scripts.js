@@ -1,8 +1,37 @@
 
+
+var findNode = function(nodes, id, handler) {
+    var shouldContinue = true;
+    var _findNode = function(_, currentNode) {
+        if (!shouldContinue || typeof currentNode !== 'object') {
+            return;
+        }
+        if (id == null || id == currentNode['id']) {
+            shouldContinue = handler(currentNode);
+            if (shouldContinue) {
+                $.each(currentNode, _findNode);
+                return true;
+            }
+        } else {
+            $.each(currentNode, _findNode);
+        }
+    };
+
+    _findNode(null, nodes);
+};
+
+
 var synopsisCardTextTemplate = $('#synopsis-card-text').html();
 var timeUnitTemplate = $('#time-unit').html();
+var featureTemplate = $('#feature-partial').html();
+var detailCardTemplate = $('#detail-card-partial').html();
+var detailImageTemplate = $('#detail-image-partial').html();
+
 Handlebars.registerPartial('synopsis-card-text', synopsisCardTextTemplate);
 Handlebars.registerPartial('time-unit', timeUnitTemplate);
+Handlebars.registerPartial('detail-card', detailCardTemplate);
+Handlebars.registerPartial('feature', featureTemplate);
+Handlebars.registerPartial('detail-image', detailImageTemplate);
 
 var synopsisPartial = $('#synopsis').html();
 var synopsisTemplate = Handlebars.compile(synopsisPartial);
@@ -46,6 +75,173 @@ var timeUnits = {
 
 jQuery('#asd').append(timerTemplate(timeUnits));
 
+var weddingDetails  = {
+    'wedding' : {
+        'title' : {
+            'text' : 'Wedding'
+        },
+        'features' : [
+            {
+                id : 'asdasd',
+                icon : 'calendar',
+                text : 'Monday, 1st September, 2015'
+            },
+            {
+                icon : 'black-tie',
+                text : 'Attire Cocktail'
+            },
+            {
+                icon : 'clock-o',
+                text : '3:00pm - 6:00pm'
+            },
+            {
+                icon : 'map-marker',
+                text : 'Olive Garden\n123 Fake Street, Shepparton, Australia'
+            },
+        ],
+        'images' : [
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-6 col-sm-10 col-lg-6',
+                rot : '15'
+            },
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-6 col-sm-8 col-lg-6',
+                rot : '-10'
+            },
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-6 col-sm-6',
+                rot : '-5'
+            },
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-6 col-sm-6',
+                rot : '10'
+            },
+        ]
+    },
+    'reception' : {
+        'title' : {
+            'text' : 'Reception'
+        },
+        'features' : [
+            {
+                icon : 'calendar',
+                text : 'Monday, 1st September, 2015'
+            },
+            {
+                icon : 'black-tie',
+                text : 'Monday, 1st September, 2015'
+            },
+            {
+                icon : 'clock-o',
+                text : 'Monday, 1st September, 2015'
+            },
+            {
+                icon : 'map-marker',
+                text : 'Monday, 1st September, 2015'
+            },
+        ],
+        'images' : [
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-6 col-sm-12 col-lg-8',
+                rot : '15'
+            },
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-6 col-sm-8 col-md-6',
+                rot : '-10'
+            },
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12 col-md-6',
+                rot : '-5'
+            }
+        ]
+    },
+    'reception-viet' : {
+        'title' : {
+            'text' : 'Vietnamese Reception (Family only)'
+        },
+        'features' : [
+            {
+                icon : 'calendar',
+                text : 'Monday, 1st September, 2015'
+            },
+            {
+                icon : 'black-tie',
+                text : 'Monday, 1st September, 2015'
+            },
+            {
+                icon : 'clock-o',
+                text : 'Monday, 1st September, 2015'
+            },
+            {
+                icon : 'map-marker',
+                text : 'Monday, 1st September, 2015'
+            },
+        ],
+        'images' : [
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-6 col-sm-12 col-md-11 col-lg-8',
+                rot : '10'
+            },
+            {
+                image : 'https://placehold.it/400x400',
+                class : 'col-xs-6 col-sm-12 col-md-12 col-lg-10',
+                rot : '-15'
+            }
+        ]
+    }
+};
+
+findNode(weddingDetails, null, function(target) {
+    target['id'] = Math.random();
+    return true;
+});
+
+var detailsPartial = $('#details-partial').html();
+var detailsTemplate = Handlebars.compile(detailsPartial);
+
+jQuery('#asd').append(detailsTemplate(weddingDetails));
+
+(function($) {
+    $(document).on('click', '[data-editable]', function(e) {
+        var id = $(this).data('id');
+
+        var target = null;
+
+        var isFound = false;
+        findNode(weddingDetails, id, function(target) {
+            $('#overlay').addClass('show');
+            $('#overlay').data('target', target['id']);
+            $('#overlay [data-overlay-text]').val(target['text']);
+            isFound = true;
+            return false;
+        });
+
+        if (isFound) {
+            e.stopPropagation()
+        }
+    });
+})(jQuery);
+
+
+(function($) {
+    $('[data-overlay-submit]').on('click', function() {
+        var id = $("#overlay").data('target');
+        var text = $('[data-overlay-text]').val();
+        findNode(weddingDetails, id, function(target) {
+            target['text'] = text;
+            jQuery('#details').replaceWith(detailsTemplate(weddingDetails));
+            return false;
+        });
+    });
+})(jQuery);
 //new WOW().init();
 
 // Image greyout

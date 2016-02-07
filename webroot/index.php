@@ -39,11 +39,15 @@
 
         <?php require_once('sections/registry.php'); ?>
 
+        <div id="overlay" data-target="" style="padding: 20px;">
+            <textarea data-overlay-text class="form-control" rows="3"></textarea>
+            <button data-overlay-submit class="btn btn-primary">Save Changes</button>
+        </div>
+
     <footer>
       <p>Designed and developed by the <a href="#">brother</a> of the bride</p>
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <?php require_once('footer.php') ?>
 
 </body>
