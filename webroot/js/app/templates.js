@@ -64,8 +64,11 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
     $(document).on('click', '[data-editable]', function(e) {
         var id = $(this).data('id');
 		var parentModel = $(this).parents('[data-parent]').data('type');
+		var editableData = $(this).data("editable");
 
-        var target = null;
+		if (typeof editableData !== 'undefined') {
+			editableData = editableData.split(',');
+		}
 
         var isFound = false;
         util.recursiveWalk(mappings[parentModel], function(target) {
@@ -75,6 +78,15 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
             $('#overlay').addClass('show');
             $('#overlay').data('target', target['id']);
 			$('#overlay').data('model', mappings[parentModel]);
+
+			$('#overlay [data-type]').hide();
+			$('#overlay [data-type]').prop('disabled', true);
+
+			$.each(editableData, function(_, type) {
+				$('#overlay [data-type="' + type + '"]').prop('disabled', false);
+				$('#overlay [data-type="' + type + '"]').show();
+			});
+
             $('#overlay [data-overlay-text]').val(target['text']);
             isFound = true;
             return false;
@@ -92,18 +104,22 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
     $('[data-overlay-submit]').on('click', function() {
         var id = $("#overlay").data('target');
 		var model = $('#overlay').data('model');
-        var text = $('[data-overlay-text]').val();
+
         util.recursiveWalk(model, function(target) {
             if (typeof target !== 'undefined' && target['id'] != id) {
                 return true;
             }
 			var template = model.template;
-            target['text'] = text;
+			$.each($('[data-overlay-value]:enabled'), function(_, input) {
+				var dataLabel = $(input).data('type');
+				var dataValue = $(input).val();
+				target[dataLabel] = dataValue;
+			});
             jQuery('[data-type="' + model.data.type + '"]').replaceWith(template(model.data));
             return false;
         });
 
-		jQuery.post('/api/save', {data : model.data});
+		//jQuery.post('/api/save', {data : model.data});
     });
 
 	$('[data-overlay-submit-file]').on('click', function() {

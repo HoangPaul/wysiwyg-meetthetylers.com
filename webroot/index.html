@@ -54,14 +54,14 @@
 
     <div id="asd"></div>
 
-    <div id="overlay" data-target="" style="padding: 20px; top: 0">
-		<!--
-        <textarea data-overlay-text class="form-control" rows="3"></textarea>
-		-->
-		<form id="qwe" action="/api/asd">
+    <div id="overlay" style="padding: 20px; top: 0">
+        <textarea data-overlay-value data-type="text" class="form-control" rows="3"></textarea>
+		<form id="qwe" data-type="image"action="/api/asd"  style="height: 50px">
 		</form>
+		<input type="hidden" data-overlay-value data-type="image"/>
+		<input type="text" data-overlay-value data-type="rot"/>
         <button data-overlay-cancel class="btn">Cancel</button>
-        <button data-overlay-submit-file class="btn btn-primary">Save Changes</button>
+        <button data-overlay-submit class="btn btn-primary">Save Changes</button>
     </div>
 	
     <footer>

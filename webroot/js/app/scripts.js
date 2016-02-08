@@ -10,6 +10,8 @@ define(["jquery", "dropzone", "./templates", "./timer"], function($, Dropzone) {
 	$('#qwe').dropzone({
 		url: '/api/asd',
 		success: function(file, response) {
+			var path = response.path.replace('webroot/', '');
+			$('input[data-type="image"]').val(path);
 			console.log(response);
 		}
 	});
