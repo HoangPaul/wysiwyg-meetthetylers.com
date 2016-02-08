@@ -1,0 +1,3 @@
+webroot/images/*
+node_modules/
+uploads/
