@@ -1,10 +1,105 @@
-#overlay.show {
+.overlay {
+	display: none;
+	padding: 15px;
+	left: 0;
+	top: 30%;
+	right: 85%;
     position: fixed;
-    top: 80%;
-    bottom: 0;
-    background: $grey-light-1x;
+    background: $white;
     z-index: 3000;
-    left: 0;
-    right: 0;
     box-shadow: $box-shadow-1x;
+	flex-direction: column;
+
+	&.active {
+		display: flex !important;
+	}
+
+	input {
+		@extend .form-control;
+	}
+
+	.data {
+		flex-grow: 1;
+	}
+
+	[data-type] {
+		@extend .clearfix;
+		margin-bottom: 15px;
+	}
+
+	.input-group-addon {
+		font-weight: bold;
+	}
 }
+
+.image-upload {
+	width: 100%;
+
+	&.dz-clickable {
+		padding-bottom: 100%;
+		border: 3px dotted $brand-primary;
+		position: relative;
+		background-color: transparent;
+
+		> span {
+			display: block;
+			position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    text-align: center;
+		    z-index: -1;
+			color: $brand-primary;
+		}
+		&.dz-started {
+			padding-bottom: 0;
+		  	border: 0;
+		}
+	}
+
+	> span {
+		display: none;
+	}
+
+	img {
+		@extend .img-responsive;
+	}
+
+	.dz-success-mark,
+	.dz-error-mark {
+		display: none;
+	}
+
+	.dz-progress {
+		span {
+			height: 3px;
+			background-color: orange;
+			display: block;
+		}
+	}
+	.dz-complete .dz-progress {
+		span {
+			background-color: green;
+		}
+	}
+}
+
+.overlay-darken {
+	z-index: 2900;
+	background-color: rgba(0,0,0, 0.3);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: none;
+
+	&.active {
+		display: block;
+	}
+}
+
+.overlay-target {
+	z-index: 2950;
+}
+

@@ -1,10 +1,10 @@
 <script id="feature-partial" type="text/x-handlebars-template">
-    <p data-editable data-id="{{id}}"><i class="fa fa-fw fa-{{icon}} fa-2x"></i> {{text}}</p>
+    <p data-editable="icon,text" data-id="{{id}}"><i class="fa fa-fw fa-{{icon}} fa-2x"></i> {{text}}</p>
 </script>
 
 <script id="detail-card-partial" type="text/x-handlebars-template">
-    <div data-editable data-id="{{id}}" class="wedding-details-block clearfix" style="margin-bottom: 45px;">
-      <h3 class="title">{{title.text}}</h3>
+    <div data-editable="text" data-id="{{id}}" class="wedding-details-block clearfix" style="margin-bottom: 45px;">
+      <h3 class="title">{{text}}</h3>
       <div class="col-sm-12">
             {{#each features}}
                 {{> feature this }}

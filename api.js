@@ -98,11 +98,10 @@ router.get('/load', function(req, res, next) {
     };
 	var details =  	{
 		data : {
+		"id" : "0.5141239578370005",
+		"type" : "details",
 		"wedding" : {
-				"title" : {
-					"text" : "Wedding",
-					"id" : "0.14694453193806112"
-				},
+				"text" : "Wedding",
 				"features" : [
 					{
 						"id" : "0.882109182421118",
@@ -154,10 +153,7 @@ router.get('/load', function(req, res, next) {
 				"id" : "0.654514555586502"
 			},
 			"reception" : {
-				"title" : {
-					"text" : "Reception",
-					"id" : "0.18615067191421986"
-				},
+				"text" : "Reception",
 				"features" : [
 					{
 						"icon" : "calendar",
@@ -203,10 +199,7 @@ router.get('/load', function(req, res, next) {
 				"id" : "0.440505079459399"
 			},
 			"reception-viet" : {
-				"title" : {
-					"text" : "Vietnamese Reception (Family only)",
-					"id" : "0.3145212617237121"
-				},
+				"text" : "Vietnamese Reception (Family only)",
 				"features" : [
 					{
 						"icon" : "calendar",
@@ -244,9 +237,7 @@ router.get('/load', function(req, res, next) {
 					}
 				],
 				"id" : "0.06939435540698469"
-			},
-		"id" : "0.5141239578370005",
-		"type" : "details"
+			}
 		}
 	};
 

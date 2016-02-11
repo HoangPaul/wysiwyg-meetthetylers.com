@@ -1,4 +1,4 @@
-define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
+define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handlebars, util, Dropzone) {
     var synopsisPartial = null;
     var synopsisTemplate = null;
     var timerPartial = null;
@@ -11,6 +11,17 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
     var registryTemplate = null;
 
 	var mappings = {};
+
+	var overlayDropzone = new Dropzone('#qwe', {
+		url: '/api/asd',
+		thumbnailHeight: 120,
+		thumbnailWidth: null,
+		success: function(file, response) {
+			var path = response.path.replace('webroot/', '');
+			$('[data-type="image"] [data-overlay-value]').val(path);
+			console.log(response);
+		}
+	});
 
     $('body').on('templates:loaded', function(_, data) {
         var synopsisCardTextTemplate = $('#synopsis-card-text').html();
@@ -49,45 +60,46 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
 		mappings['details']['template'] = detailsTemplate;
 
         jQuery('#asd').append(synopsisTemplate(mappings['synopsis'].data));
-
         jQuery('#asd').append(timerTemplate(mappings['timer'].data));
-
         jQuery('#asd').append(detailsTemplate(mappings['details'].data));
-
         jQuery('#asd').append(rsvpTemplate());
-
         jQuery('#asd').append(registryTemplate());
 
 		$('body').trigger('templates:appended');
     });
 
     $(document).on('click', '[data-editable]', function(e) {
-        var id = $(this).data('id');
-		var parentModel = $(this).parents('[data-parent]').data('type');
-		var editableData = $(this).data("editable");
-
-		if (typeof editableData !== 'undefined') {
-			editableData = editableData.split(',');
-		}
+		var $elem = $(this);
+        var id = $elem.data('id');
+		var parentModel = $elem.parents('[data-parent]').data('type');
+		var editableData = $elem.data("editable").split(',');
 
         var isFound = false;
         util.recursiveWalk(mappings[parentModel], function(target) {
             if (typeof target !== 'undefined' && target['id'] != id) {
                 return true;
             }
-            $('#overlay').addClass('show');
+            $('#overlay').addClass('active');
             $('#overlay').data('target', target['id']);
 			$('#overlay').data('model', mappings[parentModel]);
 
 			$('#overlay [data-type]').hide();
-			$('#overlay [data-type]').prop('disabled', true);
+			$('#overlay [data-overlay-value]').prop('disabled', true);
 
 			$.each(editableData, function(_, type) {
-				$('#overlay [data-type="' + type + '"]').prop('disabled', false);
-				$('#overlay [data-type="' + type + '"]').show();
+				var $overlayElement = $('#overlay [data-type="' + type + '"]');
+				var $overlayInput = $overlayElement.find('[data-overlay-value]');
+
+				$overlayElement.show();
+				$overlayInput.prop('disabled', false);
+				$overlayInput.val(target[type]);
 			});
 
             $('#overlay [data-overlay-text]').val(target['text']);
+
+			$elem.addClass('overlay-target');
+			$('.overlay-darken').addClass('active');
+
             isFound = true;
             return false;
         });
@@ -98,7 +110,10 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
     });
 	
 	$('[data-overlay-cancel]').on('click', function() {
-		$('#overlay').removeClass('show');
+		$('#overlay').removeClass('active');
+		$('.overlay-darken').removeClass('active');
+		$('.overlay-target').removeClass('overlay-target');
+		overlayDropzone.removeAllFiles();
 	});
 
     $('[data-overlay-submit]').on('click', function() {
@@ -110,39 +125,20 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
                 return true;
             }
 			var template = model.template;
-			$.each($('[data-overlay-value]:enabled'), function(_, input) {
-				var dataLabel = $(input).data('type');
-				var dataValue = $(input).val();
+
+			$.each($('#overlay [data-type]:visible'), function(_, element) {
+				var $input = $(element).find('[data-overlay-value]');
+				var dataLabel = $(element).data('type');
+				var dataValue = $input.val();
 				target[dataLabel] = dataValue;
 			});
+
+			var overlayTargetId = $('.overlay-target').data('id');
             jQuery('[data-type="' + model.data.type + '"]').replaceWith(template(model.data));
+			jQuery('[data-id="' + overlayTargetId + '"]').addClass('overlay-target');
             return false;
         });
 
-		//jQuery.post('/api/save', {data : model.data});
+		jQuery.post('/api/save', {data : model.data});
     });
-
-	$('[data-overlay-submit-file]').on('click', function() {
-		var formData = new FormData($('#qwe')[0]);
-		$.ajax({
-			url : '/api/asd',
-			type: 'POST',
-	        xhr: function() {  // Custom XMLHttpRequest
-    	        var myXhr = $.ajaxSettings.xhr();
-	            if(myXhr.upload){ // Check if upload property exists
-	                myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
-	            }
-	            return myXhr;
-	        },
-    	    //Ajax events
-	        success: function(){console.log('success');},
-	        error: function(){console.log('failed');},
-	        // Form data
-	        data: formData,
-	        //Options to tell jQuery not to process data or worry about content-type.
-	        cache: false,
-	        contentType: false,
-	        processData: false
-		});
-	});
 });

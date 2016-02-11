@@ -1,10 +1,10 @@
 <script id="feature-partial" type="text/x-handlebars-template">
-    <p data-editable data-id="{{id}}"><i class="fa fa-fw fa-{{icon}} fa-2x"></i> {{text}}</p>
+    <p data-editable="icon,text" data-id="{{id}}"><i class="fa fa-fw fa-{{icon}} fa-2x"></i> {{text}}</p>
 </script>
 
 <script id="detail-card-partial" type="text/x-handlebars-template">
-    <div data-editable data-id="{{id}}" class="wedding-details-block clearfix" style="margin-bottom: 45px;">
-      <h3 class="title">{{title.text}}</h3>
+    <div data-editable="text" data-id="{{id}}" class="wedding-details-block clearfix" style="margin-bottom: 45px;">
+      <h3 class="title">{{text}}</h3>
       <div class="col-sm-12">
             {{#each features}}
                 {{> feature this }}
@@ -141,13 +141,15 @@
     </div>
 </script>
 <script id="synopsis-card-text" type="text/x-handlebars-template">
-    <div data-editable data-id="{{id}}" class="card-block card-tilt-right">
-      <img data-editable data-id="{{id}}" class="img-responsive" src="{{image}}">
-      <h1 data-editable data-id="{{id}}" class="card-heading"><span>{{title}}</span></h1>
-    </div>
-    <div class="card-text">
-      <p data-editable data-id="{{id}}">{{text}}</p>
-    </div>
+	<div data-editable="image,title,text" data-id="{{id}}">
+	    <div class="card-block card-tilt-right">
+	      <img data-id="{{id}}" class="img-responsive" src="{{image}}">
+	      <h1 data-id="{{id}}" class="card-heading"><span>{{title}}</span></h1>
+	    </div>
+	    <div class="card-text">
+	      <p data-id="{{id}}">{{text}}</p>
+	    </div>
+	</div>
 </script>
 
 <script id="synopsis" type="text/x-handlebars-template">

@@ -209,7 +209,8 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
     });
 
     $(document).on('click', '[data-editable]', function(e) {
-        var id = $(this).data('id');
+		var $elem = $(this):
+        var id = $elem.data('id');
 
         var target = null;
 
@@ -218,9 +219,10 @@ define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
             if (typeof target !== 'undefined' && target['id'] != id) {
                 return true;
             }
-            $('#overlay').addClass('show');
+            $('#overlay').addClass('active');
             $('#overlay').data('target', target['id']);
             $('#overlay [data-overlay-text]').val(target['text']);
+			$elem.addClass('overlay-target');
             isFound = true;
             return false;
         });
