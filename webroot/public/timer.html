@@ -3,8 +3,8 @@
       <div class="counter-icon">
         <i class="fa fa-{{icon}} fa-fw"></i>
       </div>
-      <div id="{{short-unit}}" class="counter-num">
-        <span>14</span>
+      <div data-time-value data-time-unit="{{short-unit}}" class="counter-num">
+        <span></span>
       </div>
       <div class="counter-unit">
         <span>{{short-unit}}</span>
@@ -13,8 +13,8 @@
 </script>
 
 <script id="timer-partial" type="text/x-handlebars-template">
-    <div id="timer" class="section counter-section bg-brand-light-3x">
-      <div class="container">
+    <div data-parent data-type="{{type}}" class="section counter-section bg-brand-light-3x">
+      <div class="container" data-editable="time" data-id="{{id}}" data-timer data-time="{{time}}">
             {{#each time-units}}
                 {{> time-unit this }}
             {{/each}}

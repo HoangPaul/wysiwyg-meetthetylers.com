@@ -24,11 +24,13 @@ define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handleba
 	});
 
     $('body').on('templates:loaded', function(_, data) {
+		// Partial templates
         var synopsisCardTextTemplate = $('#synopsis-card-text').html();
         var timeUnitTemplate = $('#time-unit').html();
         var featureTemplate = $('#feature-partial').html();
         var detailCardTemplate = $('#detail-card-partial').html();
         var detailImageTemplate = $('#detail-image-partial').html();
+        var registryItemTemplate = $('#registry-item-partial').html();
 		
 		$.each(data.data, function(_, item) {
 			mappings[item.data.type] = {data : item.data};
@@ -43,6 +45,7 @@ define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handleba
         Handlebars.registerPartial('detail-card', detailCardTemplate);
         Handlebars.registerPartial('feature', featureTemplate);
         Handlebars.registerPartial('detail-image', detailImageTemplate);
+        Handlebars.registerPartial('registry-item', registryItemTemplate);
 
         synopsisPartial = $('#synopsis').html();
         synopsisTemplate = Handlebars.compile(synopsisPartial);
@@ -58,12 +61,13 @@ define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handleba
 		mappings['synopsis']['template'] = synopsisTemplate;
 		mappings['timer']['template'] = timerTemplate;
 		mappings['details']['template'] = detailsTemplate;
+		mappings['registry']['template'] = registryTemplate;
 
         jQuery('#asd').append(synopsisTemplate(mappings['synopsis'].data));
         jQuery('#asd').append(timerTemplate(mappings['timer'].data));
         jQuery('#asd').append(detailsTemplate(mappings['details'].data));
         jQuery('#asd').append(rsvpTemplate());
-        jQuery('#asd').append(registryTemplate());
+        jQuery('#asd').append(registryTemplate(mappings['registry'].data));
 
 		$('body').trigger('templates:appended');
     });
@@ -136,6 +140,7 @@ define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handleba
 			var overlayTargetId = $('.overlay-target').data('id');
             jQuery('[data-type="' + model.data.type + '"]').replaceWith(template(model.data));
 			jQuery('[data-id="' + overlayTargetId + '"]').addClass('overlay-target');
+			$('body').trigger('templates:appended');
             return false;
         });
 

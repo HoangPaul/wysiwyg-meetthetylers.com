@@ -57,29 +57,27 @@
       </div>
     </div>
 </script>
+<script id="registry-item-partial" type="text/x-handlebars-template">
+	<div class="row" data-editable="image,title,text" data-id={{id}}>
+   		<div class="col-sm-4 wow fadeInLeft" data-wow-offset="100">
+      		<img src="{{image}}" class="img-responsive"/>
+        </div>
+        <div class="col-sm-8 wow fadeInRight" data-wow-offset="100">
+            <h2>{{title}}</h2>
+            <p>{{text}}</p>
+        </div>
+    </div>
+</script>
+
 <script id="registry-partial" type="text/x-handlebars-template">
-    <div class="container section">
+    <div class="container section" data-parent data-type={{type}}>
         <h1>Registry</h1>
-        <div class="row">
-            <div class="col-sm-4 wow fadeInLeft" data-wow-offset="100">
-                <img src="https://placehold.it/1000x1000" class="img-responsive"/>
-            </div>
-            <div class="col-sm-8 wow fadeInRight" data-wow-offset="100">
-                <h2>Wish us luck (Red Envelope)</h2>
-                <p>If you want to wish us luck in the future, money in a red envelope is the perfect gift. "li xi" (Vietnamese: pronounced <i>"lee see"</i>) is typically given to the bride and groom to signify luck and happiness.</p>
-                <p>We will be providing red envelopes at the wedding and the reception. Any amount is appreciated, as it's the thought that counts.</p>
-            </div>
-        </div>
-        <hr class="or-horizontal-separator" />
-        <div class="row">
-            <div class="col-sm-8 wow fadeInLeft" data-wow-offset="100">
-                <h2>Peter's of Kensington</h2>
-                <p></p>
-            </div>
-            <div class="col-sm-4 wow fadeInRight" data-wow-offset="100">
-                <img src="https://placehold.it/1000x1000" class="img-responsive"/>
-            </div>
-        </div>
+		{{#each items}}
+			{{> registry-item this }}
+			{{#unless @last}}
+	        	<hr class="or-horizontal-separator" />
+			{{/unless}}
+		{{/each}}
     </div>
 </script>
 <script id="rsvp-partial" type="text/x-handlebars-template">
@@ -141,12 +139,12 @@
     </div>
 </script>
 <script id="synopsis-card-text" type="text/x-handlebars-template">
-	<div data-editable="image,title,text" data-id="{{id}}">
-	    <div class="card-block card-tilt-right">
+	<div data-editable="image,title,text,rot" data-id="{{id}}">
+	    <div class="card-block spaced" style="transform: rotate({{rot}}deg);">
 	      <img data-id="{{id}}" class="img-responsive" src="{{image}}">
 	      <h1 data-id="{{id}}" class="card-heading"><span>{{title}}</span></h1>
 	    </div>
-	    <div class="card-text">
+	    <div>
 	      <p data-id="{{id}}">{{text}}</p>
 	    </div>
 	</div>
@@ -169,8 +167,8 @@
       <div class="counter-icon">
         <i class="fa fa-{{icon}} fa-fw"></i>
       </div>
-      <div id="{{short-unit}}" class="counter-num">
-        <span>14</span>
+      <div data-time-value data-time-unit="{{short-unit}}" class="counter-num">
+        <span></span>
       </div>
       <div class="counter-unit">
         <span>{{short-unit}}</span>
@@ -179,8 +177,8 @@
 </script>
 
 <script id="timer-partial" type="text/x-handlebars-template">
-    <div id="timer" class="section counter-section bg-brand-light-3x">
-      <div class="container">
+    <div data-parent data-type="{{type}}" class="section counter-section bg-brand-light-3x">
+      <div class="container" data-editable="time" data-id="{{id}}" data-timer data-time="{{time}}">
             {{#each time-units}}
                 {{> time-unit this }}
             {{/each}}

@@ -1,10 +1,10 @@
 <script id="synopsis-card-text" type="text/x-handlebars-template">
-	<div data-editable="image,title,text" data-id="{{id}}">
-	    <div class="card-block card-tilt-right">
+	<div data-editable="image,title,text,rot" data-id="{{id}}">
+	    <div class="card-block spaced" style="transform: rotate({{rot}}deg);">
 	      <img data-id="{{id}}" class="img-responsive" src="{{image}}">
 	      <h1 data-id="{{id}}" class="card-heading"><span>{{title}}</span></h1>
 	    </div>
-	    <div class="card-text">
+	    <div>
 	      <p data-id="{{id}}">{{text}}</p>
 	    </div>
 	</div>

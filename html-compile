@@ -1,0 +1,6 @@
+#! /bin/bash
+
+DIR="$( cd $(dirname $0) ; pwd -P )"
+
+rm -f webroot/public/all.html
+cat webroot/public/*.html > webroot/public/all.html

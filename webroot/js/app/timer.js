@@ -1,13 +1,36 @@
 define(["jquery"], function($) {
+	var intervalId = 0;
+
 	$('body').on('templates:appended', function() {
-		    setInterval(function() {
-	        var secondValue = $('#SECS span').html();
+		var $elem = $('[data-timer]');
+		var targetTime = $elem.data('time');
+		var remainingTime = targetTime - Date.now() / 1000;
+
+		var remainingDay = remainingTime / 60 / 60 / 24;
+		var remainingHoursInSeconds = remainingTime - (Math.floor(remainingDay) * 60 * 60 * 24);
+		var remainingHr = remainingHoursInSeconds / 60 / 60;
+		var remainingMinutesInSeconds = remainingHoursInSeconds - (Math.floor(remainingHr) * 60 * 60);
+		var remainingMin = remainingMinutesInSeconds / 60;
+		var remainingSec = remainingMinutesInSeconds - (Math.floor(remainingMin) * 60);
+
+		var $dayElem  = $('[data-time-unit="DAYS"] span');
+		var $hourElem = $('[data-time-unit="HRS"] span');
+		var $minElem  = $('[data-time-unit="MINS"] span');
+		var $secElem  = $('[data-time-unit="SECS"] span');
+
+		$dayElem.html(Math.floor(remainingDay));
+		$hourElem.html(Math.floor(remainingHr));
+		$minElem.html(Math.floor(remainingMin));
+		$secElem.html(Math.floor(remainingSec));
+
+	    intervalId = setInterval(function() {
+	        var secondValue = $secElem.html();
 	        if (secondValue == 0) {
-	            $('#SECS span').html(59)
-	            var minuteValue = $('#MINS span').html()
-	            $('#MINS span').html(minuteValue - 1)
+	            $secElem.html(59)
+	            var minuteValue = $minElem.html()
+	            $minElem.html(minuteValue - 1)
 	        } else {
-	            $('#SECS span').html(secondValue - 1)
+	            $secElem.html(secondValue - 1)
 	        }
 	    }, 1000);
 	});

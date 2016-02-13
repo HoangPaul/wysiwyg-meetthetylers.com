@@ -73,9 +73,27 @@ router.get('/load', function(req, res, next) {
 	        }
 		}
 	};
+	var registry = {
+		data : {
+			type : 'registry',
+			items : [
+				{
+					image : 'https://placehold.it/1000x1000',
+					title : 'Wish us luck (Red Envelope)',
+					text : 'If you want to wish us luck in the future, money in a red envelope is the perfect gift. "li xi" (Vietnamese: pronounced "lee see") is typically given to the bride and groom to signify luck and happiness.'
+				},
+				{
+					image : 'https://placehold.it/1000x1000',
+					title : 'Peter\'s of Kensington',
+					text : 'Some text'
+				}
+			]
+		}
+	}
 	var timer = {
 		data : {
 			type : 'timer',
+			time : '1476093600',
 			'time-units' : [
 	            {
 	                'icon' : 'calendar',
@@ -244,7 +262,7 @@ router.get('/load', function(req, res, next) {
 	MongoClient.connect(url, function(err, db) {
 	  	console.log("Connected correctly to server");
 		var collection = db.collection('wedding');
-		collection.insert([synopsis, timer, details], function(err, result) {
+		collection.insert([synopsis, timer, details, registry], function(err, result) {
 			if (err) {
 				next(err);
 			  	db.close();
