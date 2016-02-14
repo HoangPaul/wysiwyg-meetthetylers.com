@@ -1,6 +1,7 @@
 #! /bin/bash
 
 DIR="$( cd $(dirname $0) ; pwd -P )"
+TEMPLATEDIR="templates"
 
-rm -f webroot/public/all.html
-cat webroot/public/*.html > webroot/public/all.html
+rm -f $TEMPLATEDIR/all.html
+cat $TEMPLATEDIR/*.html > $TEMPLATEDIR/all.html

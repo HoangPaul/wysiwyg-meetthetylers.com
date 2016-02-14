@@ -1,10 +1,9 @@
-define(["jquery", "./templates", "./timer"], function($) {
+define(["jquery", "./timer"], function($, Timer) {
     var jQuery = $;
 
-    $.get('/api/templates', function(data) {
-        $('body').append(data.templates);
-        $('body').trigger('templates:loaded', data);
-    });
+	$(document).on('ready', function() {
+		Timer.load();
+	});
 
     //new WOW().init();
 

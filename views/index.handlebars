@@ -8,7 +8,7 @@
     <meta name="author" content="Paul Hoang">
     <link rel="icon" href="favicon.ico">
     <title>Prototype v2.5</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Tangerine:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -34,7 +34,6 @@
             </ul>
         </div>
     </nav>
-    <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
             <div class="heading">
@@ -98,7 +97,14 @@
         <p>Designed and developed by the <a href="#">brother</a> of the bride</p>
     </footer>
 
-    <script data-main="js/app" src="js/require.js"></script>
+    <script src="assets/js/require.js"></script>
+	<script>
+		requirejs(['./assets/js/app'], function(common) {
+			{{#if isAdmin}}
+				requirejs(['app/admin']);
+			{{/if}}
+		});
+	</script>
 </body>
 
 </html>

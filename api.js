@@ -4,28 +4,72 @@ var async = require('async');
 var multer = require('multer');
 var upload = multer({dest: 'webroot/images/'});
 
-var fs = require('fs');
+var fs = require('fs-extra');
+
+var Templater = require('./req');
+var cheerio = require('cheerio');
+var Handlebars = require('handlebars');
 
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/myproject';
 
-router.get('/templates', function(req, res, next) {
+var getData = function(callbackFunction) {
 	async.parallel({
 		data: function(callback) {
 			MongoClient.connect(url, function(err, db) {
 				db.collection('wedding').find().toArray(function(err, items) {
-					console.log(items);
 					callback(null, items);
 					db.close();
 				});
 			});
 		},
 		templates: function(callback) {
-			var templates = fs.readFileSync(__dirname + '/webroot/public/all.html', 'utf-8');
+			var templates = fs.readFileSync(__dirname + '/templates/all.html', 'utf-8');
 			callback(null, templates);
 		}
-	}, function(err, result) {
+	}, callbackFunction);
+};
+
+router.get('/templates', function(req, res, next) {
+	getData(function(err, result) {
 		res.send(result);
+	});
+});
+
+router.get('/generate', function(req, res, next) {
+	getData(function(err, result) {
+		var data = result.data;
+		var templates = result.templates;
+
+  		res.render('index', {layout: false, isAdmin : false}, function(err, html) {
+			var $ = cheerio.load(html);
+
+			Templater.load($, templates);
+			Templater.generate($, Handlebars, result);
+			Templater.unload($);
+		
+			fs.writeFile(__dirname + '/review/index.html', $.html(), 'utf8', function(err) {
+				if (err) {
+					console.log(err);
+				}
+	
+				var thingsToCopy = [
+					'{{basedir}}/assets',
+					'{{basedir}}/images'
+				];
+	
+				for (var i = 0; i < thingsToCopy.length; i++) {
+					var src = thingsToCopy[i].replace('{{basedir}}', 'webroot');
+					var dest = thingsToCopy[i].replace('{{basedir}}', 'review');
+					fs.copy(src, dest, function() {
+						if (err) {
+							console.log(err);
+						}
+					});
+				}
+				res.send('generated and exported sucessfully');
+			});
+		});
 	});
 });
 

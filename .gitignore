@@ -1,6 +1,10 @@
-webroot/images/*
 node_modules/
-uploads/
 
+# Ignore uploaded files
+webroot/images/
+
+# Ignore generated files
+review/
 *.css
 *.css.map
+all.html

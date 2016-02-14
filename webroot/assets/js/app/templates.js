@@ -1,4 +1,5 @@
-define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handlebars, util, Dropzone) {
+define(["jquery", "handlebars", "./util/util", "./templater", "./timer", "dropzone"],
+function($, Handlebars, util, Templater, Timer, Dropzone) {
     var synopsisPartial = null;
     var synopsisTemplate = null;
     var timerPartial = null;
@@ -25,52 +26,13 @@ define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handleba
 
     $('body').on('templates:loaded', function(_, data) {
 		// Partial templates
-        var synopsisCardTextTemplate = $('#synopsis-card-text').html();
-        var timeUnitTemplate = $('#time-unit').html();
-        var featureTemplate = $('#feature-partial').html();
-        var detailCardTemplate = $('#detail-card-partial').html();
-        var detailImageTemplate = $('#detail-image-partial').html();
-        var registryItemTemplate = $('#registry-item-partial').html();
-		
-		$.each(data.data, function(_, item) {
-			mappings[item.data.type] = {data : item.data};
-		});
-		util.recursiveWalk(mappings, function(target) {
-		    target['id'] = Math.random();
-			return true;
-		});
-
-        Handlebars.registerPartial('synopsis-card-text', synopsisCardTextTemplate);
-        Handlebars.registerPartial('time-unit', timeUnitTemplate);
-        Handlebars.registerPartial('detail-card', detailCardTemplate);
-        Handlebars.registerPartial('feature', featureTemplate);
-        Handlebars.registerPartial('detail-image', detailImageTemplate);
-        Handlebars.registerPartial('registry-item', registryItemTemplate);
-
-        synopsisPartial = $('#synopsis').html();
-        synopsisTemplate = Handlebars.compile(synopsisPartial);
-        timerPartial = $('#timer-partial').html();
-        timerTemplate = Handlebars.compile(timerPartial);
-        detailsPartial = $('#details-partial').html();
-        detailsTemplate = Handlebars.compile(detailsPartial);
-        rsvpPartial = $('#rsvp-partial').html();
-        rsvpTemplate = Handlebars.compile(rsvpPartial);
-        registryPartial = $('#registry-partial').html();
-        registryTemplate = Handlebars.compile(registryPartial);
-
-		mappings['synopsis']['template'] = synopsisTemplate;
-		mappings['timer']['template'] = timerTemplate;
-		mappings['details']['template'] = detailsTemplate;
-		mappings['registry']['template'] = registryTemplate;
-
-        jQuery('#asd').append(synopsisTemplate(mappings['synopsis'].data));
-        jQuery('#asd').append(timerTemplate(mappings['timer'].data));
-        jQuery('#asd').append(detailsTemplate(mappings['details'].data));
-        jQuery('#asd').append(rsvpTemplate());
-        jQuery('#asd').append(registryTemplate(mappings['registry'].data));
-
+		Templater.generate($, Handlebars, util, data, mappings);
 		$('body').trigger('templates:appended');
     });
+
+	$('body').on('templates:appended', function() {
+		Timer.load();
+	});
 
     $(document).on('click', '[data-editable]', function(e) {
 		var $elem = $(this);
@@ -79,7 +41,7 @@ define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handleba
 		var editableData = $elem.data("editable").split(',');
 
         var isFound = false;
-        util.recursiveWalk(mappings[parentModel], function(target) {
+        util.recursiveWalk($, mappings[parentModel], function(target) {
             if (typeof target !== 'undefined' && target['id'] != id) {
                 return true;
             }
@@ -90,7 +52,7 @@ define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handleba
 			$('#overlay [data-type]').hide();
 			$('#overlay [data-overlay-value]').prop('disabled', true);
 
-			$.each(editableData, function(_, type) {
+			util.each($, editableData, function(_, type) {
 				var $overlayElement = $('#overlay [data-type="' + type + '"]');
 				var $overlayInput = $overlayElement.find('[data-overlay-value]');
 
@@ -124,13 +86,13 @@ define(["jquery", "handlebars", "./util/util", "dropzone"], function($, Handleba
         var id = $("#overlay").data('target');
 		var model = $('#overlay').data('model');
 
-        util.recursiveWalk(model, function(target) {
+        util.recursiveWalk($, model, function(target) {
             if (typeof target !== 'undefined' && target['id'] != id) {
                 return true;
             }
 			var template = model.template;
 
-			$.each($('#overlay [data-type]:visible'), function(_, element) {
+			util.each($, $('#overlay [data-type]:visible'), function(_, element) {
 				var $input = $(element).find('[data-overlay-value]');
 				var dataLabel = $(element).data('type');
 				var dataValue = $input.val();
