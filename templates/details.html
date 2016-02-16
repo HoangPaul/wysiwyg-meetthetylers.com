@@ -14,7 +14,7 @@
 </script>
 
 <script id="detail-image-partial" type="text/x-handlebars-template">
-    <div data-editable="image,rot" data-id="{{id}}" class="card-block {{class}}" style="margin-bottom: 0; transform: rotate({{rot}}deg);">
+    <div data-editable="image,rot,class" data-id="{{id}}" class="card-block {{class}}" style="margin-bottom: 0; transform: rotate({{rot}}deg);">
       <img class="img-responsive center-block" src="{{image}}"/>
     </div>
 </script>
@@ -24,6 +24,7 @@
       <div class="container">
         <h1><span>Wedding Details</span></h1>
         <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
+        <hr class="short-hr">
         <div class="row details-day-section">
             <div class="col-xs-12 col-sm-5 wow fadeInLeft" data-wow-offset="80">
                 {{> detail-card wedding }}
@@ -36,8 +37,8 @@
               </div>
             </div>
         </div>
-        <hr class="short-hr">
         <h2 class="text-center"><span>Tuesday, 2nd September, 2015</span></h2>
+        <hr class="short-hr">
         <div class="row details-day-section">
             <div class="col-sm-5 wow fadeInLeft" data-wow-offset="80">
                     {{> detail-card reception }}

@@ -79,11 +79,6 @@ html {
   transition: all 0.5s;
 }
 
-.short-hr {
-  border-top: 3px solid $brand;
-  margin: 42px 42%;
-}
-
 .wedding-details-block,
 .accommodation-block {
   h3 {
@@ -111,7 +106,7 @@ html {
 .details-section {
   h2 {
     margin-top: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
   }
 }
 
@@ -152,7 +147,7 @@ html {
 
 .bg-img-brand-light-3x {
   position: relative;
-  background: url(images/flowers/white3.jpg) no-repeat;
+  background: url(../images/flowers/white3.jpg) no-repeat;
   background-size: cover;
 
   > div {

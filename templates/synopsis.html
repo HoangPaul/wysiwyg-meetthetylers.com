@@ -20,5 +20,20 @@
           {{> synopsis-card-text groom }}
         </div>
       </div>
+      <div class="row section">
+        <div class="col-sm-6 wow fadeInLeft" data-wow-offset="100">
+		  	{{#each bride.friend }}
+	        	{{> synopsis-card-text this }}
+			{{/each}}
+			<div data-add="synopsis-card-text" data-model="synopsis:data.bride.friend">
+				<p>Add me</p>
+			</div>
+        </div>
+        <div class="col-sm-6 wow fadeInRight" data-wow-offset="100">
+		  	{{#each groom.friend }}
+	        	{{> synopsis-card-text this }}
+			{{/each}}
+        </div>
+      </div>
     </div>
 </script>

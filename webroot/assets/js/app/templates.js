@@ -34,6 +34,27 @@ function($, Handlebars, util, Templater, Timer, Dropzone) {
 		Timer.load();
 	});
 
+	var _removeAllOverlayElements = function() {
+		$('#overlay [data-type]').hide();
+		$('#overlay [data-overlay-value]').prop('disabled', true);
+	};
+
+	var _populateOverlay = function(dataToShowInOverlay) {
+		util.each($, dataToShowInOverlay, function(field, value) {
+			var $overlayElement = $('#overlay [data-type="' + field + '"]');
+			var $overlayInput = $overlayElement.find('[data-overlay-value]');
+
+			$overlayElement.show();
+			$overlayInput.prop('disabled', false);
+			$overlayInput.val(value);
+		});
+	};
+
+	var _showOverlay = function() {
+        $('#overlay').addClass('active');
+		$('.overlay-darken').addClass('active');
+	};
+
     $(document).on('click', '[data-editable]', function(e) {
 		var $elem = $(this);
         var id = $elem.data('id');
@@ -45,26 +66,19 @@ function($, Handlebars, util, Templater, Timer, Dropzone) {
             if (typeof target !== 'undefined' && target['id'] != id) {
                 return true;
             }
-            $('#overlay').addClass('active');
             $('#overlay').data('target', target['id']);
 			$('#overlay').data('model', mappings[parentModel]);
 
-			$('#overlay [data-type]').hide();
-			$('#overlay [data-overlay-value]').prop('disabled', true);
-
-			util.each($, editableData, function(_, type) {
-				var $overlayElement = $('#overlay [data-type="' + type + '"]');
-				var $overlayInput = $overlayElement.find('[data-overlay-value]');
-
-				$overlayElement.show();
-				$overlayInput.prop('disabled', false);
-				$overlayInput.val(target[type]);
+			var dataToShowInOverlay = {};
+			util.each($, editableData, function(_, dataType) {
+				dataToShowInOverlay[dataType] = target[dataType];
 			});
 
-            $('#overlay [data-overlay-text]').val(target['text']);
+			_removeAllOverlayElements();
+			_populateOverlay(dataToShowInOverlay);
+			_showOverlay();
 
 			$elem.addClass('overlay-target');
-			$('.overlay-darken').addClass('active');
 
             isFound = true;
             return false;
@@ -74,17 +88,101 @@ function($, Handlebars, util, Templater, Timer, Dropzone) {
             e.stopPropagation()
         }
     });
-	
-	$('[data-overlay-cancel]').on('click', function() {
+
+	var _removeOverlay = function() {
 		$('#overlay').removeClass('active');
 		$('.overlay-darken').removeClass('active');
 		$('.overlay-target').removeClass('overlay-target');
 		overlayDropzone.removeAllFiles();
+	}
+	
+	$('[data-overlay-cancel]').on('click', function() {
+		_removeOverlay();
+	});
+
+	var _getOverlayData = function() {
+		var data = {};
+		util.each($, $('#overlay [data-type]:visible'), function(_, element) {
+			var $input = $(element).find('[data-overlay-value]');
+			var dataLabel = $(element).data('type');
+			var dataValue = $input.val();
+			
+			data[dataLabel] = dataValue;
+		});
+
+		return data;
+	};
+
+	$('[data-overlay-delete]').on('click', function() {
+        var id = $("#overlay").data('target');
+		var model = $('#overlay').data('model');
+
+		if (typeof id === 'undefined' || typeof model === 'undefined') {
+			return;
+		}
+
+		util.recursiveWalk($, model, function(modelEntry) {
+			var hasDeleted = false;
+			util.each($, modelEntry, function(index, modelToDelete) {
+				if (typeof modelToDelete['id'] !== undefined && modelToDelete['id'] == id) {
+					console.log('deleting...');
+					console.log(modelEntry);
+
+					delete modelEntry[index];
+					hasDeleted = true;
+
+					console.log('done');
+				}
+			});
+
+			if (hasDeleted) {
+				return false;
+			}
+
+			if (typeof modelEntry['id'] !== undefined && modelEntry['id'] !== id) {
+				return true;
+			}
+
+			return false;
+		});
+
+		var template = model.template;
+       	jQuery('[data-type="' + model.data.type + '"]').replaceWith(template(model.data));
+		jQuery.post('/api/save', {data : model.data});
+		_removeOverlay();
 	});
 
     $('[data-overlay-submit]').on('click', function() {
         var id = $("#overlay").data('target');
 		var model = $('#overlay').data('model');
+
+		if (typeof id === 'undefined') {
+			// New entry
+			id = Math.random();
+
+			var modelName = model.split(':')[0];
+			var modelPath = model.split(':')[1].split('.');
+			model = mappings[modelName];
+
+			var modelPointer = model;
+			var hasSetData = false;
+			util.each($, modelPath, function(_, path) {
+				if (typeof modelPointer[path] !== 'undefined') {
+					modelPointer = modelPointer[path];
+					return true;
+				}
+
+				modelPointer[path] = [{id : id}];
+				hasSetData = true;
+
+				return false;
+			});
+
+			if (!hasSetData) {
+				modelPointer.push({id : id});
+			}
+		}
+
 
         util.recursiveWalk($, model, function(target) {
             if (typeof target !== 'undefined' && target['id'] != id) {
@@ -92,12 +190,8 @@ function($, Handlebars, util, Templater, Timer, Dropzone) {
             }
 			var template = model.template;
 
-			util.each($, $('#overlay [data-type]:visible'), function(_, element) {
-				var $input = $(element).find('[data-overlay-value]');
-				var dataLabel = $(element).data('type');
-				var dataValue = $input.val();
-				target[dataLabel] = dataValue;
-			});
+			var overlayData = _getOverlayData();
+			target = $.extend(target, overlayData);
 
 			var overlayTargetId = $('.overlay-target').data('id');
             jQuery('[data-type="' + model.data.type + '"]').replaceWith(template(model.data));
@@ -107,5 +201,27 @@ function($, Handlebars, util, Templater, Timer, Dropzone) {
         });
 
 		jQuery.post('/api/save', {data : model.data});
+		_removeOverlay();
     });
+
+	$(document).on('click', '[data-add]', function() {
+		var $templateElem = $('#' + $(this).data('add'));
+		var fields = $('<div/>')
+			.append($($templateElem.html()))
+			.find('[data-editable]')
+			.data('editable')
+			.split(',');
+
+		var newData = {};
+		util.each($, fields, function(_, field) {
+			newData[field] = '';
+		});
+
+		$('#overlay').data('model', $(this).data('model'));
+		_removeAllOverlayElements();
+		_populateOverlay(newData);
+		_showOverlay();
+
+		console.log(newData);
+	});
 });
