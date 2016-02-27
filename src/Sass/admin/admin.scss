@@ -1,0 +1,19 @@
+[data-add] {
+	display: none;
+}
+
+.admin [data-add] {
+	@extend .btn;
+	@extend .btn-primary;
+
+	display: block;
+}
+
+.admin #overlay {
+	.input-group-addon,
+	.form-control,
+	input,
+	.btn {
+		font-size: 14px;
+	}
+}
