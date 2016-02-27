@@ -2,7 +2,17 @@ var express = require('express');
 var router = express.Router();
 var async = require('async');
 var multer = require('multer');
-var upload = multer({dest: 'webroot/images/'});
+var storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, 'webroot/images/')
+	},
+	filename: function(req, file, cb) {
+		var reg = /(?:\.([^.]+))?$/
+		var ext = reg.exec(file.originalname);
+		cb(null, Date.now() + '.' + ext[1]);
+	}
+});
+var upload = multer({storage: storage});
 
 var fs = require('fs-extra');
 
