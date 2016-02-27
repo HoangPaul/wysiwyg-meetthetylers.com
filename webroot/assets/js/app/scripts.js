@@ -7,6 +7,12 @@ define(["jquery", "./timer"], function($, Timer) {
 
     //new WOW().init();
 
+	$(document).on('click', '[data-read-more]', function(e) {
+		$(this).prev().toggleClass('active');
+		//$(this).addClass('active');
+		$(this).hide();
+	});
+
     // Image greyout
     (function($) {
       $("[data-img]").on("change", function() {

@@ -1,12 +1,20 @@
 <script id="synopsis-card-text" type="text/x-handlebars-template">
-	<div data-editable="image,title,text,rot" data-id="{{id}}">
+	<div data-editable="image,title,moreText,shortText,rot" data-id="{{id}}">
 	    <div class="card-block spaced" style="transform: rotate({{rot}}deg);">
-	      <img data-id="{{id}}" class="img-responsive" src="{{image}}">
-	      <h1 data-id="{{id}}" class="card-heading"><span>{{title}}</span></h1>
+	      <img class="img-responsive" src="{{image}}">
+	      <h1 class="card-heading"><span>{{title}}</span></h1>
 	    </div>
-	    <div>
-	      <p data-id="{{id}}">{{text}}</p>
-	    </div>
+		<div class="synopsis-text">
+		    <p>{{shortText}}</p>
+			{{#if moreText}}
+				<div class="read-more-text">
+					<p>{{moreText}}</p>
+				</div>
+				<a class="read-more-link" data-read-more>
+					Read More
+				</a>
+			{{/if}}
+		</div>
 	</div>
 </script>
 
@@ -26,13 +34,16 @@
 	        	{{> synopsis-card-text this }}
 			{{/each}}
 			<div data-add="synopsis-card-text" data-model="synopsis:data.bride.friend">
-				<p>Add me</p>
+				Add new
 			</div>
         </div>
         <div class="col-sm-6 wow fadeInRight" data-wow-offset="100">
 		  	{{#each groom.friend }}
 	        	{{> synopsis-card-text this }}
 			{{/each}}
+			<div data-add="synopsis-card-text" data-model="synopsis:data.groom.friend">
+				Add new
+			</div>
         </div>
       </div>
     </div>

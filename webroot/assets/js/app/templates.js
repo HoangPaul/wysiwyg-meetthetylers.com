@@ -93,6 +93,8 @@ function($, Handlebars, util, Templater, Timer, Dropzone) {
 		$('#overlay').removeClass('active');
 		$('.overlay-darken').removeClass('active');
 		$('.overlay-target').removeClass('overlay-target');
+		$('#overlay').removeData('target');
+		$('#overlay').removeData('model');
 		overlayDropzone.removeAllFiles();
 	}
 	

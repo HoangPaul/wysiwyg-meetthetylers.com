@@ -58,6 +58,30 @@ html {
   padding-bottom: 60px;
 }
 
+.read-more-text {
+	transition: 1.5s opacity;
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+
+	&.active {
+		height: auto;
+		opacity: 1;
+	}
+}
+
+.read-more-link {
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.synopsis-text,
+.synopsis-text p {
+	color: $black-light-2x;
+	text-align: center;
+}
+
 .heading-block {
   padding: 15px 10px;
   position: relative;

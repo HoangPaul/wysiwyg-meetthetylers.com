@@ -15,12 +15,14 @@ $grey-bg: #F9F7F1;
 
 // Bootstrap variables
 $gray: $black-light-1x;
+$font-size-base: 16px;
+$line-height-base: 1.7;
 
 // Brand specific colors
-$brand: #3F51B5;
+$brand: #004b7c;//#3F51B5;
 $brand-light-1x: rgba($brand, 0.6);
 $brand-light-2x: rgba($brand, 0.4);
-$brand-light-3x: #E3F2FD;
+$brand-light-3x: rgba($brand, 0.2);//#E3F2FD;
 $brand-dark: darken($brand, 10%);
 $brand-inverse: $white;
 
