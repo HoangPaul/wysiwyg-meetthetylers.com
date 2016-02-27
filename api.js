@@ -11,7 +11,7 @@ var cheerio = require('cheerio');
 var Handlebars = require('handlebars');
 
 var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/myproject';
+var url = 'mongodb://mongo:27017/myproject';
 
 var getData = function(callbackFunction) {
 	async.parallel({
