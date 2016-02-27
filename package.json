@@ -19,5 +19,10 @@
     "mongodb": "^2.1.6",
     "multer": "^1.1.0",
     "requirejs": "^2.1.22"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0"
   }
 }
