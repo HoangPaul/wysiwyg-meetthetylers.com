@@ -33,7 +33,9 @@
 }
 
 @mixin font-normal() {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+  //font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-family: "Arimo", Arial, Helvetica, sans-serif;
+  //font-family: "Muli", Arial, Helvetica, sans-serif;
   //font-family: 'PT Sans', sans-serif;
 }
 

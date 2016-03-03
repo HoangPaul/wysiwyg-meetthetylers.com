@@ -1,1 +1,11 @@
 @import "wedding-details/wedding-details";
+
+.card-heading {
+	clear: both;
+}
+
+.friends .card-block {
+	@extend %col;
+	@extend .col-sm-offset-2;
+	@extend .col-sm-8;
+}

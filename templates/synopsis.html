@@ -2,8 +2,8 @@
 	<div data-editable="image,title,moreText,shortText,rot" data-id="{{id}}">
 	    <div class="card-block spaced" style="transform: rotate({{rot}}deg);">
 	      <img class="img-responsive" src="{{image}}">
-	      <h1 class="card-heading"><span>{{title}}</span></h1>
 	    </div>
+	    	<h1 class="card-heading"><span>{{title}}</span></h1>
 		<div class="synopsis-text">
 		    <p>{{shortText}}</p>
 			{{#if moreText}}
@@ -28,7 +28,7 @@
           {{> synopsis-card-text groom }}
         </div>
       </div>
-      <div class="row section">
+      <div class="row section friends">
         <div class="col-sm-6 wow fadeInLeft" data-wow-offset="100">
 		  	{{#each bride.friend }}
 	        	{{> synopsis-card-text this }}

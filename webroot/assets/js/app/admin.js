@@ -7,8 +7,6 @@ requirejs.config({
 });
 
 define(["jquery", "./templater", "./templates"], function($, Templater) {
-    var jQuery = $;
-
     $.get('/api/templates', function(data) {
 		Templater.load($, data.templates);
         $('body').trigger('templates:loaded', data);

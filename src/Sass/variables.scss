@@ -13,10 +13,6 @@ $grey-light-2x: rgba($grey, 0.30);
 
 $grey-bg: #F9F7F1;
 
-// Bootstrap variables
-$gray: $black-light-1x;
-$font-size-base: 16px;
-$line-height-base: 1.7;
 
 // Brand specific colors
 $brand: #004b7c;//#3F51B5;
@@ -38,12 +34,22 @@ $box-shadow-1x: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12
 //$rsvp-callour-button-color:
 $rsvp-time-color: $red;
 
+
+$letter-spacing-body: 0.03em;
+$letter-spacing-title: 0.05em;
+
 // Bootstrap variables
+$gray: $black-light-1x;
+$font-size-base: 16px;
+$line-height-base: 1.7;
+
 $body-bg: $grey-bg;
 $text-color: $black;
 
-$font-family-sans-serif: Roboto, Arial, Helvetica, sans-serif;
-$font-family-serif: Roboto, Arial, Helvetica, sans-serif;
+//$font-family-sans-serif: Roboto, Arial, Helvetica, sans-serif;
+//$font-family-serif: Roboto, Arial, Helvetica, sans-serif;
+$font-family-sans-serif: "Arimo", Arial, Helvetica, sans-serif;
+$font-family-serif: "Arimo", Arial, Helvetica, sans-serif;;
 
 $headings-font-family: 'Lobster';
 

@@ -1,3 +1,15 @@
+* {
+	letter-spacing: $letter-spacing-body;
+}
+
+h1 {
+  letter-spacing: $letter-spacing-title;
+
+  span {
+    letter-spacing: $letter-spacing-title;
+  }
+}
+
 p {
   color: $black-light-1x;
   @include font-normal();

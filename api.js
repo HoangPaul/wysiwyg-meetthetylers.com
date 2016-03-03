@@ -16,10 +16,6 @@ var upload = multer({storage: storage});
 
 var fs = require('fs-extra');
 
-var Templater = require('./req');
-var cheerio = require('cheerio');
-var Handlebars = require('handlebars');
-
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://mongo:27017/myproject';
 
@@ -27,8 +23,8 @@ var getData = function(callbackFunction) {
 	async.parallel({
 		data: function(callback) {
 			MongoClient.connect(url, function(err, db) {
-				db.collection('wedding').find().toArray(function(err, items) {
-					callback(null, items);
+				db.collection('sections').find({version : 1}).toArray(function(err, items) {
+					callback(null, items[0]['sections']);
 					db.close();
 				});
 			});
@@ -48,26 +44,31 @@ router.get('/templates', function(req, res, next) {
 
 router.get('/generate', function(req, res, next) {
 	getData(function(err, result) {
-		var data = result.data;
+		var data = result;
 		var templates = result.templates;
 
   		res.render('index', {layout: false, isAdmin : false}, function(err, html) {
-			var $ = cheerio.load(html);
+			var $ = require('cheerio').load(html);
 
+			var requirejs = require('requirejs');
+
+			var TemplateModel = requirejs('./webroot/assets/js/app/templateModel');
+			var Templater = requirejs('./webroot/assets/js/app/templater');
+
+			TemplateModel.init($, data);
 			Templater.load($, templates);
-			Templater.generate($, Handlebars, result);
-			Templater.unload($);
-		
+			Templater.generate($, TemplateModel);
+
 			fs.writeFile(__dirname + '/review/index.html', $.html(), 'utf8', function(err) {
 				if (err) {
 					console.log(err);
 				}
-	
+
 				var thingsToCopy = [
 					'{{basedir}}/assets',
 					'{{basedir}}/images'
 				];
-	
+
 				for (var i = 0; i < thingsToCopy.length; i++) {
 					var src = thingsToCopy[i].replace('{{basedir}}', 'webroot');
 					var dest = thingsToCopy[i].replace('{{basedir}}', 'review');
@@ -85,12 +86,20 @@ router.get('/generate', function(req, res, next) {
 
 
 router.post('/save', function(req, res, next) {
-	var data = req.body;
-	
+	var data = req.body.data;
+
+	var sections = [];
+
+	for (var sec in data) {
+		if (typeof data[sec] === 'object') {
+			sections.push(data[sec]);
+		}
+	}
+
 	MongoClient.connect(url, function(err, db) {
 	  	console.log("Connected correctly to server");
-		var collection = db.collection('wedding');
-		collection.update({'data.type': data.data.type}, data, {upsert:true}, function(err, result) {
+		var collection = db.collection('sections');
+		collection.update({version: 1}, {sections: sections, version: 1}, {upsert:true}, function(err, result) {
 			if (err) {
 				next(err);
 			  	db.close();
@@ -326,7 +335,7 @@ router.get('/load', function(req, res, next) {
 			  	db.close();
 			}
 		});
-	
+
 	});
 });
 

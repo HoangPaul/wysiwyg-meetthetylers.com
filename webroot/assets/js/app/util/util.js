@@ -39,11 +39,11 @@ define(function() {
 		// regarding Nodelist length in IE
 		var length = !!obj && "length" in obj && obj.length,
 			type = _type( obj );
-	
+
 		if ( type === "function" || _isWindow( obj ) ) {
 			return false;
 		}
-	
+
 		return type === "array" || length === 0 ||
 			typeof length === "number" && length > 0 && ( length - 1 ) in obj;
 	}
@@ -78,14 +78,15 @@ define(function() {
     return {
         recursiveWalk : function($, nodes, handler) {
             var shouldContinue = true;
+
             var _findNode = function(_, currentNode) {
-                if (!shouldContinue || typeof currentNode !== 'object') {
+                if (shouldContinue === false || typeof currentNode !== 'object') {
                     return;
                 }
 
                 shouldContinue = handler(currentNode);
 
-                if (shouldContinue) {
+                if (shouldContinue !== false) {
                     _each($, currentNode, _findNode);
                     return true;
                 } else {

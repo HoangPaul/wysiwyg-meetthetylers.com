@@ -1,10 +1,10 @@
 <script id="feature-partial" type="text/x-handlebars-template">
-    <p data-editable="icon,text" data-id="{{id}}"><i class="fa fa-fw fa-{{icon}} fa-2x"></i> {{text}}</p>
+    <p data-editable="icon" data-id="{{id}}"><i class="fa fa-fw fa-{{icon}} fa-2x"></i> <span contentEditable="true">{{{text}}}</span></p>
 </script>
 
 <script id="detail-card-partial" type="text/x-handlebars-template">
-    <div data-editable="text" data-id="{{id}}" class="wedding-details-block clearfix" style="margin-bottom: 45px;">
-      <h3 class="title">{{text}}</h3>
+    <div data-id="{{id}}" class="wedding-details-block clearfix" style="margin-bottom: 45px;">
+      <h3 contentEditable="true" class="title">{{{text}}}</h3>
       <div class="col-sm-12">
             {{#each features}}
                 {{> feature this }}
@@ -23,8 +23,6 @@
     <div id="details" data-parent data-type="{{type}}" class="section details-section">
       <div class="container">
         <h1><span>Wedding Details</span></h1>
-        <h2 class="text-center"><span>Monday, 1st September, 2015</span></h2>
-        <hr class="short-hr">
         <div class="row details-day-section">
             <div class="col-xs-12 col-sm-5 wow fadeInLeft" data-wow-offset="80">
                 {{> detail-card wedding }}
@@ -37,8 +35,6 @@
               </div>
             </div>
         </div>
-        <h2 class="text-center"><span>Tuesday, 2nd September, 2015</span></h2>
-        <hr class="short-hr">
         <div class="row details-day-section">
             <div class="col-sm-5 wow fadeInLeft" data-wow-offset="80">
                     {{> detail-card reception }}
