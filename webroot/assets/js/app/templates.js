@@ -1,5 +1,8 @@
 define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templateModel"],
     function($, util, Templater, Timer, Dropzone, TemplateModel) {
+        var templater = new Templater($);
+        var templateModel = new TemplateModel($);
+
         var overlayDropzone = new Dropzone('#qwe', {
             url: '/api/asd',
             thumbnailHeight: 120,
@@ -59,8 +62,8 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
         };
 
         $('body').on('templates:loaded', function(_, data) {
-            TemplateModel.init($, data);
-            Templater.generate($, TemplateModel);
+            templateModel.load(data);
+            templater.generate(templateModel);
 
             $('body').trigger('templates:appended');
         });
@@ -82,7 +85,7 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
             var html = $(this).html();
             var parentId = $(this).closest('[data-id]').data('id');
 
-            var model = TemplateModel.getModelById(parentId);
+            var model = templateModel.getModelById(parentId);
 
             model.text = html;
         });
@@ -91,8 +94,8 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
             var id = $(this).data('id');
             var parentType = $(this).parents('[data-parent]').data('type');
 
-            var parentModel = TemplateModel.getModelByType(parentType);
-            var currModel = TemplateModel.getModelById(id);
+            var parentModel = templateModel.getModelByType(parentType);
+            var currModel = templateModel.getModelById(id);
 
             if (!parentModel) {
                 return;
@@ -163,15 +166,15 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
                 var modelName = model.split(':')[0];
                 var modelPath = model.split(':')[1].split('.');
 
-                id = TemplateModel.addNewModelEntry(id, modelName, modelPath);
+                id = templateModel.addNewModelEntry(id, modelName, modelPath);
             }
 
-            var currModel = TemplateModel.getModelById(id);
+            var currModel = templateModel.getModelById(id);
             var overlayData = _getOverlayData();
 
             currModel = $.extend(currModel, overlayData);
 
-            TemplateModel.save($);
+            templateModel.save($);
 
             _removeOverlay();
         });

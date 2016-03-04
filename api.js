@@ -54,10 +54,20 @@ router.get('/generate', function(req, res, next) {
 
 			var TemplateModel = requirejs('./webroot/assets/js/app/templateModel');
 			var Templater = requirejs('./webroot/assets/js/app/templater');
+			var templater = new Templater($);
+			var templateModel = new TemplateModel($);
 
-			TemplateModel.init($, data);
-			Templater.load($, templates);
-			Templater.generate($, TemplateModel);
+			templater.load(templates);
+			templateModel.load(data);
+			templater.generate(templateModel);
+			templater.unload();
+
+			// Strip out any admin stuff
+			$('[contenteditable]').removeAttr('contenteditable');
+			$('[data-editable]').removeAttr('data-editable');
+			$('[data-id]').removeAttr('data-id');
+			$('[data-parent]').removeAttr('data-parent');
+			$('[data-type]').removeAttr('data-type');
 
 			fs.writeFile(__dirname + '/review/index.html', $.html(), 'utf8', function(err) {
 				if (err) {

@@ -1,6 +1,7 @@
 if (typeof define !== 'function') { var define = require('amdefine')(module) }
 
 define(['handlebars', './util/util'], function(Handlebars, Util) {
+    var $ = {};
     var templateContainerId = 'template-container';
     var templaters = {};
     var hasAttachedTemplates = false;
@@ -39,39 +40,45 @@ define(['handlebars', './util/util'], function(Handlebars, Util) {
         hasAttachedTemplates = true;
     }
 
-    return {
-        load: function($, templates) {
-            // Inlining the template ID instead of passing an object since
-            // cheerio doesn't support it yet
-            $('<div id="' + templateContainerId + '" />')
-                .appendTo('body')
-                .append(templates);
-        },
-        unload: function($) {
-            return $('#' + templateContainerId).remove();
-        },
-        generate: function($, TemplateModel) {
-            if (!hasAttachedTemplates) {
-                _attachTemplates($, Handlebars);
-            }
-            $('#asd').empty();
+    function Templater(_$) {
+        $ = _$;
+    }
 
-            var _sections = [
-                'details',
-                'timer',
-                'registry',
-                'rsvp',
-                'synopsis',
-            ];
+    Templater.prototype.load = function(templates) {
+        // Inlining the template ID instead of passing an object since
+        // cheerio doesn't support it yet
+        $('<div id="' + templateContainerId + '" />')
+            .appendTo('body')
+            .append(templates);
+    }
 
-            Util.each($, _sections, function(_, _section) {
-                var model = TemplateModel.getModelByType(_section);
-                if (typeof model !== 'undefined') {
-                    $('#asd').append(templaters[_section](model.data));
-                } else {
-                    $('#asd').append(templaters[_section]());
-                }
-            });
+    Templater.prototype.unload = function() {
+        return $('#' + templateContainerId).remove();
+    }
+
+    Templater.prototype.generate = function(templateModel)  {
+        if (!hasAttachedTemplates) {
+            _attachTemplates($, Handlebars);
         }
-    };
+        $('#asd').empty();
+
+        var _sections = [
+            'details',
+            'timer',
+            'registry',
+            'rsvp',
+            'synopsis',
+        ];
+
+        Util.each($, _sections, function(_, _section) {
+            var model = templateModel.getModelByType(_section);
+            if (typeof model !== 'undefined') {
+                $('#asd').append(templaters[_section](model.data));
+            } else {
+                $('#asd').append(templaters[_section]());
+            }
+        });
+    }
+
+    return Templater;
 });
