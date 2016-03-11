@@ -7,6 +7,25 @@ define(["jquery", "./timer"], function($, Timer) {
 
     //new WOW().init();
 
+    $(document).on('submit', 'form', function(e) {
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            crossDomain: true,
+            error: function(e) {
+                console.log('failed');
+                console.log(e);
+            },
+            success: function(e) {
+                console.log('success');
+                console.log(e);
+            },
+            timeout: 10000
+        });
+        return false;
+    });
+
 	$(document).on('click', '[data-read-more]', function(e) {
 		$(this).prev().toggleClass('active');
 		//$(this).addClass('active');
