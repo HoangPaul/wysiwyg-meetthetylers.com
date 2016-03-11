@@ -1,7 +1,8 @@
 node_modules/
 
 # Ignore uploaded files
-webroot/images/
+webroot/images/*
+!webroot/images/.gitkeep
 
 # Ignore generated files
 review/
