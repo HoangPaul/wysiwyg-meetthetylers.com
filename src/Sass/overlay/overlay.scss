@@ -14,7 +14,8 @@
 		display: flex !important;
 	}
 
-	input {
+	input,
+	select {
 		@extend .form-control;
 	}
 
@@ -104,4 +105,3 @@
 	z-index: 2950;
 	background: $white;
 }
-

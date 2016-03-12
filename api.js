@@ -68,6 +68,7 @@ router.get('/generate', function(req, res, next) {
 			$('[data-id]').removeAttr('data-id');
 			$('[data-parent]').removeAttr('data-parent');
 			$('[data-type]').removeAttr('data-type');
+			$('[data-add]').remove();
 
 			fs.writeFile(__dirname + '/review/index.html', $.html(), 'utf8', function(err) {
 				if (err) {

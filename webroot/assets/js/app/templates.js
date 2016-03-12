@@ -119,42 +119,15 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
 
         $('[data-overlay-delete]').on('click', function() {
             var id = $("#overlay").data('target');
-            var model = $('#overlay').data('model');
 
-            if (typeof id === 'undefined' || typeof model === 'undefined') {
+            if (typeof id === 'undefined') {
                 return;
             }
 
-            util.recursiveWalk($, model, function(modelEntry) {
-                var hasDeleted = false;
-                util.each($, modelEntry, function(index, modelToDelete) {
-                    if (typeof modelToDelete['id'] !== undefined && modelToDelete['id'] == id) {
-                        console.log('deleting...');
-                        console.log(modelEntry);
+            var isSucessful = templateModel.deleteEntry(id);
 
-                        delete modelEntry[index];
-                        hasDeleted = true;
+            templateModel.save();
 
-                        console.log('done');
-                    }
-                });
-
-                if (hasDeleted) {
-                    return false;
-                }
-
-                if (typeof modelEntry['id'] !== undefined && modelEntry['id'] !== id) {
-                    return true;
-                }
-
-                return false;
-            });
-
-            var template = model.template;
-            jQuery('[data-type="' + model.data.type + '"]').replaceWith(template(model.data));
-            jQuery.post('/api/save', {
-                data: model.data
-            });
             _removeOverlay();
         });
 
@@ -163,8 +136,8 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
             var parentModel = $('#overlay').data('parentModel');
 
             if (typeof id === 'undefined') {
-                var modelName = model.split(':')[0];
-                var modelPath = model.split(':')[1].split('.');
+                var modelName = parentModel.split(':')[0];
+                var modelPath = parentModel.split(':')[1].split('.');
 
                 id = templateModel.addNewModelEntry(id, modelName, modelPath);
             }
@@ -179,7 +152,7 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
             _removeOverlay();
         });
 
-        $(document).on('click', '[data-add]', function() {
+        $(document).on('click', '[data-add]', function(e) {
             var $templateElem = $('#' + $(this).data('add'));
             var fields = $('<div/>')
                 .append($($templateElem.html()))
@@ -192,11 +165,12 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
                 newData[field] = '';
             });
 
-            $('#overlay').data('model', $(this).data('model'));
+            $('#overlay').data('parentModel', $(this).data('model'));
             _removeAllOverlayElements();
             _populateOverlay(newData);
             _showOverlay();
 
-            console.log(newData);
+            e.preventDefault();
+            return false;
         });
     });

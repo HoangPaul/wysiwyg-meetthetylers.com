@@ -79,12 +79,12 @@ define(function() {
         recursiveWalk : function($, nodes, handler) {
             var shouldContinue = true;
 
-            var _findNode = function(_, currentNode) {
+            var _findNode = function(index, currentNode) {
                 if (shouldContinue === false || typeof currentNode !== 'object') {
                     return;
                 }
 
-                shouldContinue = handler(currentNode);
+                shouldContinue = handler(index, currentNode);
 
                 if (shouldContinue !== false) {
                     _each($, currentNode, _findNode);

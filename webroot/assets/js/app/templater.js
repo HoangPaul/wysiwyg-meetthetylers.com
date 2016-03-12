@@ -13,6 +13,9 @@ define(['handlebars', './util/util'], function(Handlebars, Util) {
         var detailCardTemplate = $('#detail-card-partial').html();
         var detailImageTemplate = $('#detail-image-partial').html();
         var registryItemTemplate = $('#registry-item-partial').html();
+        var inputImageYesNoTemplate = $('#input-image-yes-no').html();
+        var inputTextTemplate = $('#input-text').html();
+        var inputTextAreaTemplate = $('#input-textarea').html();
 
         Handlebars.registerPartial('synopsis-card-text', synopsisCardTextTemplate);
         Handlebars.registerPartial('time-unit', timeUnitTemplate);
@@ -20,15 +23,22 @@ define(['handlebars', './util/util'], function(Handlebars, Util) {
         Handlebars.registerPartial('feature', featureTemplate);
         Handlebars.registerPartial('detail-image', detailImageTemplate);
         Handlebars.registerPartial('registry-item', registryItemTemplate);
+        Handlebars.registerPartial('input-image-yes-no', inputImageYesNoTemplate);
+        Handlebars.registerPartial('input-text', inputTextTemplate);
+        Handlebars.registerPartial('input-textarea', inputTextAreaTemplate);
 
         synopsisPartial = $('#synopsis').html();
         synopsisTemplate = Handlebars.compile(synopsisPartial);
+
         timerPartial = $('#timer-partial').html();
         timerTemplate = Handlebars.compile(timerPartial);
+
         detailsPartial = $('#details-partial').html();
         detailsTemplate = Handlebars.compile(detailsPartial);
-        rsvpPartial = $('#rsvp-partial').html();
+
+        rsvpPartial = $('#rsvp').html();
         rsvpTemplate = Handlebars.compile(rsvpPartial);
+
         registryPartial = $('#registry-partial').html();
         registryTemplate = Handlebars.compile(registryPartial);
 
