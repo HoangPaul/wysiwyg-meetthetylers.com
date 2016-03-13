@@ -1,4 +1,5 @@
 var express = require('express');
+var path = require('path');
 var router = express.Router();
 var async = require('async');
 var multer = require('multer');
@@ -70,7 +71,9 @@ router.get('/generate', function(req, res, next) {
 			$('[data-type]').removeAttr('data-type');
 			$('[data-add]').remove();
 
-			fs.writeFile(__dirname + '/review/index.html', $.html(), 'utf8', function(err) {
+            var publicDirectory = path.join(path.dirname(__dirname), 'public');
+
+			fs.writeFile(path.join(publicDirectory, 'index.html'), $.html(), 'utf8', function(err) {
 				if (err) {
 					console.log(err);
 				}
