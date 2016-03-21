@@ -75,7 +75,7 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
         var _getDataFromModel = function(editableData, currModel) {
             var dataToShowInOverlay = {};
             util.each($, editableData, function(_, dataType) {
-                dataToShowInOverlay[dataType] = currModel[dataType];
+                dataToShowInOverlay[dataType] = currModel[dataType] || null;
             });
 
             return dataToShowInOverlay;

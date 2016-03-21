@@ -1,11 +1,10 @@
-node_modules/
+admin/node_modules/
 
 # Ignore uploaded files
-webroot/images/*
-!webroot/images/.gitkeep
+admin/webroot/images/*
+!admin/webroot/images/.gitkeep
 
 # Ignore generated files
-review/
 *.css
 *.css.map
 all.html

@@ -27,21 +27,25 @@ define(['handlebars', './util/util'], function(Handlebars, Util) {
         Handlebars.registerPartial('input-text', inputTextTemplate);
         Handlebars.registerPartial('input-textarea', inputTextAreaTemplate);
 
-        synopsisPartial = $('#synopsis').html();
-        synopsisTemplate = Handlebars.compile(synopsisPartial);
+        var jumbotronPartial = $('#jumbotron-partial').html();
+        var jumbotronTemplate = Handlebars.compile(jumbotronPartial);
 
-        timerPartial = $('#timer-partial').html();
-        timerTemplate = Handlebars.compile(timerPartial);
+        var synopsisPartial = $('#synopsis').html();
+        var synopsisTemplate = Handlebars.compile(synopsisPartial);
 
-        detailsPartial = $('#details-partial').html();
-        detailsTemplate = Handlebars.compile(detailsPartial);
+        var timerPartial = $('#timer-partial').html();
+        var timerTemplate = Handlebars.compile(timerPartial);
 
-        rsvpPartial = $('#rsvp').html();
-        rsvpTemplate = Handlebars.compile(rsvpPartial);
+        var detailsPartial = $('#details-partial').html();
+        var detailsTemplate = Handlebars.compile(detailsPartial);
 
-        registryPartial = $('#registry-partial').html();
-        registryTemplate = Handlebars.compile(registryPartial);
+        var rsvpPartial = $('#rsvp').html();
+        var rsvpTemplate = Handlebars.compile(rsvpPartial);
 
+        var registryPartial = $('#registry-partial').html();
+        var registryTemplate = Handlebars.compile(registryPartial);
+
+        templaters['jumbotron'] = jumbotronTemplate;
         templaters['synopsis'] = synopsisTemplate;
         templaters['timer'] = timerTemplate;
         templaters['details'] = detailsTemplate;
@@ -73,6 +77,7 @@ define(['handlebars', './util/util'], function(Handlebars, Util) {
         $('#asd').empty();
 
         var _sections = [
+            'jumbotron',
             'details',
             'timer',
             'registry',
