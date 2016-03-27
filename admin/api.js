@@ -52,6 +52,7 @@ router.get('/generate', function(req, res, next) {
 			var $ = require('cheerio').load(html);
 
 			var requirejs = require('requirejs');
+			delete require.cache[require.resolve('requirejs')];
 
 			var TemplateModel = requirejs('./webroot/assets/js/app/templateModel');
 			var Templater = requirejs('./webroot/assets/js/app/templater');

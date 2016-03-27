@@ -8,3 +8,6 @@ admin/webroot/images/*
 *.css
 *.css.map
 all.html
+
+npm-debug.log
+public/*
