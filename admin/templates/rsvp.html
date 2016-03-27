@@ -36,7 +36,7 @@
                 <h1 style="color: white; margin-bottom: 30px">Will you attend?</h1>
                 <div data-editable="form" data-id="{{id}}" class="col-sm-offset-2 col-xs-12 col-sm-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
                     <h3 style="text-align: center">R.S.V.P</h3>
-                    <form action="{{form}}">
+                    <form action="{{form}}" method="POST">
                         {{#each input}}
                             {{> input-text this }}
                         {{/each}}
