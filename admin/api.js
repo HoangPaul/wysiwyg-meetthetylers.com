@@ -86,7 +86,7 @@ router.get('/generate', function(req, res, next) {
 
 				for (var i = 0; i < thingsToCopy.length; i++) {
 					var src = thingsToCopy[i].replace('{{basedir}}', 'webroot');
-					var dest = thingsToCopy[i].replace('{{basedir}}', 'review');
+					var dest = thingsToCopy[i].replace('{{basedir}}', '../public');
 					fs.copy(src, dest, function() {
 						if (err) {
 							console.log(err);
