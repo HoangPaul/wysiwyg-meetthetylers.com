@@ -63,6 +63,12 @@ html {
   }
 }
 
+.center-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .read-more-text {
 	transition: 1.5s opacity;
 	height: 0;
