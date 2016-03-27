@@ -8,21 +8,26 @@ define(["jquery", "./timer"], function($, Timer) {
     new WOW().init();
 
     $(document).on('submit', 'form', function(e) {
+        var oldText = $('[data-form-button]').html();
         $.ajax({
             type: 'POST',
             url: $(this).attr('action'),
             data: $(this).serialize(),
             crossDomain: true,
             error: function(e) {
-                console.log('failed');
-                console.log(e);
+                setTimeout(function() {
+                    alert('Ack, we encountered a fatal error. Please get in contact with Sao or Pat to place your RSVP');
+                    $('[data-form-button]').html(oldText);
+                }, 1000);
             },
             success: function(e) {
-                console.log('success');
-                console.log(e);
+                setTimeout(function() {
+                    $('[data-form-button]').html('Thank you!');
+                }, 1000);
             },
             timeout: 10000
         });
+        $('[data-form-button]').html('<i class="fa fa-refresh fa-spin"></i>');
         return false;
     });
 
