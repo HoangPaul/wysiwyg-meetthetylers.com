@@ -5,7 +5,7 @@ define(["jquery", "./timer"], function($, Timer) {
 		Timer.load();
 	});
 
-    //new WOW().init();
+    new WOW().init();
 
     $(document).on('submit', 'form', function(e) {
         $.ajax({

@@ -108,7 +108,7 @@ define(['./util/util'], function(Util) {
         });
 
         Util.recursiveWalk($, _model, function(_, target) {
-            target['id'] = Math.random();
+            target['id'] = Math.random().toString(36).substring(12);
             return true;
         });
 

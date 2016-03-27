@@ -3,7 +3,7 @@
 </script>
 
 <script id="detail-card-partial" type="text/x-handlebars-template">
-    <div data-id="{{id}}" class="wedding-details-block clearfix" style="margin-bottom: 45px;">
+    <div data-id="{{id}}" class="wedding-details-block clearfix" data-editable data-id="{{id}}" style="margin-bottom: 45px;">
       <h3 contentEditable="true" class="title">{{{text}}}</h3>
       <div class="col-sm-12">
             {{#each features}}
@@ -20,7 +20,7 @@
 </script>
 
 <script id="details-partial" type="text/x-handlebars-template">
-    <div id="details" data-parent data-type="{{type}}" class="section details-section">
+    <div id="details" data-parent data-type="{{type}}" class="section details-section full-page">
       <div class="container">
         <h1><span>Wedding Details</span></h1>
         <div class="row details-day-section">

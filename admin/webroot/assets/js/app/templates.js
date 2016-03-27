@@ -148,6 +148,8 @@ define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templa
             currModel = $.extend(currModel, overlayData);
 
             templateModel.save($);
+            templater.generate(templateModel);
+            $('body').trigger('templates:appended');
 
             _removeOverlay();
         });

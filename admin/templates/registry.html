@@ -1,23 +1,26 @@
 <script id="registry-item-partial" type="text/x-handlebars-template">
-	<div class="row" data-editable="image,title,text" data-id={{id}}>
+	<div class="row" data-editable="image,title,text,link,link-text" data-id={{id}}>
    		<div class="col-sm-4 wow fadeInLeft" data-wow-offset="100">
       		<img src="{{image}}" class="img-responsive"/>
         </div>
         <div class="col-sm-8 wow fadeInRight" data-wow-offset="100">
-            <h2>{{title}}</h2>
-            <p>{{text}}</p>
+            <h2 class="registry-title" contentEditable="true">{{{title}}}</h2>
+            <div class="registry-text" contentEditable="true">{{{text}}}</div>
+			<a href="{{link}}" target="_blank">{{link-text}}</a>
         </div>
     </div>
 </script>
 
 <script id="registry-partial" type="text/x-handlebars-template">
-    <div class="container section" data-parent data-type={{type}}>
-        <h1>Registry</h1>
-		{{#each items}}
-			{{> registry-item this }}
-			{{#unless @last}}
-	        	<hr class="or-horizontal-separator" />
-			{{/unless}}
-		{{/each}}
-    </div>
+	<div id="registry"  data-parent data-type={{type}}>
+	    <div class="container section full-page">
+	        <h1>Registry</h1>
+			{{#each items}}
+				{{> registry-item this }}
+				{{#unless @last}}
+					<hr class="or-horizontal-separator" />
+				{{/unless}}
+			{{/each}}
+	    </div>
+	</div>
 </script>

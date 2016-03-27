@@ -17,4 +17,3 @@ requirejs.config({
 });
 
 requirejs(["app/scripts", "bootstrap", "wow", "jasny-bootstrap"]);
-

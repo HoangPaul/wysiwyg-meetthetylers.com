@@ -1,15 +1,15 @@
 <script id="input-image-yes-no" type="text/x-handlebars-template">
     <div data-editable="title,image" data-id="{{id}}">
         <div class="rsvp-location-block">
-            <img id="reception-form" class="img-responsive img-filter-transition" src="{{image}}">
+            <img id="{{id}}" class="img-responsive img-filter-transition" src="{{image}}">
             <h4 class="text-center">{{title}}</h4>
         </div>
         <div class="btn-group" data-toggle="buttons">
             <label class="col-xs-6 btn btn-default active">
-                <input data-img="reception-form" data-img-type="yes" type="radio" name="reception" id="option1" autocomplete="off">Yes</input>
+                <input data-img="{{id}}" data-img-type="yes" type="radio" name="reception" id="option1" autocomplete="off">Yes</input>
             </label>
             <label class="col-xs-6 btn btn-default">
-                <input data-img="reception-form" data-img-type="no" type="radio" name="reception" id="option3" autocomplete="off">No</input>
+                <input data-img="{{id}}" data-img-type="no" type="radio" name="reception" id="option3" autocomplete="off">No</input>
             </label>
         </div>
     </div>
@@ -30,41 +30,43 @@
 </script>
 
 <script id="rsvp" type="text/x-handlebars-template">
-    <div id="rsvp" class="section rsvp-section bg-img-brand-light-3x" data-parent data-type="{{type}}">
-        <div class="container wow fadeInUp" data-wow-offset="150">
-            <h1 style="color: white; margin-bottom: 30px">Will you attend?</h1>
-            <div data-editable="form" data-id="{{id}}" class="col-sm-offset-2 col-xs-12 col-sm-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
-                <h3 style="text-align: center">R.S.V.P</h3>
-                <form action="{{form}}">
-                    {{#each input}}
-                        {{> input-text this }}
-                    {{/each}}
-                    <div data-add="input-text" data-model="rsvp:data.input" style="clear: both">
-                        Add new
-                    </div>
-                    <div class="form-group">
-                        <label>Will you be joining us?<small>(required)</small></label>
-                        <div class="row">
-                            {{#each locations }}
-                            <div class="col-sm-6">
-                                {{> input-image-yes-no this }}
-                            </div>
-                            {{/each}}
-                			<div data-add="input-image-yes-no" data-model="rsvp:data.locations" style="clear: both">
-                				Add new
-                			</div>
+    <div id="rsvp" data-parent data-type="{{type}}" data-editable="image" data-id="{{id}}">
+        <div class="section full-page rsvp-section bg-img-brand-light-3x" style="background: url({{image}}) no-repeat; background-size: cover;">
+            <div class="container wow fadeInUp" data-wow-offset="150">
+                <h1 style="color: white; margin-bottom: 30px">Will you attend?</h1>
+                <div data-editable="form" data-id="{{id}}" class="col-sm-offset-2 col-xs-12 col-sm-8 card-block" style="background: white; padding: 30px 15px 15px; border-radius: 4px">
+                    <h3 style="text-align: center">R.S.V.P</h3>
+                    <form action="{{form}}">
+                        {{#each input}}
+                            {{> input-text this }}
+                        {{/each}}
+                        <div data-add="input-text" data-model="rsvp:data.input" style="clear: both">
+                            Add new
                         </div>
-                    </div>
-                    {{#each textarea}}
-                        {{> input-textarea this }}
-                    {{/each}}
-                    <div data-add="input-textarea" data-model="rsvp:data.textarea" style="clear: both">
-                        Add new
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-block btn-submit" type="submit" style="font-size: 24px; padding: 10px 0">Send away!</button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label>Will you be joining us?<small>(required)</small></label>
+                            <div class="row">
+                                {{#each locations }}
+                                <div class="col-sm-6">
+                                    {{> input-image-yes-no this }}
+                                </div>
+                                {{/each}}
+                                <div data-add="input-image-yes-no" data-model="rsvp:data.locations" style="clear: both">
+                                    Add new
+                                </div>
+                            </div>
+                        </div>
+                        {{#each textarea}}
+                            {{> input-textarea this }}
+                        {{/each}}
+                        <div data-add="input-textarea" data-model="rsvp:data.textarea" style="clear: both">
+                            Add new
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block btn-submit" type="submit" style="font-size: 24px; padding: 10px 0">Send away!</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
