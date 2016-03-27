@@ -29,6 +29,7 @@ html {
   height: 100vh;
   text-align: center;
   position: relative;
+  margin-bottom: 0;
 
   .heading {
       position: absolute;
@@ -54,8 +55,12 @@ html {
 }
 
 .section {
-  margin-top: 60px;
-  margin-bottom: 60px;
+  padding-top: 90px;
+  padding-bottom: 90px;
+
+  &.full-page {
+      min-height: 100vh;
+  }
 }
 
 .read-more-text {
