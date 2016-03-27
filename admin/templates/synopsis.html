@@ -20,7 +20,7 @@
 
 <script id="synopsis" type="text/x-handlebars-template">
     <div id="synopsis" class="container section full-page" data-parent data-type="{{type}}">
-      <div class="row">
+      <div class="row" style="margin-bottom: 120px">
         <div class="col-sm-6 wow fadeInLeft" data-wow-offset="100">
           {{> synopsis-card-text bride }}
         </div>
@@ -30,6 +30,7 @@
       </div>
       <div class="row friends">
         <div class="col-sm-6 wow fadeInLeft" data-wow-offset="100">
+			<h1>Bridesmaid</h1>
 		  	{{#each bride.friend }}
 	        	{{> synopsis-card-text this }}
 			{{/each}}
@@ -37,7 +38,8 @@
 				Add new
 			</div>
         </div>
-        <div class="col-sm-6 wow fadeInRight" data-wow-offset="100">
+        <div class="col-sm-6 wow fadeInRight" data-wow-offset="100" style="border-left: 1px solid #ddd">
+		    <h1>Groomsmen</h1>
 		  	{{#each groom.friend }}
 	        	{{> synopsis-card-text this }}
 			{{/each}}
