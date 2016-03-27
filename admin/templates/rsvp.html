@@ -1,15 +1,15 @@
 <script id="input-image-yes-no" type="text/x-handlebars-template">
-    <div data-editable="title,image" data-id="{{id}}">
+    <div data-editable="title,image,name" data-id="{{id}}">
         <div class="rsvp-location-block">
             <img id="{{id}}" class="img-responsive img-filter-transition" src="{{image}}">
             <h4 class="text-center">{{title}}</h4>
         </div>
         <div class="btn-group" data-toggle="buttons">
             <label class="col-xs-6 btn btn-default active">
-                <input data-img="{{id}}" data-img-type="yes" type="radio" name="reception" id="option1" autocomplete="off">Yes</input>
+                <input data-img="{{id}}" data-img-type="yes" type="radio" name="{{name}}" value="Yes" id="option1" autocomplete="off">Yes</input>
             </label>
             <label class="col-xs-6 btn btn-default">
-                <input data-img="{{id}}" data-img-type="no" type="radio" name="reception" id="option3" autocomplete="off">No</input>
+                <input data-img="{{id}}" data-img-type="no" type="radio" name="{{name}}" value="No" id="option3" autocomplete="off">No</input>
             </label>
         </div>
     </div>
