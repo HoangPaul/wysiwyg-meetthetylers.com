@@ -72,9 +72,9 @@ router.get('/generate', function(req, res, next) {
 			$('[data-type]').removeAttr('data-type');
 			$('[data-add]').remove();
 
-            var publicDirectory = path.join(path.dirname(__dirname), 'public');
+            var previewDirectory = path.join(path.dirname(__dirname), 'preview');
 
-			fs.writeFile(path.join(publicDirectory, 'index.html'), $.html(), 'utf8', function(err) {
+			fs.writeFile(path.join(previewDirectory, 'index.html'), $.html(), 'utf8', function(err) {
 				if (err) {
 					console.log(err);
 				}
@@ -86,17 +86,27 @@ router.get('/generate', function(req, res, next) {
 
 				for (var i = 0; i < thingsToCopy.length; i++) {
 					var src = thingsToCopy[i].replace('{{basedir}}', 'webroot');
-					var dest = thingsToCopy[i].replace('{{basedir}}', '../public');
+					var dest = thingsToCopy[i].replace('{{basedir}}', '../preview');
 					fs.copy(src, dest, function() {
 						if (err) {
 							console.log(err);
 						}
 					});
 				}
-				res.send('generated and exported sucessfully');
+				res.send('Generate and exported successfully. Please go to https://preview.meetthetylers.com to preview your changes');
 			});
 		});
 	});
+});
+
+router.get('/deploy', function(req, res, next) {
+	fs.copy('../preview', '../public', function(){
+		if (err) {
+			console.log(err);
+		}
+		res.send('Error - Could not deply');
+	});
+	res.send('Deployed to https://meetthetylers.com');
 });
 
 
