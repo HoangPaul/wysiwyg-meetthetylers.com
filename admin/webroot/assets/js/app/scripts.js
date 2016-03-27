@@ -9,6 +9,7 @@ define(["jquery", "./timer"], function($, Timer) {
 
     $(document).on('submit', 'form', function(e) {
         var oldText = $('[data-form-button]').html();
+        var $button = $('[data-form-button]');
         $.ajax({
             type: 'POST',
             url: $(this).attr('action'),
@@ -17,17 +18,20 @@ define(["jquery", "./timer"], function($, Timer) {
             error: function(e) {
                 setTimeout(function() {
                     alert('Ack, we encountered a fatal error. Please get in contact with Sao or Pat to place your RSVP');
-                    $('[data-form-button]').html(oldText);
+                    $button.html(oldText);
                 }, 1000);
             },
             success: function(e) {
                 setTimeout(function() {
-                    $('[data-form-button]').html('Thank you!');
+                    $button.html('Thank you!');
+                    $button.prop('disabled', true);
+                    $button.removeClass('btn-primary');
+                    $button.addClass('btn-success');
                 }, 1000);
             },
             timeout: 10000
         });
-        $('[data-form-button]').html('<i class="fa fa-refresh fa-spin"></i>');
+        $button.html('<i class="fa fa-refresh fa-spin"></i>');
         return false;
     });
 
