@@ -54,7 +54,7 @@ define(['./util/util'], function(Util) {
     var _findItemInObject = function(object, path) {
         var objRef = object;
         for (var i = 0; i < path.length; i++) {
-            objRef = object[path[i]];
+            objRef = objRef[path[i]];
         }
         return objRef;
     }
