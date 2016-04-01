@@ -71,6 +71,10 @@ html {
 
 .navmenu-fixed-right-xs {
     border-left: 1px solid #ddd;
+
+    @include bp(sm-up) {
+        border-left: 0;
+    }
 }
 
 .read-more-text {

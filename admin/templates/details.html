@@ -21,39 +21,47 @@
 
 <script id="details-partial" type="text/x-handlebars-template">
     <div id="details" data-parent data-type="{{type}}" class="section details-section full-page">
-      <div class="container">
-        <h1><span>Wedding Details</span></h1>
-        <div class="row details-day-section">
-            <div class="col-xs-12 col-sm-5 wow fadeInLeft" data-wow-offset="80">
-                {{> detail-card wedding }}
-            </div>
-            <div class="col-xs-12 col-sm-7 details-images-wrapper">
-              <div class="wow fadeInRight" data-wow-offset="100">
-                  {{#each wedding.images }}
-                      {{> detail-image this }}
-                  {{/each}}
-              </div>
-            </div>
-        </div>
-        <div class="row details-day-section">
-            <div class="col-sm-5 wow fadeInLeft" data-wow-offset="80">
-                    {{> detail-card reception }}
-                    {{> detail-card reception-viet }}
-            </div>
-            <div class="col-sm-7 details-images-wrapper">
-                <div class="wow fadeInRight" data-wow-offset="300">
-                    {{#each reception.images }}
-                        {{> detail-image this }}
-                    {{/each}}
-                    {{#each reception-viet.images }}
-                        {{> detail-image this }}
-                    {{/each}}
+        <div class="container">
+            <h1><span>Wedding Details</span></h1>
+            <div class="row details-day-section">
+                <div class="col-xs-12 col-sm-5 wow fadeInLeft" data-wow-offset="80">
+                    {{> detail-card wedding }}
                 </div>
-              </div>
-          </div>
-          <h1 style="margin-top: 60px;">Accommodation</h1>
-          <p>We would suggest book as soon as possible as ther are a few sporting evernts during the weekened and accommodation can  be quite scarce</p>
-          <p>We would suggest either <a href="https://www.booking.com">booking.com</a> or <a href="https://www.stayz.com">stayz.com</a>.</p>
-      </div>
+                <div class="col-xs-12 col-sm-7 details-images-wrapper">
+                  <div class="wow fadeInRight" data-wow-offset="100">
+                      {{#each wedding.images }}
+                          {{> detail-image this }}
+                      {{/each}}
+                  </div>
+                </div>
+            </div>
+            <div class="row details-day-section">
+                <div class="col-sm-5 wow fadeInLeft" data-wow-offset="80">
+                        {{> detail-card reception }}
+                </div>
+                <div class="col-sm-7 details-images-wrapper">
+                    <div class="wow fadeInRight" data-wow-offset="300">
+                        {{#each reception.images }}
+                            {{> detail-image this }}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="row details-day-section">
+                <div class="col-sm-5 wow fadeInLeft" data-wow-offset="80">
+                    {{> detail-card reception-viet }}
+                </div>
+                <div class="col-sm-7 details-images-wrapper">
+                    <div class="wow fadeInRight" data-wow-offset="300">
+                        {{#each reception-viet.images }}
+                            {{> detail-image this }}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <h1 style="margin-top: 60px;">Accommodation</h1>
+            <p>We would suggest booking as soon as possible as there are a few sporting events during the weekened and accommodation can be quite scarce.</p>
+            <p>We would suggest either <a href="https://www.booking.com">booking.com</a> or <a href="https://www.stayz.com">stayz.com</a>.</p>
+        </div>
     </div>
 </script>
