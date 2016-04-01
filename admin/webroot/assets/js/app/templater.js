@@ -80,8 +80,8 @@ define(['handlebars', './util/util'], function(Handlebars, Util) {
             'jumbotron',
             'details',
             'timer',
-            'registry',
             'rsvp',
+            'registry',
             'synopsis',
         ];
 
