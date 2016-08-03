@@ -8,6 +8,7 @@ admin/webroot/images/*
 *.css
 *.css.map
 all.html
+admin/webroot/assets/
 
 npm-debug.log
 public/*

@@ -9,7 +9,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'index'}));
 app.set('view engine', 'handlebars');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+app.use(bodyParser.urlencoded({
   extended: true
 })); 
 
@@ -24,5 +24,5 @@ app.get('/', function (req, res) {
 app.use('/api', api);
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('Listening on port 3000');
 });

@@ -1,5 +1,0 @@
-#! /bin/bash
-
-DIR="$( cd $(dirname $0) ; pwd -P )"
-
-docker run --rm -v $DIR:/app sassc -m src/Sass/styles.scss webroot/assets/css/styles.css

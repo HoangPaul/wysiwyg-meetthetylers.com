@@ -1,246 +1,171 @@
-define(["jquery", "handlebars", "./util/util"], function($, Handlebars, util) {
-    var context = {
-        bride : {
-            image : 'https://placehold.it/1000x1000',
-            title : 'The Bride',
-            synopsis : 'This is the bride synopsis'
-        },
-        groom : {
-            image : 'https://placehold.it/1500x1500',
-            title : 'The Groom',
-            synopsis : 'This is the groom synopsis'
-        }
-    };
+define(["jquery", "./util/util", "./templater", "./timer", "dropzone", "./templateModel"],
+    function($, util, Templater, Timer, Dropzone, TemplateModel) {
+        var templater = new Templater($);
+        var templateModel = new TemplateModel($);
 
-    var timeUnits = {
-        'time-units' : [
-            {
-                'icon' : 'calendar',
-                'short-unit' : 'DAYS',
-            },
-            {
-                'icon' : 'clock-o',
-                'short-unit' : 'HRS',
-            },
-            {
-                'icon' : 'sliders',
-                'short-unit' : 'MINS',
-            },
-            {
-                'icon' : 'heart-o',
-                'short-unit' : 'SECS',
+        var overlayDropzone = new Dropzone('#image-uploader', {
+            url: '/api/upload',
+            thumbnailHeight: 120,
+            thumbnailWidth: null,
+            success: function(file, response) {
+                var path = response.path.replace('webroot/', '');
+                $('[data-type="image"] [data-overlay-value]').val(path);
+                console.log(response);
             }
-        ]
-    }
+        });
 
-    var weddingDetails  = {
-        'wedding' : {
-            'title' : {
-                'text' : 'Wedding'
-            },
-            'features' : [
-                {
-                    id : 'asdasd',
-                    icon : 'calendar',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'black-tie',
-                    text : 'Attire Cocktail'
-                },
-                {
-                    icon : 'clock-o',
-                    text : '3:00pm - 6:00pm'
-                },
-                {
-                    icon : 'map-marker',
-                    text : 'Olive Garden\n123 Fake Street, Shepparton, Australia'
-                },
-            ],
-            'images' : [
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-10 col-lg-6',
-                    rot : '15'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-8 col-lg-6',
-                    rot : '-10'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-6',
-                    rot : '-5'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-6',
-                    rot : '10'
-                },
-            ]
-        },
-        'reception' : {
-            'title' : {
-                'text' : 'Reception'
-            },
-            'features' : [
-                {
-                    icon : 'calendar',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'black-tie',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'clock-o',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'map-marker',
-                    text : 'Monday, 1st September, 2015'
-                },
-            ],
-            'images' : [
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-12 col-lg-8',
-                    rot : '15'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-8 col-md-6',
-                    rot : '-10'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-12 col-md-6',
-                    rot : '-5'
-                }
-            ]
-        },
-        'reception-viet' : {
-            'title' : {
-                'text' : 'Vietnamese Reception (Family only)'
-            },
-            'features' : [
-                {
-                    icon : 'calendar',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'black-tie',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'clock-o',
-                    text : 'Monday, 1st September, 2015'
-                },
-                {
-                    icon : 'map-marker',
-                    text : 'Monday, 1st September, 2015'
-                },
-            ],
-            'images' : [
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-12 col-md-11 col-lg-8',
-                    rot : '10'
-                },
-                {
-                    image : 'https://placehold.it/400x400',
-                    class : 'col-xs-6 col-sm-12 col-md-12 col-lg-10',
-                    rot : '-15'
-                }
-            ]
-        }
-    };
+        var _removeAllOverlayElements = function() {
+            $('#overlay [data-type]').hide();
+            $('#overlay [data-overlay-value]').prop('disabled', true);
+        };
 
-    util.recursiveWalk(weddingDetails, function(target) {
-        target['id'] = Math.random();
-        return true;
-    });
+        var _populateOverlay = function(dataToShowInOverlay) {
+            util.each($, dataToShowInOverlay, function(field, value) {
+                var $overlayElement = $('#overlay [data-type="' + field + '"]');
+                var $overlayInput = $overlayElement.find('[data-overlay-value]');
 
-    var synopsisPartial = null;
-    var synopsisTemplate = null;
-    var timerPartial = null;
-    var timerTemplate = null;
-    var detailsPartial = null;
-    var detailsTemplate = null;
-    var rsvpPartial = null;
-    var rsvpTemplate = null;
-    var registryPartial = null;
-    var registryTemplate = null;
+                $overlayElement.show();
+                $overlayInput.prop('disabled', false);
+                $overlayInput.val(value);
+            });
+        };
 
-    $('body').on('templates:loaded', function() {
-        var synopsisCardTextTemplate = $('#synopsis-card-text').html();
-        var timeUnitTemplate = $('#time-unit').html();
-        var featureTemplate = $('#feature-partial').html();
-        var detailCardTemplate = $('#detail-card-partial').html();
-        var detailImageTemplate = $('#detail-image-partial').html();
-
-        Handlebars.registerPartial('synopsis-card-text', synopsisCardTextTemplate);
-        Handlebars.registerPartial('time-unit', timeUnitTemplate);
-        Handlebars.registerPartial('detail-card', detailCardTemplate);
-        Handlebars.registerPartial('feature', featureTemplate);
-        Handlebars.registerPartial('detail-image', detailImageTemplate);
-
-        synopsisPartial = $('#synopsis').html();
-        synopsisTemplate = Handlebars.compile(synopsisPartial);
-        timerPartial = $('#timer-partial').html();
-        timerTemplate = Handlebars.compile(timerPartial);
-        detailsPartial = $('#details-partial').html();
-        detailsTemplate = Handlebars.compile(detailsPartial);
-        rsvpPartial = $('#rsvp-partial').html();
-        rsvpTemplate = Handlebars.compile(rsvpPartial);
-        registryPartial = $('#registry-partial').html();
-        registryTemplate = Handlebars.compile(registryPartial);
-
-        jQuery('#asd').append(synopsisTemplate(context));
-
-        jQuery('#asd').append(timerTemplate(timeUnits));
-
-        jQuery('#asd').append(detailsTemplate(weddingDetails));
-
-        jQuery('#asd').append(rsvpTemplate());
-
-        jQuery('#asd').append(registryTemplate());
-    });
-
-    $(document).on('click', '[data-editable]', function(e) {
-		var $elem = $(this):
-        var id = $elem.data('id');
-
-        var target = null;
-
-        var isFound = false;
-        util.recursiveWalk(weddingDetails, function(target) {
-            if (typeof target !== 'undefined' && target['id'] != id) {
-                return true;
-            }
+        var _showOverlay = function() {
             $('#overlay').addClass('active');
-            $('#overlay').data('target', target['id']);
-            $('#overlay [data-overlay-text]').val(target['text']);
-			$elem.addClass('overlay-target');
-            isFound = true;
-            return false;
+            $('.overlay-darken').addClass('active');
+        };
+
+        var _removeOverlay = function() {
+            $('#overlay').removeClass('active');
+            $('.overlay-darken').removeClass('active');
+            $('.overlay-target').removeClass('overlay-target');
+            $('#overlay').removeData('target');
+            $('#overlay').removeData('model');
+            overlayDropzone.removeAllFiles();
+        };
+
+        $('[data-overlay-cancel]').on('click', function() {
+            _removeOverlay();
         });
 
-        if (isFound) {
-            e.stopPropagation()
-        }
-    });
-    $('[data-overlay-submit]').on('click', function() {
-        var id = $("#overlay").data('target');
-        var text = $('[data-overlay-text]').val();
-        util.recursiveWalk(weddingDetails, function(target) {
-            if (typeof target !== 'undefined' && target['id'] != id) {
-                return true;
+        var _getOverlayData = function() {
+            var data = {};
+            util.each($, $('#overlay [data-type]:visible'), function(_, element) {
+                var $input = $(element).find('[data-overlay-value]');
+                var dataLabel = $(element).data('type');
+                var dataValue = $input.val();
+
+                data[dataLabel] = dataValue;
+            });
+
+            return data;
+        };
+
+        $('body').on('templates:loaded', function(_, data) {
+            templateModel.load(data);
+            templater.generate(templateModel);
+
+            $('body').trigger('templates:appended');
+        });
+
+        $('body').on('templates:appended', function() {
+            Timer.load();
+        });
+
+        var _getDataFromModel = function(editableData, currModel) {
+            var dataToShowInOverlay = {};
+            util.each($, editableData, function(_, dataType) {
+                dataToShowInOverlay[dataType] = currModel[dataType] || null;
+            });
+
+            return dataToShowInOverlay;
+        };
+
+        $(document).on('blur', '[contentEditable="true"]', function(e) {
+            var html = $(this).html();
+            var parentId = $(this).closest('[data-id]').data('id');
+
+            var model = templateModel.getModelById(parentId);
+
+            model.text = html;
+        });
+
+        $(document).on('click', '[data-editable]', function(e) {
+            var id = $(this).data('id');
+            var parentType = $(this).parents('[data-parent]').data('type');
+
+            var parentModel = templateModel.getModelByType(parentType);
+            var currModel = templateModel.getModelById(id);
+
+            if (!parentModel) {
+                return;
             }
-            target['text'] = text;
-            jQuery('#details').replaceWith(detailsTemplate(weddingDetails));
+
+            // Pass the necessary data to the overlay
+            $('#overlay').data('target', id);
+            $('#overlay').data('parentModel', parentModel);
+
+            // Show the editable data in the overlay
+            var editableData = $(this).data("editable").split(',');
+            var dataToShowInOverlay = _getDataFromModel(editableData, currModel);
+            _removeAllOverlayElements();
+            _populateOverlay(dataToShowInOverlay);
+            _showOverlay();
+
+            $(this).addClass('overlay-target');
+
+            e.stopPropagation();
+        });
+
+        $('[data-overlay-delete]').on('click', function() {
+            var id = $("#overlay").data('target');
+
+            if (typeof id === 'undefined') {
+                return;
+            }
+
+            templateModel.save();
+
+            _removeOverlay();
+        });
+
+        $('[data-overlay-submit]').on('click', function() {
+            var id = $("#overlay").data('target');
+            var parentModel = $('#overlay').data('parentModel');
+
+            if (typeof id === 'undefined') {
+                var modelName = parentModel.split(':')[0];
+                var modelPath = parentModel.split(':')[1].split('.');
+
+                templateModel.addNewModelEntry(id, modelName, modelPath);
+            }
+
+            templateModel.save($);
+            templater.generate(templateModel);
+            $('body').trigger('templates:appended');
+
+            _removeOverlay();
+        });
+
+        $(document).on('click', '[data-add]', function(e) {
+            var $templateElem = $('#' + $(this).data('add'));
+            var fields = $('<div/>')
+                .append($($templateElem.html()))
+                .find('[data-editable]')
+                .data('editable')
+                .split(',');
+
+            var newData = {};
+            util.each($, fields, function(_, field) {
+                newData[field] = '';
+            });
+
+            $('#overlay').data('parentModel', $(this).data('model'));
+            _removeAllOverlayElements();
+            _populateOverlay(newData);
+            _showOverlay();
+
+            e.preventDefault();
             return false;
         });
     });
-});

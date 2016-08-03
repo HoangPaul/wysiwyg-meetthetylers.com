@@ -1,12 +1,44 @@
-define(["jquery", "./templates"], function($) {
+define(["jquery", "./timer"], function($, Timer) {
     var jQuery = $;
 
-    $.get('/public/all.html', function(data) {
-        $('body').append(data);
-        $('body').trigger('templates:loaded');
+	$(document).on('ready', function() {
+		Timer.load();
+	});
+
+    new WOW().init();
+
+    $(document).on('submit', 'form', function(e) {
+        var oldText = $('[data-form-button]').html();
+        var $button = $('[data-form-button]');
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            crossDomain: true,
+            error: function(e) {
+                setTimeout(function() {
+                    alert('Ack, we encountered a fatal error. Please get in contact with Sao or Pat to place your RSVP');
+                    $button.html(oldText);
+                }, 1000);
+            },
+            success: function(e) {
+                setTimeout(function() {
+                    $button.html('Thank you!');
+                    $button.prop('disabled', true);
+                    $button.removeClass('btn-primary');
+                    $button.addClass('btn-success');
+                }, 1000);
+            },
+            timeout: 10000
+        });
+        $button.html('<i class="fa fa-refresh fa-spin"></i>');
+        return false;
     });
 
-    //new WOW().init();
+	$(document).on('click', '[data-read-more]', function(e) {
+		$(this).prev().toggleClass('active');
+		$(this).hide();
+	});
 
     // Image greyout
     (function($) {
@@ -18,41 +50,6 @@ define(["jquery", "./templates"], function($) {
         } else {
           $target.addClass('img-gray-filter');
         }
-      });
-    })(jQuery);
-
-    // Map legend clickable
-
-    (function($) {
-      $('[data-toggle="clickable-show-unique"]').on('click', function(event) {
-        event.preventDefault();
-
-        // De-activate all members in the group
-        var group = $(this).data('group');
-        $('[data-group="' + group + '"]').removeClass('active');
-        $(this).addClass('active');
-
-        // Activate the target member(s)
-        var target = $(this).data('target');
-        $(target).addClass('active');
-
-        marker.setIcon('/images/markers/map-marker-fa-gift-large.png');
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function() {
-            marker.setAnimation(null);
-        }, 700);
-      });
-    })(jQuery);
-
-    // Map legend content
-
-    (function($) {
-      $('[data-toggle="clickable-hide-all"]').on('click', function(event) {
-        event.preventDefault();
-
-        // De-activate all members in the group
-        var group = $(this).data('group');
-        $('[data-group="' + group + '"]').removeClass('active');
       });
     })(jQuery);
 });

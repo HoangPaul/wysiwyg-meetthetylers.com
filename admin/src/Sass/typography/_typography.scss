@@ -33,18 +33,6 @@ h2,h3,h4,h5 {
   @include font-normal();
 }
 
-.line-heading-brand {
-  @include line-heading($white, $brand, 60);
-}
-
-.line-heading-brand-long {
-  @include line-heading($white, $brand, 80);
-}
-
-.line-heading-brand-full {
-  @include line-heading($white, $brand, 100);
-}
-
 .counter-unit {
   letter-spacing: 0.5em;
 }
