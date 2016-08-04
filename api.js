@@ -91,7 +91,7 @@ router.get('/generate', function (req, res, next) {
                         }
                     });
                 }
-                res.send('Generate and exported successfully. Please go to https://preview.meetthetylers.com to preview your changes');
+                res.send('Generate and exported successfully.');
             });
         });
     });
