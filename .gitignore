@@ -1,14 +1,14 @@
-admin/node_modules/
+node_modules/
 
 # Ignore uploaded files
-admin/webroot/images/*
-!admin/webroot/images/.gitkeep
+webroot/images/*
+!webroot/images/.gitkeep
 
 # Ignore generated files
 *.css
 *.css.map
 all.html
-admin/webroot/assets/
+webroot/assets/
 
 npm-debug.log
 public/*
