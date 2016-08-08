@@ -15,6 +15,7 @@ define(["jquery", "./timer"], function($, Timer) {
             url: $(this).attr('action'),
             data: $(this).serialize(),
             crossDomain: true,
+            dataType: 'json',
             error: function(e) {
                 setTimeout(function() {
                     alert('Ack, we encountered a fatal error. Please get in contact with Sao or Pat to place your RSVP');
